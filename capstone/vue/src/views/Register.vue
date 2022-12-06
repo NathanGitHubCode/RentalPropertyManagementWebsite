@@ -32,6 +32,11 @@
         v-model="user.confirmPassword"
         required
       />
+        <select id="role" v-model="user.role">
+            <option value="Renter">Renter</option>
+            <option value="Landlord">Landlord</option>
+            <option value="Employee">Employee</option>
+          </select> 
       <router-link :to="{ name: 'login' }">Have an account?</router-link>
       <button class="btn btn-lg btn-primary btn-block" type="submit">
         Create Account
@@ -51,7 +56,7 @@ export default {
         username: '',
         password: '',
         confirmPassword: '',
-        role: 'user',
+        role: '',
       },
       registrationErrors: false,
       registrationErrorMsg: 'There were problems registering this user.',
