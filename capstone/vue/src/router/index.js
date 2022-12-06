@@ -8,6 +8,8 @@ import ViewRent from '../views/ViewRent.vue'
 import ViewProperties from '../views/ViewProperties.vue'
 import ViewMaintenance from '../views/ViewMaintenance.vue'
 import store from '../store/index'
+import AddNewProperty from "../views/AddNewProperty.vue"
+
 
 Vue.use(Router)
 
@@ -76,6 +78,14 @@ const router = new Router({
       path: "/maintenance/:userID",
       name: "maintenance-list",
       component: ViewMaintenance,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: "/addNewProperty",
+      name: "add-new-property",
+      component: AddNewProperty,
       meta: {
         requiresAuth: false
       }
