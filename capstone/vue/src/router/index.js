@@ -4,6 +4,9 @@ import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
+import ViewRent from '../views/ViewRent.vue'
+import ViewProperties from '../views/ViewProperties.vue'
+import ViewMaintenance from '../views/ViewMaintenance.vue'
 import store from '../store/index'
 
 Vue.use(Router)
@@ -26,7 +29,7 @@ const router = new Router({
       name: 'home',
       component: Home,
       meta: {
-        requiresAuth: true
+        requiresAuth: false
       }
     },
     {
@@ -52,7 +55,32 @@ const router = new Router({
       meta: {
         requiresAuth: false
       }
+    },
+    {
+      path:"/rent/:userID",
+      name: "rent-list",
+      component: ViewRent,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path:"/properties",
+      name:"property-list",
+      component: ViewProperties,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: "/maintenance/:userID",
+      name: "maintenance-list",
+      component: ViewMaintenance,
+      meta: {
+        requiresAuth: false
+      }
     }
+    
   ]
 })
 
