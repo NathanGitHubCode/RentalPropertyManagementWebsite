@@ -6,11 +6,14 @@
       <router-link v-bind:to="{ name: 'addNewProperty' }">New Property Form</router-link>
     </div>
     <router-view />
+    <account-drop-down/>
   </div>
 </template>
 
 <script>
+import AccountDropDown from "../src/views/AccountDropDown.vue"
 export default {
+  components: { AccountDropDown },
 
 }
 </script>

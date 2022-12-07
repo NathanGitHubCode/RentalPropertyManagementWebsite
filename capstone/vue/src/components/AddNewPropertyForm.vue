@@ -29,7 +29,7 @@
 
 <script>
 export default {
-    data: function () {
+    data() {
     return {
       // Initialize the form data
       formData: {
@@ -43,7 +43,7 @@ export default {
     }
     },
     methods: {
-         addRentalProperty: function () {
+         addRentalProperty() {
       // TODO: Add the rental property to the database
     }
     }
