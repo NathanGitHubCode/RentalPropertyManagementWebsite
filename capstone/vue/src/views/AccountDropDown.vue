@@ -1,9 +1,8 @@
 <template>
   <div>
-    ...
     <account-drop-down
-      v-bind:userName="currentUser.name"
-      v-bind:userType="currentUser.type"
+      v-bind:userName="currentUser.username"
+      v-bind:userType="currentUser.role"
       v-bind:logout="logout"
     />
   </div>
@@ -19,8 +18,8 @@ export default {
   data() {
     return {
       currentUser: {
-        name: 'John Doe',
-        type: 'Renter'
+        username: this.$store.state.user.username,
+        role: this.$store.state.user.authorities[0].name.substring(5, this.$store.state.user.authorities[0].name.length)
       }
     };
   },

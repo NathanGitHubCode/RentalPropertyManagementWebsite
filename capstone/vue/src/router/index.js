@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
@@ -9,7 +8,7 @@ import ViewProperties from '../views/ViewProperties.vue'
 import ViewMaintenance from '../views/ViewMaintenance.vue'
 import store from '../store/index'
 import AddNewProperty from "../views/AddNewProperty.vue"
-
+import Home from "../views/Home.vue"
 
 Vue.use(Router)
 

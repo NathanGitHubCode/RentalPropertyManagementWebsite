@@ -1,7 +1,7 @@
 <template>
   <div class="account-info">
-    <button @click="toggleDropdown">
-      {{ userName + "'s Account" }}
+    <button class="dropdown" @click="toggleDropdown">
+      {{ userName }}
     </button>
     <div v-if="isDropdownVisible" class="dropdown-content">
       <p>Username: {{ userName }}</p>
@@ -13,14 +13,15 @@
  
 <script>
 export default {
-  props: {
+name: 'AccountDropDown',
+props: {
     userName: String,
     userType: String,
     logout: Function
-  },
+  }, 
   data() {
     return {
-      isDropdownVisible: false
+      isDropdownVisible: false,
     };
   },
   methods: {
@@ -28,6 +29,17 @@ export default {
       this.isDropdownVisible = !this.isDropdownVisible;
     },
     
+  },
+  computed: {
+    getUsername(){
+      return this.$store.state.user
+    }
   }
 };
 </script>
+
+<style>
+
+
+
+</style>
