@@ -1,7 +1,7 @@
 BEGIN TRANSACTION;
 
 DROP TABLE IF EXISTS users, properties;
-
+DROP USER IF EXISTS final_capstone_owner, final_capstone_appuser;
 
 CREATE TABLE users (
 	user_id SERIAL,
@@ -18,7 +18,7 @@ CREATE TABLE properties (
     address varchar(100),
     description varchar(500),
     price decimal(13, 2),
-    isAvailable boolean,
+    is_available boolean,
     renter_id int
 );
 

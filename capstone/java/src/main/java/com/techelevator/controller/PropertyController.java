@@ -4,11 +4,8 @@ import com.techelevator.dao.PropertyDao;
 import com.techelevator.dao.UserDao;
 import com.techelevator.model.Property;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
 import javax.annotation.security.PermitAll;
 import java.util.List;
 
@@ -28,4 +25,8 @@ public class PropertyController {
         return propertyDao.findAllProperties();
     }
 
+    @RequestMapping(path = "/viewListings/{property_id}", method = RequestMethod.GET)
+    public Property viewProperty(@PathVariable int propertyId){
+        return propertyDao.findProperty(propertyId);
+    }
 }

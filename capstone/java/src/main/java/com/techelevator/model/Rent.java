@@ -17,6 +17,10 @@ public class Rent {
         this.rentStatusId = rentStatusId;
     }
 
+    public Rent(){
+
+    }
+
     public int getRentId() {
         return rentId;
     }
