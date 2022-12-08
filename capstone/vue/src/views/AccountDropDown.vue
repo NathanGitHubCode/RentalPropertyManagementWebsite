@@ -15,12 +15,14 @@ export default {
   components: {
     AccountDropDown
   },
+  props: { userName: String },
   data() {
     return {
       currentUser: {
         username: this.$store.state.user.username,
         role: this.$store.state.user.authorities[0].name.substring(5, this.$store.state.user.authorities[0].name.length)
-      }
+      },
+      
     };
   },
   methods: {

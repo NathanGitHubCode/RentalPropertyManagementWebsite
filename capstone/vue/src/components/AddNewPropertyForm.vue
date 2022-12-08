@@ -5,7 +5,7 @@
       <input v-model="formData.address" type="text" />
  
       <label>Rent:</label>
-      <input v-model="formData.rent" type="number" />
+      <input v-model="formData.rent" type="price" />
  
       <label>Bedrooms:</label>
       <input v-model="formData.bedrooms" type="number" />
@@ -14,12 +14,12 @@
       <input v-model="formData.bathrooms" type="number" />
  
       <label>Amenities:</label>
-      <div v-for="amenity in amenities" v-bind:key="amenity">
-        <input
-          v-model="formData.amenities"
+      <div  id="amenities" v-for="amenity in amenities" v-bind:key="amenity">
+        <label > {{ amenity }} </label>
+        <input 
+          v-model="formData.amenities[amenity]"
           type="checkbox" 
         />
-        {{ amenity }}
       </div>
  
       <button @click="addRentalProperty">Add Property</button>
@@ -52,5 +52,45 @@ export default {
 </script>
 
 <style>
+form {
+  width: 500px;
+  margin: 0 auto;
+  padding: 5vh 25vw 40vh 25vw;
+
+  border-radius: 5px;
+}
+label {
+  display: block;
+  margin-bottom: 0.5em;
+  font-weight: bold;
+  color: #333;
+}
+input {
+  width: 100%;
+  padding: 0.5em;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 0.5em;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: 0.3s;
+  display: flex;
+  margin: auto;
+  }
+button:hover {
+  background-color: #3e8e41;
+}
+
+#amenities {
+    display:inline-block;
+    margin: 1rem;  
+}
+
+
 
 </style>

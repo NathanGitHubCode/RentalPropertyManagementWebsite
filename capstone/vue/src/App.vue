@@ -1,12 +1,12 @@
 <template>
   <div id="app">
     <div class="header">
-      <h1 class="home-button">Home</h1>
-      <h1 class="show-properties">Properties</h1>
-      <h1 class="show-rent">Rent</h1>
-      <h1 class="show-maintenance">Maintenance</h1>
-      <account-drop-down class="dropdown" v-show="loggedIn"/>
-      <router-link class="login-button" v-bind:to="{ name: 'login' }" v-show="!loggedIn">Login</router-link>
+      <router-link class="home-nav" v-bind:to="{ name: 'home' }">Home</router-link>
+      <router-link class="properties-nav" v-bind:to="{ name:'property-list' }">Properties</router-link>
+      <router-link class="rent-nav" v-bind:to="{ name: 'rent-list', params: { id: userID} }">Rent</router-link>
+      <router-link class="maintenance-nav" v-bind:to="{ name: 'maintenance-list', params: { id: userID } }">Maintenance</router-link>
+      <account-drop-down class="dropdown" v-show="!loggedIn" />
+      <router-link class="login-nav" v-bind:to="{ name: 'login' }" v-show="loggedIn">Login</router-link>
      </div>
     <router-view />
   </div>
@@ -18,9 +18,25 @@ import AccountDropDown from "../src/views/AccountDropDown.vue"
 export default {
   name: 'main-app',
   components: { AccountDropDown },
+  
   data() {
     return {
-      loggedIn: true
+      loggedIn: false
+    }
+  },
+  methods:{
+    displayDropDown(){
+      if(this.$data.currentUser.user == ""){
+        this.loggedIn = false;
+    }
+    else{this.loggedIn = true;}
+    }
+
+  },
+
+  created() {
+    if(this.$store.state.user !=  null) {
+      this.loggedIn = true;
     }
   }
 }
@@ -35,19 +51,15 @@ export default {
   font-weight: bold;
   }
 
-  .login-button {
-    text-decoration: none;
-    color: black;
-  }
-
-  .header h1 :hover {
+  .header :hover {
     color: white;    
   }
 
-  .header h1{
-        margin: 0px 15px 0px 15px;
+  .header {
         color: #000;
         cursor: pointer;
+        text-decoration: none;
+
   }
 
   .header {
@@ -57,7 +69,16 @@ export default {
       padding: 20px;
       display: flex;
       flex-wrap: wrap;
+      justify-content:space-between;
 
+  }
+
+  .header > * {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-evenly;
   }
 
 </style>

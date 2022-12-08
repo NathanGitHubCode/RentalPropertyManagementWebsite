@@ -29,12 +29,8 @@ props: {
       this.isDropdownVisible = !this.isDropdownVisible;
     },
     
-  },
-  computed: {
-    getUsername(){
-      return this.$store.state.user
-    }
   }
+  
 };
 </script>
 

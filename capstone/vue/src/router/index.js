@@ -6,6 +6,7 @@ import Register from '../views/Register.vue'
 import ViewRent from '../views/ViewRent.vue'
 import ViewProperties from '../views/ViewProperties.vue'
 import ViewMaintenance from '../views/ViewMaintenance.vue'
+import MaintenanceForm from '../components/MaintenanceForm.vue'
 import store from '../store/index'
 import AddNewProperty from "../views/AddNewProperty.vue"
 import Home from "../views/Home.vue"
@@ -82,14 +83,21 @@ const router = new Router({
       }
     },
     {
-      path: "/addNewProperty",
-      name: "add-new-property",
+      path: "/addProperty",
+      name: "add-property",
       component: AddNewProperty,
       meta: {
         requiresAuth: false
       }
+    },
+    {
+      path: "/addMaintenance",
+      name: "add-maintenance",
+      component: MaintenanceForm,
+      meta: {
+        requiresAuth: false
+      }
     }
-    
   ]
 })
 

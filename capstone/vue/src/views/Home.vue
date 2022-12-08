@@ -39,8 +39,14 @@ export default {
 
  body {
       font-family: Arial, sans-serif;
-      background-color: #f2f2f2;
       margin: 0px;
+      background-image: 
+      linear-gradient(rgba(100, 167, 184, 0.5), rgba(255, 255, 0, 0.363)),
+      url("../../public/backgroundimage.png");
+      background-size: cover;
+      background-attachment: fixed;
+      background-blend-mode:luminosity;
+
     }
     .container {
       display: grid;
@@ -48,22 +54,22 @@ export default {
       grid-template-rows: auto 100vh auto;
       grid-template-areas:
         "header header header"
-        "sidebar-left main sidebar-right"
+        "main main main"
         "footer footer footer";  
+        
     }
 
     .main {
       grid-area: main;
       padding: 20px;
+     
     }
     .sidebar-left {
-      grid-area: sidebar-left;
       background-color: #fff;
       padding: 20px;
       border: 1px solid #ccc;
     }
     .sidebar-right {
-      grid-area: sidebar-right;
       background-color: #fff;
       padding: 20px;
       border: 1px solid #ccc;
@@ -98,5 +104,6 @@ export default {
       border: none;
       cursor: pointer;
     }
+    
 
 </style>
