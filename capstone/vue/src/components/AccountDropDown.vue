@@ -1,6 +1,14 @@
 <template>
   <div class="account-info">
-    <button class="dropdown" @click="toggleDropdown">
+    <router-link 
+    class="login-button"
+    v-bind:to=" { name: 'login'}"
+    v-show="this.loggedIn == false" 
+    >Login</router-link>
+    <button 
+    class="dropdown"
+    @click="toggleDropdown"
+    v-show="this.loggedIn == true">
       {{ userName }}
     </button>
     <div v-if="isDropdownVisible" class="dropdown-content">
@@ -22,6 +30,7 @@ props: {
   data() {
     return {
       isDropdownVisible: false,
+      loggedIn: this.$store.state.loggedIn
     };
   },
   methods: {
@@ -29,15 +38,28 @@ props: {
       this.isDropdownVisible = !this.isDropdownVisible;
     }
     
-  },
-  created(){
-    this.$store.commit('LOGGED_IN');
   }
   
 };
 </script>
 
 <style>
+
+.account-info {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.login-button {
+    background-color: transparent;
+    color: black;
+    display: flex;
+    font-weight: bold;
+    text-decoration: none;
+    justify-content: center;
+    align-content: center;
+}
 
 
 

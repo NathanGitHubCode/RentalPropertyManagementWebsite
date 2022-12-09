@@ -41,7 +41,7 @@ export default new Vuex.Store({
       axios.defaults.headers.common = {};
     },
     LOGGED_IN(state) {
-      if(currentUser != null) {
+      if(state.user == currentUser) {
         state.loggedIn = true;
       }
       else {

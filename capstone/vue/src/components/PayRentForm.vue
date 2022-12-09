@@ -2,12 +2,10 @@
   <div class="rent-form">
       <form @submit.prevent="">
           <div class="payment-amount">
-              <label id="amount">Amount: </label>
-              <input for="amount" v-model.number="payment.amount" />
+              <input for="amount" v-model.number="payment.amount" placeholder="Amount"/>
           </div>
           <div class="payment-date">
-              <label id="date">Date: </label>
-              <input type="date" for="date" v-model="payment.date" />
+              <input type="date" for="date" v-model="payment.date" placeholder="Date"/>
           </div>
           <div>
               <button>Submit</button>
@@ -33,5 +31,12 @@ export default {
 </script>
 
 <style>
+
+.rent-form {
+    display: flex;
+    background-color: wheat;
+    width: 100%;
+    height: 100vh;
+}
 
 </style>

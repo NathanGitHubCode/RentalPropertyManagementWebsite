@@ -3,8 +3,8 @@ import Router from 'vue-router'
 import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
-import ViewRent from '../views/ViewRent.vue'
-import ViewProperties from '../views/ViewProperties.vue'
+import Rent from '../views/Rent.vue'
+import Properties from '../views/Properties.vue'
 import MaintenanceList from '../components/MaintenanceList.vue'
 import MaintenanceForm from '../components/MaintenanceForm.vue'
 import store from '../store/index'
@@ -61,7 +61,7 @@ const router = new Router({
     {
       path:"/rent/:userID",
       name: "rent-list",
-      component: ViewRent,
+      component: Rent,
       meta: {
         requiresAuth: false
       }
@@ -69,7 +69,7 @@ const router = new Router({
     {
       path:"/properties",
       name:"property-list",
-      component: ViewProperties,
+      component: Properties,
       meta: {
         requiresAuth: false
       }

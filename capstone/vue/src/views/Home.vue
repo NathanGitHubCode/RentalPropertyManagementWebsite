@@ -1,29 +1,29 @@
 <template>
   <div class="home">
-      <head>
-  <title>Welcome to [Your Website]</title>
-</head>
-<body>
-  <div class="container">
-    <div class="main">
-      <p>Here at [Your Website], we offer [insert services or products offered].</p>
-      <h2>Our Services/Products</h2>
-      <ul>
-        [Insert list of services or products offered]
-      </ul>
-    </div>
+   <body>
+    <div class="container">
+      <div class="header">
+        <h3>Welcome to Dreamville Rental Property</h3>
+      </div>
+      <div class="main">
+        <p>Here at [Your Website], we offer [insert services or products offered].</p>
+        <h2>Our Services/Products</h2>
+        <ul>
+          [Insert list of services or products offered]
+       </ul>
+      </div>
     <div class="sidebar-left">
         
     </div>
     <div class="sidebar-right">
-      [Insert content for right sidebar]
+        [Insert content for right sidebar]
     </div>
     <div class="footer">
       [Insert footer content]
     </div>
-  </div>
-</body>
-  </div>
+   </div>
+  </body>
+ </div>
 </template>
 
 <script>
@@ -48,13 +48,18 @@ export default {
     }
     .container {
       display: grid;
-      grid-template-columns: 200px 1fr 200px;
-      grid-template-rows: auto 100vh auto;
+      grid-template-columns: auto 1fr auto;
+      grid-template-rows: 200px 100vh 200px;
       grid-template-areas:
         "header header header"
         "main main main"
         "footer footer footer";  
-        
+      
+    }
+
+    .header {
+      grid-area: header;
+
     }
 
     .main {

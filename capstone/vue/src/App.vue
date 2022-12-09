@@ -1,114 +1,141 @@
 <template>
   <div id="app">
-    <div class="header">
-      <router-link class="home-nav" v-bind:to="{ name: 'home' }">Home</router-link>
-      <router-link class="properties-nav" v-bind:to="{ name:'property-list' } || { name: 'login'} ">Properties</router-link>
-      <router-link class="rent-nav" v-bind:to="{ name: 'rent-list', params: { id: userID} }">Rent</router-link>
-      <div class="dropdown-maintenance">
-        <h1 class="drop" @mouseover="myFunction()">Maintenance</h1>
-         <div class="dropdown-content" id="myDropdown">
+    <div class="nav-bar">
+      <router-link v-bind:to="{ name: 'home' }">
+        <img 
+        class="home-nav"
+        src="image.png" />
+      </router-link>
+      <div class="dropdown-all">
+        <h1 
+        class="drop"
+        @mouseenter="toggleProperties()"
+        @mouseleave="toggleProperties()"
+        >Properties</h1>
+        <div 
+        class="dropdown-content" 
+        id="properties-drop" 
+        @mouseenter="toggleProperties()" 
+        @mouseleave="toggleProperties()">
+          <router-link v-bind:to="{ name: 'rent-list', params: { id: userID } }">Browse Properties</router-link>
+          <router-link v-bind:to="{ name: 'request-maintenance', params: { id: userID } }">Add a Property</router-link>
+        </div>
+      </div>
+      <div class="dropdown-all">
+        <h1 
+        class="drop"
+        @mouseenter="toggleRent()"
+        @mouseleave="toggleRent()"
+        >Rent</h1>
+        <div 
+        class="dropdown-content" 
+        id="rent-drop"
+        @mouseenter="toggleRent()"
+        @mouseleave="toggleRent()">
+            <router-link v-bind:to="{ name: 'rent-list', params: { id: userID } }">View Rent</router-link>
+            <router-link v-bind:to="{ name: 'request-maintenance', params: { id: userID } }">Request Maintenance</router-link>
+            <router-link v-bind:to="{ name: 'request-maintenance', params: { id: userID } }">Assign Maintenance</router-link>
+        </div>
+      </div>
+      <div class="dropdown-all">
+        <h1 
+        class="drop" 
+        @mouseenter="toggleMaintenance()"
+        @mouseleave="toggleMaintenance()"
+        >Maintenance</h1>
+         <div 
+         class="dropdown-content" 
+         id="maintenance-drop"
+         @mouseenter="toggleMaintenance()"
+         @mouseleave="toggleMaintenance()">
             <router-link v-bind:to="{ name: 'maintenance-list', params: { id: userID } }">View Maintenance</router-link>
             <router-link v-bind:to="{ name: 'request-maintenance', params: { id: userID } }">Request Maintenance</router-link>
-            <p>Assign Maintenance</p>
+            <router-link v-bind:to="{ name: 'request-maintenance', params: { id: userID } }">Assign Maintenance</router-link>
          </div>
       </div>
-      <account-drop-down class="dropdown"/>
+      <account-drop-down class="login-nav"/>
      </div>
-    <router-view />
+      <router-view />
   </div>
 </template>
 
 <script>
-import AccountDropDown from '../src/views/AccountDropDown';
+import AccountDropDown from '../src/components/AccountDropDown';
 
 export default {
   name: 'main-app',
   components: { AccountDropDown },
   methods: {
-  /* When the user clicks on the button,
-toggle between hiding and showing the dropdown content */
-myFunction() {
-  document.getElementById("myDropdown").classList.toggle("show");
-}
+    toggleMaintenance() {
+      document.getElementById("maintenance-drop").classList.toggle("show");
+    },
+    toggleRent() {
+      document.getElementById("rent-drop").classList.toggle("show");
+    },
+    toggleProperties() {
+      document.getElementById("properties-drop").classList.toggle("show");
+    }
+
 
   }
-// Close the dropdown menu if the user clicks outside of it
-// window.onclick = function(event) {
-//   if (!event.target.matches('.dropbtn')) {
-//     var dropdowns = document.getElementsByClassName("dropdown-content");
-//     var i;
-//     for (i = 0; i < dropdowns.length; i++) {
-//       var openDropdown = dropdowns[i];
-//       if (openDropdown.classList.contains('show')) {
-//         openDropdown.classList.remove('show');
-//       }
-//     }
-  
-//   }
-// }
 }
 </script>
 
 <style>
 
-.dropdown {
-  background-color: transparent;
-  color: black;
-  display: block;
-  font-weight: bold;
-  }
-
-  .header :hover {
+  .nav-bar :hover {
     color: white;    
   }
 
-  .header {
-        color: #000;
-        cursor: pointer;
-        text-decoration: none;
 
-  }
-
-  .header {
-      grid-area: header;
-      background-color: cyan;
-      color: #fff;
-      padding: 20px;
+  .nav-bar {
+      background-color: rgb(104, 0, 0);
+      padding: auto;
       display: flex;
       flex-wrap: wrap;
       justify-content:space-between;
-
+      color: #000;
+      text-decoration: none;
+      width: 100%;
+      
   }
 
-  .header > * {
+  .nav-bar > * {
     text-decoration: none;
     color: black;
     font-weight: bold;
     display: flex;
     justify-content: space-evenly;
+    justify-items: center;
+  }
+
+  .home-nav {
+    block-size: 3.6rem;
+    margin-left: 10px;
   }
 
 
 
     /* Dropdown Button */
 .drop {
-  background-color: #3498DB;
-  color: white;
-  padding: 16px;
+  color: black;
+  padding: 20px;
   font-size: 16px;
   border: none;
   cursor: pointer;
 }
 
 /* Dropdown button on hover & focus */
-.drop:hover, .dropbtn:focus {
-  background-color: #2980B9;
+.drop:hover, .drop:focus {
+  color: white;
+  background-color: rgb(129, 0, 0) ;
 }
 
 /* The container <div> - needed to position the dropdown content */
-.dropdown-maintenance {
+.dropdown-all {
   position: relative;
-  display: inline-block;
+  display: block;
+  align-items: center;  
 }
 
 /* Dropdown Content (Hidden by Default) */
@@ -122,18 +149,22 @@ myFunction() {
 }
 
 /* Links inside the dropdown */
-.dropdown-content a {
+.dropdown-content > * {
   color: black;
   padding: 12px 16px;
   text-decoration: none;
-  display: block;
+  display: flex;
 }
 
 /* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #ddd;}
+.dropdown-content > *:hover {
+  background-color: #ddd;
+  }
 
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-.show {display:block;}
+.show {
+  display:block;
+  }
 
 
 </style>
