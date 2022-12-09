@@ -35,4 +35,3 @@ CREATE TABLE maintenance_requests(
 
 COMMIT TRANSACTION;
 
-SELECT * FROM properties;
