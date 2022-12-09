@@ -34,14 +34,18 @@ export default {
 
   methods: {
     listRents() {
-      rentService.getRentList(this.renter).then( response => {
+      rentService.getRentList(this.properties.renter).then( response => {
         if(response.status == 200) {
-          this.$store.commit('SET_RENTED_PROPS', response.data.properties);
+          this.properties = this.response.data;
+          this.$store.commit('SET_RENTED_PROPS', this.properties);
         }
         
       });
     }
 
+  },
+  created() {
+    this.listRents();
   }
 
 }

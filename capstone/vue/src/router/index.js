@@ -5,7 +5,7 @@ import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import ViewRent from '../views/ViewRent.vue'
 import ViewProperties from '../views/ViewProperties.vue'
-import ViewMaintenance from '../views/ViewMaintenance.vue'
+import MaintenanceList from '../components/MaintenanceList.vue'
 import MaintenanceForm from '../components/MaintenanceForm.vue'
 import store from '../store/index'
 import AddNewProperty from "../views/AddNewProperty.vue"
@@ -77,7 +77,7 @@ const router = new Router({
     {
       path: "/maintenance/:userID",
       name: "maintenance-list",
-      component: ViewMaintenance,
+      component: MaintenanceList,
       meta: {
         requiresAuth: false
       }
@@ -91,8 +91,8 @@ const router = new Router({
       }
     },
     {
-      path: "/addMaintenance",
-      name: "add-maintenance",
+      path: "/requestMaintenance",
+      name: "request-maintenance",
       component: MaintenanceForm,
       meta: {
         requiresAuth: false
