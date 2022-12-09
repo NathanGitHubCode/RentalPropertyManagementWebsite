@@ -1,5 +1,6 @@
 package com.techelevator.dao;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -91,4 +92,5 @@ public class JdbcUserDao implements UserDao {
         user.setActivated(true);
         return user;
     }
+
 }

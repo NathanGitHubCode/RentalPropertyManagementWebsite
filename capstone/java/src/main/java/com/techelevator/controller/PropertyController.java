@@ -33,7 +33,7 @@ public class PropertyController {
     }
 
     @RequestMapping(path = "/addProperty", method = RequestMethod.POST)
-    public void addProperty(@RequestBody PropertyDto propertyDto){
+    public void addProperty(@RequestBody PropertyDto propertyDto, Principal principal){
         Property property = new Property();
         property.setAddress(propertyDto.getAddress());
         property.setImgSrc(propertyDto.getImgSrc());
@@ -42,14 +42,19 @@ public class PropertyController {
         property.setBedrooms(propertyDto.getBedrooms());
         property.setLivingArea(propertyDto.getLivingArea());
         property.setPrice(propertyDto.getPrice());
-        property.setLandlord_id(propertyDto.getLandlordId());
-        property.setAvailable(propertyDto.isAvailable());
+        property.setLandlord_id(userDao.findIdByUsername(principal.getName()));
+        property.setAvailable(true);
         propertyDao.createAvailableProperty(property);
     }
 
     @RequestMapping(path = "/updateProperty/{propertyId}", method = RequestMethod.PUT)
     public void updateProperty(@RequestBody PropertyDto propertyDto){
 
+    }
+
+    @RequestMapping(path = "/whoami", method = RequestMethod.GET)
+    public String whoAmI(Principal principal){
+        return principal.getName();
     }
 
 }
