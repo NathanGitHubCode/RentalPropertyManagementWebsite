@@ -1,6 +1,6 @@
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS users, properties;
+DROP TABLE IF EXISTS users, available_properties, rented_properties;
 DROP USER IF EXISTS final_capstone_owner, final_capstone_appuser;
 
 CREATE TABLE users (
@@ -11,13 +11,21 @@ CREATE TABLE users (
 	CONSTRAINT PK_user PRIMARY KEY (user_id)
 );
 
-CREATE TABLE properties (
+CREATE TABLE available_properties (
     property_id SERIAL,
-    name varchar(50),
-    landlord_id int,
     address varchar(100),
-    description varchar(500),
-    price decimal(13, 2)
+    property_image varchar(1000),
+    has_image boolean,
+    bathrooms int,
+	bedrooms int,
+	living_area int,
+    price int,
+	landlord_id int,
+	is_available boolean
 );
 
+
+
 COMMIT TRANSACTION;
+
+SELECT * FROM properties;
