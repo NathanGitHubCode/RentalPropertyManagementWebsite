@@ -1,91 +1,35 @@
 <template>
   <div>
-    <form>
-      <label>Address:</label>
-      <input v-model="formData.address" type="text" />
- 
-      <label>Rent:</label>
-      <input v-model="formData.rent" type="price" />
- 
-      <label>Bedrooms:</label>
-      <input v-model="formData.bedrooms" type="number" />
- 
-      <label>Bathrooms:</label>
-      <input v-model="formData.bathrooms" type="number" />
- 
-      <label>Amenities:</label>
-      <div  id="amenities" v-for="amenity in amenities" <template>
-  <div>
-    <h1>Maintenance Request List</h1>
-    <table>
-      <tr>
-        <th>Username</th>
-        <th>Category</th>
-        <th>Description</th>
-        <th>Contact Phone</th>
-      </tr>
-      <tr v-for="request in requests">
-        <td>{{ request.username }}</td>
-        <td>{{ request.category }}</td>
-        <td>{{ request.description }}</td>
-        <td>{{ request.contactPhone }}</td>
-      </tr>
-    </table>
+
   </div>
 </template>
  
 <script>
-export default {
-  data() {
-    return {
-      requests: [
-        {
-          username: '',
-          category: '',
-          description: '',
-          contactPhone: '',
-          status: ''
-        }
-      ]
-    }
-  }
-}
-</script>amenity">
-        <label > {{ amenity }} </label>
-        <input 
-          v-model="formData.amenities[amenity]"
-          type="checkbox" 
-        />
-      </div>
- 
-      <button @click="addRentalProperty">Add Property</button>
-    </form>
-  </div>
-</template>
+//   export default {
+//     data() {
+//     return {
+//       // Initialize the form data
+//       formData: {
+//         address: '',
+//         rent: 0,
+//         bedrooms: 0,
+//         bathrooms: 0,
+//         amenities: []
+//       },
+//         amenities: ['Pool', 'Gym', 'Parking', 'Elevator']
+//     }
+//     },
+//     methods: {
+//          addRentalProperty() {
+//       // TODO: Add the rental property to the database
+//     }
+//     }
 
-<script>
-export default {
-    data() {
-    return {
-      // Initialize the form data
-      formData: {
-        address: '',
-        rent: 0,
-        bedrooms: 0,
-        bathrooms: 0,
-        amenities: []
-      },
-        amenities: ['Pool', 'Gym', 'Parking', 'Elevator']
-    }
-    },
-    methods: {
-         addRentalProperty() {
-      // TODO: Add the rental property to the database
-    }
-    }
-
-}
+// }
 </script>
+
+
+
 
 <style>
 form {
