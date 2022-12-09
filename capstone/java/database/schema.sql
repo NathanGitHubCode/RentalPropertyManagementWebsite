@@ -1,6 +1,6 @@
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS users, available_properties, rented_properties;
+DROP TABLE IF EXISTS users, available_properties;
 DROP USER IF EXISTS final_capstone_owner, final_capstone_appuser;
 
 CREATE TABLE users (
@@ -24,7 +24,14 @@ CREATE TABLE available_properties (
 	is_available boolean
 );
 
-
+CREATE TABLE maintenance_requests(
+	request_id SERIAL,
+	renter_id int,
+	property_id int,
+	date date,
+	description varchar(1000),
+	maintenance_status_id int
+);
 
 COMMIT TRANSACTION;
 
