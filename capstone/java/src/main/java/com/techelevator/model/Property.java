@@ -1,28 +1,29 @@
 package com.techelevator.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.math.BigDecimal;
 import java.util.Objects;
 import java.awt.image.BufferedImage;
 public class Property {
+    @JsonProperty("property_id")
     private int propertyId;
     private String name;
+    @JsonProperty("landlord_id")
     private int landlordId;
     private String address;
     private String description;
     private BigDecimal price;
-    private boolean isAvailable;
-    private int renterId;
 //    private BufferedImage image;
 
-    public Property(int propertyId, String name, int landlordId, String address, String description, BigDecimal price, boolean isAvailable, int renterId) {
+    public Property(int propertyId, String name, int landlordId, String address, String description, BigDecimal price) {
         this.propertyId = propertyId;
         this.name = name;
         this.landlordId = landlordId;
         this.address = address;
         this.description = description;
         this.price = price;
-        this.isAvailable = isAvailable;
-        this.renterId = renterId;
+
 //        this.image = image;
     }
 
@@ -78,21 +79,6 @@ public class Property {
         this.price = price;
     }
 
-    public boolean isAvailable() {
-        return isAvailable;
-    }
-
-    public void setAvailable(boolean available) {
-        isAvailable = available;
-    }
-
-    public int getRenterId() {
-        return renterId;
-    }
-
-    public void setRenterId(int renterId) {
-        this.renterId = renterId;
-    }
 
 //    public BufferedImage getImage() {
 //        return image;
@@ -107,12 +93,12 @@ public class Property {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Property property = (Property) o;
-        return propertyId == property.propertyId && landlordId == property.landlordId && isAvailable == property.isAvailable && renterId == property.renterId && Objects.equals(name, property.name) && Objects.equals(address, property.address) && Objects.equals(description, property.description) && Objects.equals(price, property.price);
+        return propertyId == property.propertyId && landlordId == property.landlordId && Objects.equals(name, property.name) && Objects.equals(address, property.address) && Objects.equals(description, property.description) && Objects.equals(price, property.price);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(propertyId, name, landlordId, address, description, price, isAvailable, renterId);
+        return Objects.hash(propertyId, name, landlordId, address, description, price);
     }
 
     @Override
@@ -124,8 +110,6 @@ public class Property {
                 ", address='" + address + '\'' +
                 ", description='" + description + '\'' +
                 ", price=" + price +
-                ", isAvailable=" + isAvailable +
-                ", renterId=" + renterId +
                 '}';
     }
 }

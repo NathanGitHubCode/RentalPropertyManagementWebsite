@@ -17,9 +17,7 @@ CREATE TABLE properties (
     landlord_id int,
     address varchar(100),
     description varchar(500),
-    price decimal(13, 2),
-    is_available boolean,
-    renter_id int
+    price decimal(13, 2)
 );
 
 COMMIT TRANSACTION;
