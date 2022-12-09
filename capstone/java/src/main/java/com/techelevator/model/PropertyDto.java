@@ -3,29 +3,64 @@ package com.techelevator.model;
 import java.math.BigDecimal;
 
 public class PropertyDto {
-    private String name;
-    private int landlordId;
-    private String address;
-    private String description;
-    private BigDecimal price;
 
-    public String getName() {
-        return name;
+    private int propertyId;
+    private String address;
+    private String imgSrc;
+    private Boolean hasImage;
+    private Integer bathrooms;
+    private Integer bedrooms;
+    private Integer livingArea;
+    private Integer price;
+    private Integer landlordId;
+
+    public Integer getLandlordId() {
+        return landlordId;
     }
 
-    public int getLandlordId() {
-        return landlordId;
+    public void setLandlordId(Integer landlordId) {
+        this.landlordId = landlordId;
+    }
+
+    private boolean isAvailable;
+
+    public boolean isAvailable() {
+        return isAvailable;
+    }
+
+    public void setAvailable(boolean available) {
+        isAvailable = available;
+    }
+
+    public int getPropertyId() {
+        return propertyId;
     }
 
     public String getAddress() {
         return address;
     }
 
-    public String getDescription() {
-        return description;
+    public String getImgSrc() {
+        return imgSrc;
     }
 
-    public BigDecimal getPrice() {
+    public Boolean getHasImage() {
+        return hasImage;
+    }
+
+    public Integer getBathrooms() {
+        return bathrooms;
+    }
+
+    public Integer getBedrooms() {
+        return bedrooms;
+    }
+
+    public Integer getLivingArea() {
+        return livingArea;
+    }
+
+    public Integer getPrice() {
         return price;
     }
 }

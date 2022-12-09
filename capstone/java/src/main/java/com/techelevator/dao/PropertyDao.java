@@ -10,7 +10,7 @@ public interface PropertyDao {
 
     Property findProperty(int propertyId);
 
-    Property createProperty(Property property);
+    Property createAvailableProperty(Property property);
 
     public void updateProperty(int propertyId);
 

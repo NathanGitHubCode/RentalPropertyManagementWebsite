@@ -25,7 +25,7 @@ public class JdbcPropertyDao implements PropertyDao {
     @Override
     public List<Property> findAllProperties(){
         List<Property> properties = new ArrayList<>();
-        String sql = "SELECT property_id, name, landlord_id, address, description, price FROM properties";
+        String sql = "SELECT property_id, address, property_image, has_image, bathrooms, bedrooms, living_area, price, landlord_id, is_available FROM available_properties";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
         while(results.next()){
             Property property = mapRowToProperty(results);
@@ -37,7 +37,7 @@ public class JdbcPropertyDao implements PropertyDao {
     @Override
     public Property findProperty(int propertyId){
         Property property = null;
-        String sql = "SELECT property_id, name, landlord_id, address, description, price FROM properties WHERE property_id = ?;";
+        String sql = "SELECT property_id, address, property_image, has_image, bathrooms, bedrooms, living_area, price, landlord_id, is_available FROM available_properties WHERE property_id = ?;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, propertyId);
         if(results.next()){
             property = mapRowToProperty(results);
@@ -46,9 +46,9 @@ public class JdbcPropertyDao implements PropertyDao {
     }
 
     @Override
-    public Property createProperty(Property property){
-        String sql ="INSERT INTO properties(name, address, description, price VALUES (?, ?, ?, ?, ?) RETURNING property_id ";
-        int propertyId = jdbcTemplate.queryForObject(sql, Integer.class, property.getName(), property.getAddress(), property.getDescription(), property.getPrice());
+    public Property createAvailableProperty(Property property){
+        String sql ="INSERT INTO available_properties(address, property_image, has_image, bathrooms, bedrooms, living_area, price, landlord_id, is_available) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING property_id ";
+        int propertyId = jdbcTemplate.queryForObject(sql, Integer.class, property.getAddress(), property.getImgSrc(), property.getHasImage(), property.getBathrooms(), property.getBedrooms(), property.getLivingArea(), property.getPrice(), property.getLandlord_id(), property.isAvailable());
 
         property.setPropertyId(propertyId);
         return property;
@@ -57,7 +57,7 @@ public class JdbcPropertyDao implements PropertyDao {
 
     @Override
     public void updateProperty(int propertyId){
-        String sql = "UPDATE properties SET name = ?, landlord_id = ?, address = ?, description = ?, price = ? WHERE property_id = ?;";
+        String sql = "UPDATE available_properties SET address = ?, bathrooms = ?, bedrooms = ?, living_area = ?, price = ? WHERE property_id = ?;";
         jdbcTemplate.update(sql, propertyId);
     }
 
@@ -73,11 +73,14 @@ public class JdbcPropertyDao implements PropertyDao {
     private Property mapRowToProperty(SqlRowSet rowset) {
         Property property = new Property();
         property.setPropertyId(rowset.getInt("property_id"));
-        property.setName(rowset.getString("name"));
-        property.setLandlordId(rowset.getInt("landlord_id"));
+        property.setImgSrc(rowset.getString("property_image"));
+        property.setHasImage(rowset.getBoolean("has_image"));
         property.setAddress(rowset.getString("address"));
-        property.setDescription(rowset.getString("description"));
-        property.setPrice(rowset.getBigDecimal("price"));
+        property.setBathrooms(rowset.getInt("bathrooms"));
+        property.setBedrooms(rowset.getInt("bedrooms"));
+        property.setLivingArea(rowset.getInt("living_area"));
+        property.setPrice(rowset.getInt("price"));
+        property.setAvailable(rowset.getBoolean("is_available"));
         return property;
     }
 }
