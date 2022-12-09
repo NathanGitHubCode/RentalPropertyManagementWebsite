@@ -1,13 +1,14 @@
 <template>
   <div>
-      <pay-rent-form />
+      <rent-list />
   </div>
 </template>
 
 <script>
-import PayRentForm from '../components/PayRentForm.vue'
+import RentList from '../components/RentList.vue'
+
 export default {
-  components: { PayRentForm },
+  components: { RentList },
 
 }
 </script>

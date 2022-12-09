@@ -14,7 +14,43 @@
       <input v-model="formData.bathrooms" type="number" />
  
       <label>Amenities:</label>
-      <div  id="amenities" v-for="amenity in amenities" v-bind:key="amenity">
+      <div  id="amenities" v-for="amenity in amenities" <template>
+  <div>
+    <h1>Maintenance Request List</h1>
+    <table>
+      <tr>
+        <th>Username</th>
+        <th>Category</th>
+        <th>Description</th>
+        <th>Contact Phone</th>
+      </tr>
+      <tr v-for="request in requests">
+        <td>{{ request.username }}</td>
+        <td>{{ request.category }}</td>
+        <td>{{ request.description }}</td>
+        <td>{{ request.contactPhone }}</td>
+      </tr>
+    </table>
+  </div>
+</template>
+ 
+<script>
+export default {
+  data() {
+    return {
+      requests: [
+        {
+          username: '',
+          category: '',
+          description: '',
+          contactPhone: '',
+          status: ''
+        }
+      ]
+    }
+  }
+}
+</script>amenity">
         <label > {{ amenity }} </label>
         <input 
           v-model="formData.amenities[amenity]"

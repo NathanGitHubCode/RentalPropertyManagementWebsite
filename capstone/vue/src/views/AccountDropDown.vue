@@ -1,5 +1,8 @@
 <template>
   <div>
+    <router-link 
+    v-bind:to=" { name: 'login'}" 
+    >Login</router-link>
     <account-drop-down
       v-bind:userName="currentUser.username"
       v-bind:userType="currentUser.role"
@@ -21,14 +24,18 @@ export default {
       currentUser: {
         username: this.$store.state.user.username,
         role: this.$store.state.user.authorities[0].name.substring(5, this.$store.state.user.authorities[0].name.length)
-      },
-      
-    };
+      }
+  };
   },
   methods: {
     logout() {
     this.$store.commit("LOGOUT");
-    this.$router.push("/login");    }
+    this.$router.push("/");
+    }
+  },
+  updated(){
+    this.$store.commit('LOGGED_IN');
+    this.$router.push("/")
   }
 };
 </script>

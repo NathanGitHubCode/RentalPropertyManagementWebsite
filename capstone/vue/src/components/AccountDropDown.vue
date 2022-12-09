@@ -27,8 +27,11 @@ props: {
   methods: {
     toggleDropdown() {
       this.isDropdownVisible = !this.isDropdownVisible;
-    },
+    }
     
+  },
+  created(){
+    this.$store.commit('LOGGED_IN');
   }
   
 };

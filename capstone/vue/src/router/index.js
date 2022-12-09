@@ -63,7 +63,7 @@ const router = new Router({
       name: "rent-list",
       component: ViewRent,
       meta: {
-        requiresAuth: true
+        requiresAuth: false
       }
     },
     {

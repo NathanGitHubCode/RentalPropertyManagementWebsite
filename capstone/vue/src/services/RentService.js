@@ -7,7 +7,7 @@ export default {
     
     getPropertyList(){
         return axios.get('/properties')
-    },
+    }
     
    
 }

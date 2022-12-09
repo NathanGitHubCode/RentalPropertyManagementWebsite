@@ -13,9 +13,7 @@
       </ul>
     </div>
     <div class="sidebar-left">
-      <h2>Contact Us</h2>
-      <p>For more information or to inquire about our services/products, please contact us.</p>
-      <button onclick="window.location.href='contact.html'">Contact Us</button>
+        
     </div>
     <div class="sidebar-right">
       [Insert content for right sidebar]

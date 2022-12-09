@@ -1,11 +1,13 @@
  <template>
   <form>
-    <label for="date">Date:</label>
-    <input type="date" id="date" v-model="request.date" />
- 
+    <label for="username">Username:</label>
+    <input type="text" id="username" value="username" placeholder="Username" v-model="request.username" />
+   
     <label>Category:</label>
+    <div>
     <input type="radio" id="plumbing" value="plumbing" v-model="request.category" />
     <label for="plumbing">Plumbing</label>
+    </div>
     <input type="radio" id="electrical" value="electrical" v-model="request.category" />
     <label for="electrical">Electrical</label>
     <input type="radio" id="hvac" value="hvac" v-model="request.category" />
@@ -32,25 +34,27 @@ export default {
   data() {
     return {
       request: {
-        id: this.nextId,
-        date: '',
+        username: '',
         category: '',
         otherCategory: '',
         description: '',
         contact: '',
-        status: ''
       },
       idCounter: 0
     }
   },
   methods: {
-    nextId(){
-      return ++this.idCounter;
-    }
+   
   }
 }
 </script>
 
-<style>
-
+<style scoped>
+label{
+  display: inline-block;
+  text-align: right;
+}
+div{
+  margin-bottom: 10px;;
+}
 </style>
