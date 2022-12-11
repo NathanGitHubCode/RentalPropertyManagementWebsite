@@ -50,7 +50,7 @@
          @mouseleave="toggleMaintenance()">
             <router-link v-bind:to="{ name: 'maintenance-list', params: { id: userID } }">View Maintenance</router-link>
             <router-link v-bind:to="{ name: 'request-maintenance', params: { id: userID } }">Request Maintenance</router-link>
-            <router-link v-bind:to="{ name: 'request-maintenance', params: { id: userID } }">Assign Maintenance</router-link>
+            <router-link v-bind:to="{ name: 'assign-maintenance', params: { id: userID } }">Assign Maintenance</router-link>
          </div>
       </div>
       <account-drop-down class="login-nav"/>

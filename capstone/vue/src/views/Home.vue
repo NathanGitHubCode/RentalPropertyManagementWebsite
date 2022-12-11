@@ -3,13 +3,12 @@
    <body>
     <div class="container">
       <div class="header">
-        <h3>Welcome to Dreamville Rental Property</h3>
+        <h3>Welcome to Dreamville Rentals</h3>
       </div>
       <div class="main">
-        <p>Here at [Your Website], we offer [insert services or products offered].</p>
-        <h2>Our Services/Products</h2>
+        <p></p>
+        <h2></h2>
         <ul>
-          [Insert list of services or products offered]
        </ul>
       </div>
     <div class="sidebar-left">
@@ -29,7 +28,6 @@
 <script>
 export default {
   name: 'home',
-
 }
 </script>
 
@@ -92,6 +90,11 @@ export default {
     }
     h2 {
       font-size: 18px;
+    }
+    h3 {
+      text-align: center;
+      padding: 20px;
+      
     }
     ul {
       list-style-type: none;

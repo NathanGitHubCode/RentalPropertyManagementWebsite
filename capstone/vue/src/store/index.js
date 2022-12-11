@@ -39,6 +39,7 @@ export default new Vuex.Store({
       state.token = '';
       state.user = {};
       axios.defaults.headers.common = {};
+      this.$store.state.loggedIn = false;
     },
     LOGGED_IN(state) {
       if(state.user == currentUser) {

@@ -61,7 +61,8 @@ export default {
             this.$store.commit("SET_AUTH_TOKEN", response.data.token);
             this.$store.commit("SET_USER", response.data.user);
             this.$router.push("/");
-
+            this.$store.state.loggedIn = true;
+            this.$data.isDropdownVisible = true;
           }
         })
         .catch(error => {
