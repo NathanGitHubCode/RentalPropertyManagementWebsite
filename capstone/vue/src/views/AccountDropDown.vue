@@ -1,8 +1,6 @@
 <template>
   <div>
-    <router-link 
-    v-bind:to=" { name: 'login'}" 
-    >Login</router-link>
+    
     <account-drop-down
       v-bind:userName="currentUser.username"
       v-bind:userType="currentUser.role"

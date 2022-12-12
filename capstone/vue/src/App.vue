@@ -17,8 +17,8 @@
         id="properties-drop" 
         @mouseenter="toggleProperties()" 
         @mouseleave="toggleProperties()">
-          <router-link v-bind:to="{ name: 'rent-list', params: { id: userID } }">Browse Properties</router-link>
-          <router-link v-bind:to="{ name: 'request-maintenance', params: { id: userID } }">Add a Property</router-link>
+          <router-link v-bind:to="{ name: 'browse-properties', params: { id: userID } }">Browse Properties</router-link>
+          <router-link v-bind:to="{ name: 'add-property', params: { id: userID } }">Add a Property</router-link>
         </div>
       </div>
       <div class="dropdown-all">
@@ -32,9 +32,8 @@
         id="rent-drop"
         @mouseenter="toggleRent()"
         @mouseleave="toggleRent()">
-            <router-link v-bind:to="{ name: 'rent-list', params: { id: userID } }">View Rent</router-link>
-            <router-link v-bind:to="{ name: 'request-maintenance', params: { id: userID } }">Request Maintenance</router-link>
-            <router-link v-bind:to="{ name: 'request-maintenance', params: { id: userID } }">Assign Maintenance</router-link>
+            <router-link v-bind:to="{ name: 'rent', params: { id: userID } }">View Rent</router-link>
+            
         </div>
       </div>
       <div class="dropdown-all">
@@ -53,7 +52,8 @@
             <router-link v-bind:to="{ name: 'assign-maintenance', params: { id: userID } }">Assign Maintenance</router-link>
          </div>
       </div>
-      <account-drop-down class="login-nav"/>
+      <account-drop-down class="dropdown" v-show="loggedIn"/>
+      <router-link class="login-button" v-bind:to="{ name: 'login' }" v-show="!loggedIn">Login</router-link>
      </div>
       <router-view />
   </div>
@@ -65,6 +65,11 @@ import AccountDropDown from '../src/components/AccountDropDown';
 export default {
   name: 'main-app',
   components: { AccountDropDown },
+  data() {
+    return {
+      loggedIn: true
+    }
+  },
   methods: {
     toggleMaintenance() {
       document.getElementById("maintenance-drop").classList.toggle("show");

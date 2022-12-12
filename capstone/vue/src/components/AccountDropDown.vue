@@ -1,14 +1,13 @@
 <template>
   <div class="account-info">
-    <router-link 
+    <!-- <router-link 
     class="login-button"
     v-bind:to=" { name: 'login'}"
     v-show="this.loggedIn == false" 
-    >Login</router-link>
+    >Login</router-link> -->
     <button 
     class="dropdown"
-    @click="toggleDropdown"
-    v-show="this.loggedIn == true">
+    @click="toggleDropdown">
       {{ userName }}
     </button>
     <div v-if="isDropdownVisible" class="dropdown-content">
@@ -29,8 +28,7 @@ props: {
   }, 
   data() {
     return {
-      isDropdownVisible: false,
-      loggedIn: this.$store.state.loggedIn
+      isDropdownVisible: false
     };
   },
   methods: {
@@ -38,7 +36,13 @@ props: {
       this.isDropdownVisible = !this.isDropdownVisible;
     }
     
+  },
+  computed: {
+    getUsername(){
+      return this.$store.state.user
+    }
   }
+
   
 };
 </script>

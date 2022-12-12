@@ -4,7 +4,7 @@ import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import Rent from '../views/Rent.vue'
-import Properties from '../views/Properties.vue'
+import BrowseProperties from '../views/BrowseProperties.vue'
 import MaintenanceList from '../components/Maintenance/MaintenanceList.vue'
 import MaintenanceForm from '../components/Maintenance/MaintenanceForm.vue'
 import AssignMaintenance from '../components/Maintenance/AssignMaintenance.vue'
@@ -61,16 +61,16 @@ const router = new Router({
     },
     {
       path:"/rent/:userID",
-      name: "rent-list",
+      name: "rent",
       component: Rent,
       meta: {
         requiresAuth: false
       }
     },
     {
-      path:"/properties",
-      name:"property-list",
-      component: Properties,
+      path:"/browseProperties",
+      name:"browse-properties",
+      component: BrowseProperties,
       meta: {
         requiresAuth: false
       }
