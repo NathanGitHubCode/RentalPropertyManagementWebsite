@@ -36,10 +36,12 @@ public class RequestController {
         Request request = new Request();
         request.setRenterId(requestDto.getRenter_id());
         request.setPropertyId(requestDto.getProperty_id());
-        request.setMaintStatusId(requestDto.getMaintenance_status_id());
         request.setDate(requestDto.getDate());
         request.setDescription(requestDto.getDescription());
         requestDao.submitRequest(request);
     }
+
+//    @RequestMapping(path = "/assignMaintenanceWorker", method = RequestMethod.PUT)
+//    public void assignWorker(@RequestBody )
 
 }

@@ -9,4 +9,6 @@ public interface RequestDao {
     List<Request> viewMaintRequests();
 
     Request submitRequest(Request request);
+
+//    public void updateRequest(int requestId);
 }
