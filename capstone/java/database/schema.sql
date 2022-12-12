@@ -34,8 +34,17 @@ CREATE TABLE maintenance_requests(
 );
 
 CREATE TABLE maintenance_status(
-	maintenance_status_id SERIAL,
+	maintenance_status_id int,
 	employee_id int
+);
+
+CREATE TABLE rent(
+	rent_id SERIAL,
+	property_id int,
+	renter_id int,
+	landlord_id int,
+	amount int,
+	due_date date
 );
 
 COMMIT TRANSACTION;

@@ -9,14 +9,16 @@ public class Request {
     private int propertyId;
     private int maintStatusId;
     private Date date;
+    private String phone_number;
     private String description;
 
-    public Request(int requestId, int renterId, int propertyId, int maintStatusId, Date date, String description) {
+    public Request(int requestId, int renterId, int propertyId, int maintStatusId, Date date, String description, String phone_number) {
         this.requestId = requestId;
         this.renterId = renterId;
         this.propertyId = propertyId;
         this.maintStatusId = maintStatusId;
         this.date = date;
+        this.phone_number = phone_number;
         this.description = description;
     }
 
@@ -70,6 +72,10 @@ public class Request {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public void setPhone_number(String phone_number) {
+        this.phone_number = phone_number;
     }
 
     @Override
