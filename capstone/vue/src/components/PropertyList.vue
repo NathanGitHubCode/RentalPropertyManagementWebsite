@@ -6,11 +6,13 @@
     v-for="property in this.$store.state.rentalProperties"
     v-bind:key="property.id">
       <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cHJvcGVydHl8ZW58MHx8MHx8&w=1000&q=80" />
-      <h1 id="address">Address: {{ property.address }}</h1>
-      <h1 id="bathrooms">Bathrooms: {{ property.bathrooms }}</h1>
-      <h1 id="bedrooms">Bedrooms: {{ property.bedrooms }}</h1>
-      <h1 id="area">Area: {{property.livingArea }}</h1>
-      <h1 id="price">Price: {{ property.price }}</h1>
+      <div class="property-details">
+        <h1 id="address">Address: {{ property.address }}</h1>
+        <h1 id="bathrooms">Bathrooms: {{ property.bathrooms }}</h1>
+        <h1 id="bedrooms">Bedrooms: {{ property.bedrooms }}</h1>
+        <h1 id="area">{{property.livingArea }} sqft</h1>
+        <h1 id="price">Price: ${{ property.price }}</h1>
+      </div>
     </div>
   </div>
 </template>
@@ -39,18 +41,18 @@ export default {
 
 .property-card{
   background: white;
-  display: inline-block;
+  display: flex;
   margin: 10px 10px 10px 10px;
 }
 
-img{
+img {
   width: 10vw;
   height: 15vh;
   margin: 8px;
 }
 
-#address {
-
+.property-details {
+    margin-top: 10px;
 }
 
 
