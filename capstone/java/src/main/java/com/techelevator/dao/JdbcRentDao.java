@@ -16,11 +16,14 @@ public class JdbcRentDao implements RentDao{
     }
 
     @Override
-    public BigDecimal viewRent(int rentId){
-        String sql = "SELECT amount FROM rent WHERE rent_id = ?;";
-        BigDecimal rent = jdbcTemplate.queryForObject(sql, BigDecimal.class, rentId);
+    public BigDecimal viewMyRent(int renterId){
+        String sql = "SELECT amount FROM rent WHERE renter_id = ?;";
+        BigDecimal rent = jdbcTemplate.queryForObject(sql, BigDecimal.class, renterId);
         return rent;
     }
+
+
+
 
 
 }

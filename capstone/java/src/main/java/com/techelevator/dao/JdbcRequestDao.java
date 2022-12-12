@@ -30,13 +30,18 @@ public class JdbcRequestDao implements RequestDao {
     }
     @Override
     public Request submitRequest(Request request){
-        String sql = "INSERT INTO maintenance_requests(renter_id, property_id, date, description, maintenance_status_id) VALUES(?, ?, ?, ?, ?) RETURNING request_id";
-        int requestId = jdbcTemplate.queryForObject(sql, Integer.class, request.getRenterId(), request.getPropertyId(), request.getDate(), request.getDescription(), request.getMaintStatusId());
+        String sql = "INSERT INTO maintenance_requests(renter_id, property_id, date, description, maintenance_status_id) VALUES(?, ?, ?, ?, 1) RETURNING request_id";
+        int requestId = jdbcTemplate.queryForObject(sql, Integer.class, request.getRenterId(), request.getPropertyId(), request.getDate(), request.getDescription());
 
         request.setRequestId(requestId);
         return request;
 
     }
+
+//    @Override
+//    public void updateRequest(int requestId){
+//        String sql = "UPDATE maintenance_requests SET maintenance_status_id = 2"
+//    }
 
 
 

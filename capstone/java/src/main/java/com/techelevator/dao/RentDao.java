@@ -4,5 +4,5 @@ import java.math.BigDecimal;
 
 public interface RentDao {
 
-    BigDecimal viewRent(int rentId);
+   BigDecimal viewMyRent(int renterId);
 }
