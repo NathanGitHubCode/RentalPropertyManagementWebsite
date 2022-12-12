@@ -21,7 +21,13 @@ export default new Vuex.Store({
     user: currentUser || {},
     loggedIn: false,
     rentalProperties: [],
-    profile: {}
+    maintenanceList: [
+      {
+        username: "jedi",
+        description: "leaky toilet",
+        contactPhone: "401-393-2251"
+      }
+    ]
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -51,6 +57,9 @@ export default new Vuex.Store({
     },
     SET_PROPERTIES(state, properties) {
       state.rentalProperties = properties;
+    },
+    SET_MAINTENANCE(state, maintenance) {
+      state.maintenanceList = maintenance;
     }
   }
 })

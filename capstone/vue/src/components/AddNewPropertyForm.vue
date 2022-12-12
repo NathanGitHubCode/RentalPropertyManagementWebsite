@@ -4,7 +4,7 @@
       <label>Address:</label>
       <input v-model="formData.address" type="text" />
  
-      <label>Rent:</label>
+      <label>Listing Price:</label>
       <input v-model="formData.rent" type="number" />
  
       <label>Bedrooms:</label>
@@ -12,15 +12,18 @@
  
       <label>Bathrooms:</label>
       <input v-model="formData.bathrooms" type="number" />
+
+      <label>Area: </label>
+      <input v-model="formData.area" type="number" />
  
-      <label>Amenities:</label>
+      <!-- <label>Amenities:</label>
       <div  id="amenities" v-for="amenity in amenities" v-bind:key="amenity">
         <label > {{ amenity }} </label>
         <input 
           v-model="formData.amenities[amenity]"
           type="checkbox" 
         />
-      </div>
+      </div> -->
  
       <button @click="addRentalProperty">Add Property</button>
     </form>
@@ -37,15 +40,14 @@ export default {
         rent: 0,
         bedrooms: 0,
         bathrooms: 0,
-        amenities: []
+        area: 0,
       },
-        amenities: ['Pool', 'Gym', 'Parking', 'Elevator']
     }
     },
     methods: {
          addRentalProperty() {
       // TODO: Add the rental property to the database
-    }
+      }
     }
 
 }

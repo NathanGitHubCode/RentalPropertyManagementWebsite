@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import MaintenanceForm from "../components/Maintenance/MaintenanceForm.vue";
-import MaintenanceList from "../components/Maintenance/MaintenanceList.vue";
+import MaintenanceForm from "../components/MaintenanceForm.vue";
+import MaintenanceList from "../components/MaintenanceList.vue";
 export default {
 components: {
     MaintenanceForm,

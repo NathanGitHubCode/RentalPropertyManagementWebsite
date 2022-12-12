@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Rental Props</h1>
+    <h3 id="header">Dreamville Properties</h3>
     <div 
     class="property-card"
     v-for="property in this.$store.state.rentalProperties"
@@ -53,6 +53,10 @@ img {
 
 .property-details {
     margin-top: 10px;
+}
+
+#header {
+  font-size: 35px;
 }
 
 

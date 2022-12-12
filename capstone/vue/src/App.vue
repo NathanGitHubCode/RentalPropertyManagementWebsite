@@ -99,10 +99,7 @@ export default {
       display: flex;
       flex-wrap: wrap;
       justify-content:space-between;
-      color: #000;
-      text-decoration: none;
-      width: 100%;
-      
+      width: 100%;      
   }
 
   .nav-bar > * {
@@ -111,7 +108,6 @@ export default {
     font-weight: bold;
     display: flex;
     justify-content: space-evenly;
-    justify-items: center;
   }
 
   .home-nav {
@@ -169,6 +165,10 @@ export default {
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show {
   display:block;
+  }
+
+  .dropdown-all > * {
+    color: white;
   }
 
 

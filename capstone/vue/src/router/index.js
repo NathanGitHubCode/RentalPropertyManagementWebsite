@@ -5,9 +5,9 @@ import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import Rent from '../views/Rent.vue'
 import BrowseProperties from '../views/BrowseProperties.vue'
-import MaintenanceList from '../components/Maintenance/MaintenanceList.vue'
-import MaintenanceForm from '../components/Maintenance/MaintenanceForm.vue'
-import AssignMaintenance from '../components/Maintenance/AssignMaintenance.vue'
+import MaintenanceList from '../components/MaintenanceList.vue'
+import MaintenanceForm from '../components/MaintenanceForm.vue'
+import AssignMaintenance from '../components/AssignMaintenance.vue'
 import store from '../store/index'
 import AddNewProperty from "../views/AddNewProperty.vue"
 import Home from "../views/Home.vue"

@@ -1,9 +1,9 @@
  <template>
   <form>
-    <label for="username">Username:</label>
-    <input type="text" id="username" value="username" placeholder="Username" v-model="request.username" />
+    <!-- <label for="username">Username:</label>
+    <input type="text" id="username" value="username" placeholder="Username" v-model="request.username" /> -->
    
-    <label>Category:</label>
+    <!-- <label>Category:</label>
     <div>
     <input type="radio" id="plumbing" value="plumbing" v-model="request.category" />
     <label for="plumbing">Plumbing</label>
@@ -16,7 +16,7 @@
     <label for="structural">Structural</label>
     <input type="radio" id="other" value="other" v-model="request.category" />
     <label for="other">Other (please specify):</label>
-    <input type="text" id="other-category" v-model="request.otherCategory" />
+    <input type="text" id="other-category" v-model="request.otherCategory" /> -->
  
     <label for="description">Description:</label>
     <input type="text" id="description" v-model="request.description"/>
@@ -56,5 +56,9 @@ label{
 }
 div{
   margin-bottom: 10px;;
+}
+
+button {
+  margin-top: 10px;
 }
 </style>
