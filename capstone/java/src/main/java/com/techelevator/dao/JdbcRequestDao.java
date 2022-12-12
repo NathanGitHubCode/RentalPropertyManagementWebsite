@@ -11,7 +11,11 @@ import java.util.List;
 @Component
 public class JdbcRequestDao implements RequestDao {
 
-    private JdbcTemplate jdbcTemplate = new JdbcTemplate();
+    private JdbcTemplate jdbcTemplate;
+
+    public JdbcRequestDao(JdbcTemplate jdbcTemplate){
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
     @Override
     public List<Request> viewMaintRequests(){
@@ -24,15 +28,26 @@ public class JdbcRequestDao implements RequestDao {
         }
         return maintRequests;
     }
+    @Override
+    public Request submitRequest(Request request){
+        String sql = "INSERT INTO maintenance_requests(renter_id, property_id, date, description, maintenance_status_id) VALUES(?, ?, ?, ?, ?) RETURNING request_id";
+        int requestId = jdbcTemplate.queryForObject(sql, Integer.class, request.getRenterId(), request.getPropertyId(), request.getDate(), request.getDescription(), request.getMaintStatusId());
 
-    private Request mapRowToRequest(SqlRowSet rowSet){
+        request.setRequestId(requestId);
+        return request;
+
+    }
+
+
+
+    private Request mapRowToRequest(SqlRowSet rowset){
         Request request = new Request();
-        request.setRequestId(rowSet.getInt("request_id"));
-        request.setRenterId(rowSet.getInt("renter_id"));
-        request.setPropertyId(rowSet.getInt("property_id"));
-        request.setMaintStatusId(rowSet.getInt("maintenance_status_id"));
-        request.setDate(rowSet.getDate("date"));
-        request.setDescription(rowSet.getString("description"));
+        request.setRequestId(rowset.getInt("request_id"));
+        request.setRenterId(rowset.getInt("renter_id"));
+        request.setPropertyId(rowset.getInt("property_id"));
+        request.setMaintStatusId(rowset.getInt("maintenance_status_id"));
+        request.setDate(rowset.getDate("date"));
+        request.setDescription(rowset.getString("description"));
         return request;
     }
 }

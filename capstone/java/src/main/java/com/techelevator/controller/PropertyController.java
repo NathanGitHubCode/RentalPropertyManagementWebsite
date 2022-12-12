@@ -22,12 +22,12 @@ public class PropertyController {
         this.userDao = userDao;
     }
 
-    @RequestMapping(path = "/viewListings", method = RequestMethod.GET)
+    @RequestMapping(path = "/properties", method = RequestMethod.GET)
     public List<Property> returnListings(){
         return propertyDao.findAllProperties();
     }
 
-    @RequestMapping(path = "/viewListings/{propertyId}", method = RequestMethod.GET)
+    @RequestMapping(path = "/properties/{propertyId}", method = RequestMethod.GET)
     public Property viewProperty(@PathVariable Integer propertyId){
         return propertyDao.findProperty(propertyId);
     }

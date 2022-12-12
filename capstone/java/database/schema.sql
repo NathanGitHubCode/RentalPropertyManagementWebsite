@@ -1,6 +1,6 @@
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS users, available_properties;
+DROP TABLE IF EXISTS users, available_properties, maintenance_requests;
 DROP USER IF EXISTS final_capstone_owner, final_capstone_appuser;
 
 CREATE TABLE users (
@@ -31,6 +31,11 @@ CREATE TABLE maintenance_requests(
 	date date,
 	description varchar(1000),
 	maintenance_status_id int
+);
+
+CREATE TABLE maintenance_status(
+	maintenance_status_id SERIAL,
+	employee_id int
 );
 
 COMMIT TRANSACTION;
