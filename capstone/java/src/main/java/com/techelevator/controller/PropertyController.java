@@ -1,5 +1,6 @@
 package com.techelevator.controller;
 
+import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import com.techelevator.dao.PropertyDao;
 import com.techelevator.dao.UserDao;
 import com.techelevator.model.Property;
@@ -48,9 +49,14 @@ public class PropertyController {
         propertyDao.createAvailableProperty(property);
     }
 
+    //ToDo: fix this method
     @RequestMapping(path = "/updateProperty/{propertyId}", method = RequestMethod.PUT)
-    public void updateProperty(@RequestBody PropertyDto propertyDto){
-
+    public void updateProperty(@PathVariable int propertyId, Principal principal){
+        Property property = propertyDao.findProperty(propertyId);
+        int principalId = userDao.findIdByUsername(principal.getName());
+        if(principalId == property.getLandlord_id()){
+            propertyDao.updateProperty(propertyId);
+        }
     }
 
     @RequestMapping(path = "/whoami", method = RequestMethod.GET)

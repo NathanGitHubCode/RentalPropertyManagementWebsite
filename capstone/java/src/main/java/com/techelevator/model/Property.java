@@ -21,6 +21,7 @@ public class Property {
 
     public boolean isAvailable() {
         return isAvailable;
+
     }
 
     public void setAvailable(boolean available) {

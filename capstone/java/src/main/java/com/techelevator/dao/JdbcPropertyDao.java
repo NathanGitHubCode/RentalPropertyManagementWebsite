@@ -57,7 +57,7 @@ public class JdbcPropertyDao implements PropertyDao {
 
     @Override
     public void updateProperty(int propertyId){
-        String sql = "UPDATE available_properties SET address = ?, bathrooms = ?, bedrooms = ?, living_area = ?, price = ? WHERE property_id = ?;";
+        String sql = "UPDATE available_properties SET renter_id = ?, address = ?, bathrooms = ?, bedrooms = ?, living_area = ?, price = ?, is_available = ? WHERE property_id = ?;";
         jdbcTemplate.update(sql, propertyId);
     }
 
