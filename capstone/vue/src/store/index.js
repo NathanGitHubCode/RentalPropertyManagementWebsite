@@ -20,7 +20,8 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || {},
     loggedIn: false,
-    rentalProperties: []
+    rentalProperties: [],
+    profile: {}
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {

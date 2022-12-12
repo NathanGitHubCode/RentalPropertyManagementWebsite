@@ -22,6 +22,7 @@ public class PropertyController {
         this.userDao = userDao;
     }
 
+    @CrossOrigin
     @RequestMapping(path = "/properties", method = RequestMethod.GET)
     public List<Property> returnListings(){
         return propertyDao.findAllProperties();
