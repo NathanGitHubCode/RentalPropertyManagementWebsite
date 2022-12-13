@@ -19,6 +19,7 @@ public class JdbcUserDao implements UserDao {
 
     private final JdbcTemplate jdbcTemplate;
 
+
     public JdbcUserDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
@@ -81,6 +82,34 @@ public class JdbcUserDao implements UserDao {
         String ssRole = role.toUpperCase().startsWith("ROLE_") ? role.toUpperCase() : "ROLE_" + role.toUpperCase();
 
         return jdbcTemplate.update(insertUserSql, username, password_hash, ssRole) == 1;
+    }
+
+    @Override
+    public List<User> listEmployees() {
+        List<User> listOfEmployees = new ArrayList<>();
+            String sql = "SELECT user_id, username FROM users WHERE role = 'ROLE_EMPLOYEE'";
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+            while (results.next()) {
+                User employee = new User();
+                employee.setId(results.getInt("user_id"));
+                employee.setUsername(results.getString("username"));
+                listOfEmployees.add(employee);
+            }
+        return listOfEmployees;
+    }
+
+    @Override
+    public List<User> listRenters() {
+        List<User> listOfRenters = new ArrayList<>();
+        String sql = "SELECT user_id, username FROM users WHERE role = 'ROLE_RENTER'";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+        while (results.next()) {
+            User renter = new User();
+            renter.setId(results.getInt("user_id"));
+            renter.setUsername(results.getString("username"));
+            listOfRenters.add(renter);
+        }
+        return listOfRenters;
     }
 
     private User mapRowToUser(SqlRowSet rs) {

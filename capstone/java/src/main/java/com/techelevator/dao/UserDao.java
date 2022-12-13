@@ -2,6 +2,7 @@ package com.techelevator.dao;
 
 import com.techelevator.model.User;
 
+import java.security.Principal;
 import java.util.List;
 
 public interface UserDao {
@@ -16,4 +17,7 @@ public interface UserDao {
 
     boolean create(String username, String password, String role);
 
+    List<User> listEmployees();
+
+    List<User> listRenters();
 }
