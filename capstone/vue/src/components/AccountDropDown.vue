@@ -1,16 +1,19 @@
 <template>
   <div class="account-info">
-    <!-- <router-link 
+  <div class="nav-element">
+    <router-link
     class="login-button"
-    v-bind:to=" { name: 'login'}"
-    v-show="this.loggedIn == false" 
-    >Login</router-link> -->
+    :to="{ name: 'login' }"
+    v-if="this.$store.state.loggedIn == false"
+    >Login</router-link>
     <button 
     class="dropdown"
-    @click="toggleDropdown">
+    @click="toggleDropdown"
+    v-else>
       {{ userName }}
     </button>
-    <div v-if="isDropdownVisible" class="dropdown-content">
+  </div>
+    <div v-show="this.$store.state.isDropdownVisible" class="account-details">
       <p>Username: {{ userName }}</p>
       <p>Account Type: {{ userType }}</p>
       <button @click="logout">Logout</button>
@@ -28,18 +31,11 @@ props: {
   }, 
   data() {
     return {
-      isDropdownVisible: false
-    };
+    }
   },
   methods: {
     toggleDropdown() {
-      this.isDropdownVisible = !this.isDropdownVisible;
-    }
-    
-  },
-  computed: {
-    getUsername(){
-      return this.$store.state.user
+      this.$store.state.isDropdownVisible = !this.$store.state.isDropdownVisible;
     }
   }
 
@@ -49,22 +45,42 @@ props: {
 
 <style>
 
-.account-info {
+/* .login-button{
+  justify-content: center;
+  align-content: center;
+} */
+
+.nav-element{
+  display: flex;
+  justify-content: center;
+}
+
+.nav-element > *{
+  background: rgba(104, 0, 0);
+  color: white;
+  margin: -10px;
+  font-size: 1rem;
+  font-weight: bold;
   display: flex;
   justify-content: center;
   align-content: center;
+  }
+
+.account-info{
+  display: block;
 }
 
-.login-button {
-    background-color: transparent;
-    color: black;
-    display: flex;
-    font-weight: bold;
-    text-decoration: none;
-    justify-content: center;
-    align-content: center;
+.nav-element :hover, .nav-element :focus{
+  color: white;
+  background-color: rgb(129, 0, 0);
+  border: 200px;
+  }
+
+
+.account-details {
+  justify-content: center;
+  align-content: center;
+  display: flex;
 }
-
-
 
 </style>

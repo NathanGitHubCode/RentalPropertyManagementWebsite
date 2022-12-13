@@ -1,6 +1,5 @@
 <template>
-  <div>
-    
+  <div class="main">
     <account-drop-down
       v-bind:userName="currentUser.username"
       v-bind:userType="currentUser.role"
@@ -31,9 +30,22 @@ export default {
     this.$router.push("/");
     }
   },
-  updated(){
-    this.$store.commit('LOGGED_IN');
-    this.$router.push("/")
-  }
+  
 };
 </script>
+
+<style>
+
+.login-button{
+  display: flex;
+  text-decoration: none;
+  color: white;
+}
+
+/* .login-button:hover {
+  color: white;
+  background-color: rgb(129, 0, 0) ;
+} */
+
+
+</style>

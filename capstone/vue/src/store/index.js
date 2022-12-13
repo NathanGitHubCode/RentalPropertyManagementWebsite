@@ -20,14 +20,9 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || {},
     loggedIn: false,
+    isDropdownVisible: false,
     rentalProperties: [],
-    maintenanceList: [
-      {
-        username: "jedi",
-        description: "leaky toilet",
-        contactPhone: "401-393-2251"
-      }
-    ]
+    maintenanceList: []
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -45,15 +40,11 @@ export default new Vuex.Store({
       state.token = '';
       state.user = {};
       axios.defaults.headers.common = {};
-      this.$store.state.loggedIn = false;
+      state.loggedIn = false;
+      state.isDropdownVisible = false;
     },
     LOGGED_IN(state) {
-      if(state.user == currentUser) {
         state.loggedIn = true;
-      }
-      else {
-        state.loggedIn = false
-      }
     },
     SET_PROPERTIES(state, properties) {
       state.rentalProperties = properties;

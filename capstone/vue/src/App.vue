@@ -52,22 +52,20 @@
             <router-link v-bind:to="{ name: 'assign-maintenance', params: { id: userID } }">Assign Maintenance</router-link>
          </div>
       </div>
-      <account-drop-down class="dropdown" v-show="loggedIn"/>
-      <router-link class="login-button" v-bind:to="{ name: 'login' }" v-show="!loggedIn">Login</router-link>
+      <account-drop-down/>
      </div>
       <router-view />
   </div>
 </template>
 
 <script>
-import AccountDropDown from '../src/components/AccountDropDown';
+import AccountDropDown from '../src/views/AccountDropDown.vue';
 
 export default {
   name: 'main-app',
   components: { AccountDropDown },
   data() {
     return {
-      loggedIn: true
     }
   },
   methods: {
@@ -88,13 +86,13 @@ export default {
 
 <style>
 
-  .nav-bar :hover {
+  .nav-bar:hover {
     color: white;    
   }
 
 
   .nav-bar {
-      background-color: rgb(104, 0, 0);
+      background-color: rgba(104, 0, 0);
       padding: auto;
       display: flex;
       flex-wrap: wrap;
