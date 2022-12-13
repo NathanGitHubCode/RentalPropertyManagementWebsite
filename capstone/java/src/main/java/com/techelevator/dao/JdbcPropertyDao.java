@@ -74,8 +74,13 @@ public class JdbcPropertyDao implements PropertyDao {
         return propertyId;
     }
 
-
-
+    @Override
+    public String findAddressByPropertyId(int propertyId) {
+        String address = "";
+        String sql = "SELECT address FROM available_properties WHERE property_id = ?;";
+        address = jdbcTemplate.queryForObject(sql, String.class, propertyId);
+        return address;
+    }
 
     private Property mapRowToProperty(SqlRowSet rowset) {
         Property property = new Property();

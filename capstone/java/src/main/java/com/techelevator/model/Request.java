@@ -2,6 +2,7 @@ package com.techelevator.model;
 
 import org.apache.tomcat.jni.Local;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Objects;
@@ -10,16 +11,20 @@ public class Request {
     private int requestId;
     private int renterId;
     private int propertyId;
+    private String address;
     private int maintStatusId;
-    private LocalDateTime date;
+    private int employeeId;
+    private LocalDate date;
     private String phoneNumber;
     private String description;
 
-    public Request(int requestId, int renterId, int propertyId, int maintStatusId, LocalDateTime date, String description, String phoneNumber) {
+    public Request(int requestId, int renterId, int propertyId, String address, int maintStatusId, int employeeId, LocalDate date, String phoneNumber, String description) {
         this.requestId = requestId;
         this.renterId = renterId;
         this.propertyId = propertyId;
+        this.address = address;
         this.maintStatusId = maintStatusId;
+        this.employeeId = employeeId;
         this.date = date;
         this.phoneNumber = phoneNumber;
         this.description = description;
@@ -27,6 +32,22 @@ public class Request {
 
     public Request(){
 
+    }
+
+    public int getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public int getRequestId() {
@@ -61,11 +82,11 @@ public class Request {
         this.maintStatusId = maintStatusId;
     }
 
-    public LocalDateTime getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(LocalDateTime date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

@@ -9,6 +9,7 @@ import com.techelevator.model.RequestDto;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
@@ -26,17 +27,19 @@ public class RequestController {
         this.propertyDao = propertyDao;
     }
 
-    @RequestMapping(path = "/maintenanceRequests", method = RequestMethod.GET)
-    public List<Request> viewRequests(){
-        return requestDao.viewMaintRequests();
-    }
+//    @RequestMapping(path = "/maintenanceRequests", method = RequestMethod.GET)
+//    public List<Request> viewRequests(Principal principal){
+//        if()
+//        return requestDao.viewMaintRequests();
+//    }
 
     @RequestMapping(path = "/submitMaintenanceRequest", method = RequestMethod.POST)
     public void submitRequest(@RequestBody RequestDto requestDto, Principal principal){
         Request request = new Request();
         request.setRenterId(userDao.findIdByUsername(principal.getName()));
         request.setPropertyId(propertyDao.findPropertyIdByRenterId(principal));
-        request.setDate(LocalDateTime.now());
+        request.setAddress(propertyDao.findAddressByPropertyId(propertyDao.findPropertyIdByRenterId(principal)));
+        request.setDate(LocalDate.now());
         request.setDescription(requestDto.getDescription());
         request.setPhoneNumber(requestDto.getPhoneNumber());
         requestDao.submitRequest(request);

@@ -32,9 +32,11 @@ CREATE TABLE maintenance_requests(
 	request_id SERIAL,
 	renter_id int,
 	property_id int,
+	address varchar(100),
 	date date,
 	description varchar(1000),
 	maintenance_status_id int,
+	employee_id int,
 	contact_phone varchar(15)
 );
 
@@ -52,6 +54,27 @@ CREATE TABLE rent(
 	due_date date
 );
 
+
+
 COMMIT TRANSACTION;
 
 -- ROLLBACK;
+
+
+GRANT ALL
+ON ALL TABLES IN SCHEMA public
+TO final_capstone_owner;
+
+GRANT ALL
+ON ALL SEQUENCES IN SCHEMA public
+TO final_capstone_owner;
+
+
+GRANT SELECT, INSERT, UPDATE, DELETE
+ON ALL TABLES IN SCHEMA public
+TO final_capstone_appuser;
+
+GRANT USAGE, SELECT
+ON ALL SEQUENCES IN SCHEMA public
+TO final_capstone_appuser;
+

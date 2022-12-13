@@ -7,10 +7,19 @@ public class RequestDto {
     private Integer requestId;
     private Integer renterId;
     private Integer propertyId;
+    private String address;
     private Date date;
     private String description;
     private Integer maintenanceStatusId;
     private String phoneNumber;
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
     public Integer getRequestId() {
         return requestId;
