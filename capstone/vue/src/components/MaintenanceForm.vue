@@ -1,6 +1,6 @@
  <template>
   <form @submit.prevent="submitRequest">
-    <h2 v-if="message">Thank you for submitting form. We will get back to you shortly.  </h2>
+    <h2 v-if="message">Thank you for submitting your request. We will get back to you shortly.  </h2>
     <br />
     <label for="description">Description:</label>
     <input type="text" id="description" v-model="request.description"/>
@@ -8,7 +8,7 @@
     <label for="contact">Property ID:</label>
     <input type="text" id="contact" v-model="request.propertyId" />
 
-    <label for="contact">Contact :</label>
+    <label for="contact">Contact Phone:</label>
     <input type="text" id="contact" v-model="request.phoneNumber" />
  
     <button type="submit">Submit</button>

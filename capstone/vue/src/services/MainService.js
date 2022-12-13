@@ -7,5 +7,8 @@ export default {
     },
     addMaintenanceRequest(request) {
         return axios.post('/submitMaintenanceRequest', request)
+    },
+    markRequestComplete(ID) {
+        return axios.put(`/updateMaintenanceRequest/${ID}`)
     }
 }

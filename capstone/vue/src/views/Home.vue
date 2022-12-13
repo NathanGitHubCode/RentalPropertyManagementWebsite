@@ -12,7 +12,6 @@
        </ul>
       </div>
     <div class="sidebar-left">
-        
     </div>
     <div class="sidebar-right">
         [Insert content for right sidebar]

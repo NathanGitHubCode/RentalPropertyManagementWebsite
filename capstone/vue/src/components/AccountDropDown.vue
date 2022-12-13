@@ -6,20 +6,28 @@
     :to="{ name: 'login' }"
     v-if="this.$store.state.loggedIn == false"
     >Login</router-link>
-    
+
+    <div class="dropdown-all"
+    v-else>
     <button 
     class="dropdown"
-    @click="toggleDropdown"
-    v-else>
-      {{ userName }}
+    @mouseenter="toggleDropdown"
+    @mouseleave="toggleDropdown"
+    >
+      {{ userName }} 
     </button>
 
-  </div>
-    <div v-if="this.$store.state.isDropdownVisible" class="account-details">
+    <div 
+    class="dropdown-content" 
+    id="account-drop"
+    @mouseenter="toggleDropdown"
+    @mouseleave="toggleDropdown">
       <p>Username: {{ userName }}</p>
       <p>Account Type: {{ userType }}</p>
       <button @click="logout">Logout</button>
     </div>
+    </div>
+  </div>
   </div>
 </template>
  
@@ -37,7 +45,7 @@ props: {
   },
   methods: {
     toggleDropdown() {
-      this.$store.state.isDropdownVisible = !this.$store.state.isDropdownVisible;
+      document.getElementById("account-drop").classList.toggle("show");
     }
   }
 
@@ -47,10 +55,9 @@ props: {
 
 <style>
 
-/* .login-button{
-  justify-content: center;
-  align-content: center;
-} */
+.login-button{
+    justify-content: center;
+}
 
 .nav-element{
   display: flex;
@@ -60,7 +67,6 @@ props: {
 .nav-element > *{
   background: rgba(104, 0, 0);
   color: white;
-  margin: -10px;
   font-size: 1rem;
   font-weight: bold;
   display: flex;
@@ -69,7 +75,7 @@ props: {
   }
 
 .account-info{
-  display: block;
+  display: flex;
 }
 
 .nav-element :hover, .nav-element :focus{
@@ -77,12 +83,48 @@ props: {
   background-color: rgb(129, 0, 0);
   border: 200px;
   }
+  
 
 
-.account-details {
-  justify-content: center;
-  align-content: center;
-  display: flex;
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  /* z-index: 1; */
 }
+
+/* Links inside the dropdown */
+.dropdown-content > * {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content > *:hover {
+  background-color: #ddd;
+}
+
+.dropdown-all {
+  position: relative;
+  display: block;
+  align-items: center;  
+}
+
+.dropdown-all > * {
+    color: white;
+  }
+
+  .show {
+  display:block;
+  }
+
+  .dropdown{
+    color:white;
+    background-color: rgba(104, 0, 0);
+    margin: -10px;
+  }
 
 </style>

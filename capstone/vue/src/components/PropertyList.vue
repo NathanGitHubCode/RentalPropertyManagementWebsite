@@ -5,7 +5,7 @@
         <label>Zip Code:</label>
         <input type="text" placeholder="Zipcode" v-model.number="filter.zipCode"/>
         <label>Min Price:</label>
-        <input type="number" placeholder="Min. Price" v-model.number="filter.minPrice"/>
+        <input type="" placeholder="Min. Price" v-model.number="filter.minPrice"/>
         <label>Max Price:</label>
         <input type="number" placeholder="Max. Price" v-model.number="filter.maxPrice"/>
         <label>Beds:</label>

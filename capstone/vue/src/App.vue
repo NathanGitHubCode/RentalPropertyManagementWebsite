@@ -94,9 +94,9 @@ export default {
   .nav-bar {
       background-color: rgba(104, 0, 0);
       padding: auto;
-      display: flex;
+      display:flex;
       flex-wrap: wrap;
-      justify-content:space-between;
+      justify-content:space-around;
       width: 100%;      
   }
 
@@ -105,7 +105,7 @@ export default {
     color: black;
     font-weight: bold;
     display: flex;
-    justify-content: space-evenly;
+
   }
 
   .home-nav {
@@ -128,6 +128,7 @@ export default {
 .drop:hover, .drop:focus {
   color: white;
   background-color: rgb(129, 0, 0) ;
+
 }
 
 /* The container <div> - needed to position the dropdown content */
