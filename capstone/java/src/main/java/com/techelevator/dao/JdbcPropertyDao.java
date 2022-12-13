@@ -68,6 +68,12 @@ public class JdbcPropertyDao implements PropertyDao {
 //        return landlordId;
 //    }
 
+//    public int findPropertyIdByRenterId(int renterId){
+//        int propertyId = 0;
+//        String sql = "SELECT property_id FROM available_properties WHERE renter_id = ?;";
+//        SqlRowSet result = jdbcTemplate.queryForObject(sql, )
+//    }
+
 
 
     private Property mapRowToProperty(SqlRowSet rowset) {

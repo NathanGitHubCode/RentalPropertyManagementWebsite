@@ -12,16 +12,16 @@ public class Request {
     private int propertyId;
     private int maintStatusId;
     private LocalDateTime date;
-    private String phone_number;
+    private String phoneNumber;
     private String description;
 
-    public Request(int requestId, int renterId, int propertyId, int maintStatusId, LocalDateTime date, String description, String phone_number) {
+    public Request(int requestId, int renterId, int propertyId, int maintStatusId, LocalDateTime date, String description, String phoneNumber) {
         this.requestId = requestId;
         this.renterId = renterId;
         this.propertyId = propertyId;
         this.maintStatusId = maintStatusId;
         this.date = date;
-        this.phone_number = phone_number;
+        this.phoneNumber = phoneNumber;
         this.description = description;
     }
 
@@ -77,8 +77,12 @@ public class Request {
         this.description = description;
     }
 
-    public void setPhone_number(String phone_number) {
-        this.phone_number = phone_number;
+    public void setPhoneNumber(String phone_number) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
     @Override

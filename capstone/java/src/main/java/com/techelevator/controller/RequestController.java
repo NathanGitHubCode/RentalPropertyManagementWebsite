@@ -6,16 +6,14 @@ import com.techelevator.dao.UserDao;
 import com.techelevator.model.Property;
 import com.techelevator.model.Request;
 import com.techelevator.model.RequestDto;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
+@CrossOrigin
 @RestController
 public class RequestController {
     private final RequestDao requestDao;
@@ -37,9 +35,10 @@ public class RequestController {
     public void submitRequest(@RequestBody RequestDto requestDto, Principal principal){
         Request request = new Request();
         request.setRenterId(userDao.findIdByUsername(principal.getName()));
-        request.setPropertyId(requestDto.getProperty_id());
+        request.setPropertyId(requestDto.getPropertyId());
         request.setDate(LocalDateTime.now());
         request.setDescription(requestDto.getDescription());
+        request.setPhoneNumber(requestDto.getPhoneNumber());
         requestDao.submitRequest(request);
     }
 

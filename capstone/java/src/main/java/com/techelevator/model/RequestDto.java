@@ -4,58 +4,67 @@ import java.util.Date;
 
 public class RequestDto {
 
-    private Integer request_id;
-    private Integer renter_id;
-    private Integer property_id;
+    private Integer requestId;
+    private Integer renterId;
+    private Integer propertyId;
     private Date date;
     private String description;
-    private Integer maintenance_status_id;
+    private Integer maintenanceStatusId;
+    private String phoneNumber;
 
-    public Integer getRequest_id() {
-        return request_id;
+    public Integer getRequestId() {
+        return requestId;
     }
 
-    public void setRequest_id(Integer request_id) {
-        this.request_id = request_id;
+    public void setRequestId(Integer requestId) {
+        this.requestId = requestId;
     }
 
-    public Integer getRenter_id() {
-        return renter_id;
+    public Integer getRenterId() {
+        return renterId;
     }
 
-    public void setRenter_id(Integer renter_id) {
-        this.renter_id = renter_id;
+    public void setRenterId(Integer renterId) {
+        this.renterId = renterId;
     }
 
-    public Integer getProperty_id() {
-        return property_id;
+    public Integer getPropertyId() {
+        return propertyId;
     }
 
-    public void setProperty_id(Integer property_id) {
-        this.property_id = property_id;
+    public void setPropertyId(Integer propertyId) {
+        this.propertyId = propertyId;
     }
 
     public Date getDate() {
         return date;
     }
 
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
     public String getDescription() {
         return description;
     }
 
-
-
-    public Integer getMaintenance_status_id() {
-        return maintenance_status_id;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public void setMaintenance_status_id(Integer maintenance_status_id) {
-        this.maintenance_status_id = maintenance_status_id;
+    public Integer getMaintenanceStatusId() {
+        return maintenanceStatusId;
     }
 
+    public void setMaintenanceStatusId(Integer maintenanceStatusId) {
+        this.maintenanceStatusId = maintenanceStatusId;
+    }
 
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
 
-
-
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 }

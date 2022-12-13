@@ -31,11 +31,10 @@ public class JdbcRentDao implements RentDao{
     @Override
     public List<Property> viewRentalsByLandlord(int landlordId) {
         List<Property> landlordProperties = null;
-        String sql = "SELECT property_id, address, price, amount, date, status FROM property" +
-                "WHERE landlord_id = ?;";
+        String sql = "SELECT property_id, address, price, amount, due_date, status FROM available_properties WHERE landlord_id = ?;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, Property.class);
         while(results.next()){
-//            landlordProperties.add(mapRowToRent(results));
+//            landlordProperties.add(mapRowForLandlord(results));
         }
         return landlordProperties;
     }
@@ -46,16 +45,16 @@ public class JdbcRentDao implements RentDao{
     }
 
 
-//    private Rent mapRowForLandlord(SqlRowSet rowSet){
-//        Rent rent = new Rent();
-//        rent.setRentId(rowSet.getInt("rent_id"));
-//        rent.setPropertyId(rowSet.getInt("property_id"));
-//        rent.setRenterId(rowSet.getInt("renter_id"));
-//        rent.setStatus(rowSet.getString("status"));
-//        rent.setAmount(rowSet.getBigDecimal("amount"));
-//        rent.setDate(rowSet.getDate("date"));
-//        return rent;
-//    }
+    private Rent mapRowForLandlord(SqlRowSet rowSet){
+        Rent rent = new Rent();
+        rent.setPropertyId(rowSet.getInt("property_id"));
+        rent.setRenterId(rowSet.getInt("renter_id"));
+        rent.setStatus(rowSet.getString("status"));
+        rent.setAmount(rowSet.getBigDecimal("amount"));
+
+//        rent.setDate(rowSet.getDate("due_date").toLocalDate());
+        return rent;
+    }
 
 
     private Rent mapRowToRent(SqlRowSet rowSet){
