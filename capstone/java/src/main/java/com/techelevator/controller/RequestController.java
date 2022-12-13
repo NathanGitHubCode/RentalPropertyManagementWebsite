@@ -6,6 +6,7 @@ import com.techelevator.dao.UserDao;
 import com.techelevator.model.Property;
 import com.techelevator.model.Request;
 import com.techelevator.model.RequestDto;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -33,7 +34,7 @@ public class RequestController {
         return requestDao.viewMaintRequests(principal);
     }
 
-    @RequestMapping(path = "/submitMaintenanceRequest", method = RequestMethod.POST)
+    @RequestMapping(path = "/requestMaintenance", method = RequestMethod.POST)
     public void submitRequest(@RequestBody RequestDto requestDto, Principal principal){
         Request request = new Request();
         request.setRenterId(userDao.findIdByUsername(principal.getName()));
@@ -45,7 +46,11 @@ public class RequestController {
         requestDao.submitRequest(request);
     }
 
-//    @RequestMapping(path = "/assignMaintenanceWorker", method = RequestMethod.PUT)
-//    public void assignWorker(@RequestBody )
+    @RequestMapping(path = "/assignMaintenanceWorker/employee/{employeeId}/property/{propertyId}/request/{requestId}", method = RequestMethod.PUT)
+    public void assignWorker(@PathVariable int propertyId, @PathVariable int employeeId, @PathVariable int requestId, Principal principal){
+        requestDao.assignEmployeeToRequest(propertyId, employeeId, requestId, principal);
+
+
+    }
 
 }

@@ -52,6 +52,7 @@ public class JdbcRequestDao implements RequestDao {
         }
         return maintRequests;
     }
+
     @Override
     public Request submitRequest(Request request){
         String sql = "INSERT INTO maintenance_requests(renter_id, property_id, address, date, description, maintenance_status_id, contact_phone) VALUES(?, ?, ?, ?, ?, 1, ?) RETURNING request_id";
@@ -61,12 +62,27 @@ public class JdbcRequestDao implements RequestDao {
         return request;
     }
 
-//    @Override
-//    public void updateRequest(int requestId){
-//        String sql = "UPDATE maintenance_requests SET maintenance_status_id = 2"
-//    }
+    @Override
+    public void assignEmployeeToRequest(int propertyId, int employeeId, int requestId, Principal principal){
+        String sql2 = "SELECT ap.landlord_id FROM available_properties AS ap JOIN maintenance_requests AS mr ON mr.property_id = ap.property_id WHERE mr.property_id = ?;";
+        int landlordId = jdbcTemplate.queryForObject(sql2, Integer.class, propertyId);
+        int principalId = userDao.findIdByUsername(principal.getName());
+        if(landlordId == principalId){
+            String sql = "UPDATE maintenance_requests SET employee_id = ?, maintenance_status_id = ? WHERE request_id = ?;";
+            jdbcTemplate.update(sql, employeeId, 2, requestId);
+        }
+    }
 
-
+    @Override
+    public void updateMaintenanceStatusToComplete(int requestId, Principal principal) {
+        String sql2 = "SELECT employee_id FROM maintenance_requests WHERE request_id = ?;";
+        int employeeId = jdbcTemplate.queryForObject(sql2, Integer.class, requestId);
+        int principalId = userDao.findIdByUsername(principal.getName());
+        if (employeeId == principalId) {
+            String sql = "UPDATE maintenance_requests SET maintenance_status_id = ? WHERE request_id = ?;";
+            jdbcTemplate.update(sql, 3, requestId);
+        }
+    }
 
     private Request mapRowToRequest(SqlRowSet rowset){
         Request request = new Request();
@@ -75,6 +91,7 @@ public class JdbcRequestDao implements RequestDao {
         request.setPropertyId(rowset.getInt("property_id"));
         request.setAddress(rowset.getString("address"));
         request.setMaintStatusId(rowset.getInt("maintenance_status_id"));
+        request.setEmployeeId(rowset.getInt("employee_id"));
         request.setDate(LocalDate.now());
         request.setDescription(rowset.getString("description"));
         request.setPhoneNumber(rowset.getString("contact_phone"));
