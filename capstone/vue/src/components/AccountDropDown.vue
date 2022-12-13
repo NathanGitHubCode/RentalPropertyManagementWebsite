@@ -6,14 +6,16 @@
     :to="{ name: 'login' }"
     v-if="this.$store.state.loggedIn == false"
     >Login</router-link>
+    
     <button 
     class="dropdown"
     @click="toggleDropdown"
     v-else>
       {{ userName }}
     </button>
+
   </div>
-    <div v-show="this.$store.state.isDropdownVisible" class="account-details">
+    <div v-if="this.$store.state.isDropdownVisible" class="account-details">
       <p>Username: {{ userName }}</p>
       <p>Account Type: {{ userType }}</p>
       <button @click="logout">Logout</button>

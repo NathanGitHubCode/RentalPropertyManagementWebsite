@@ -11,7 +11,7 @@
         class="drop"
         @mouseenter="toggleProperties()"
         @mouseleave="toggleProperties()"
-        >Properties</h1>
+        >Properties </h1>
         <div 
         class="dropdown-content" 
         id="properties-drop" 

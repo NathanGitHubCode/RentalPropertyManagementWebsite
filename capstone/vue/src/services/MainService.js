@@ -2,7 +2,10 @@ import axios from "axios";
 
 export default {
 
-    getMaintenanceList(ID) {
-        return axios.get(`/maintenanceRequests/${ID}`);
+    getMaintenanceList() {
+        return axios.get(`/maintenanceRequests`)
+    },
+    addMaintenanceRequest(request) {
+        return axios.post('/submitMaintenanceRequest', request)
     }
 }

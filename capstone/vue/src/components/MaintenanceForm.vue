@@ -1,50 +1,48 @@
  <template>
-  <form>
-    <!-- <label for="username">Username:</label>
-    <input type="text" id="username" value="username" placeholder="Username" v-model="request.username" /> -->
-   
-    <!-- <label>Category:</label>
-    <div>
-    <input type="radio" id="plumbing" value="plumbing" v-model="request.category" />
-    <label for="plumbing">Plumbing</label>
-    </div>
-    <input type="radio" id="electrical" value="electrical" v-model="request.category" />
-    <label for="electrical">Electrical</label>
-    <input type="radio" id="hvac" value="hvac" v-model="request.category" />
-    <label for="hvac">HVAC</label>
-    <input type="radio" id="structural" value="structural" v-model="request.category" />
-    <label for="structural">Structural</label>
-    <input type="radio" id="other" value="other" v-model="request.category" />
-    <label for="other">Other (please specify):</label>
-    <input type="text" id="other-category" v-model="request.otherCategory" /> -->
- 
+  <form @submit.prevent="submitRequest">
+    <h2 v-if="message">Thank you for submitting form. We will get back to you shortly.  </h2>
+    <br />
     <label for="description">Description:</label>
     <input type="text" id="description" v-model="request.description"/>
  
-    <label for="contact">Contact Phone:</label>
-    <input type="text" id="contact" v-model="request.contact" />
+    <label for="contact">Property ID:</label>
+    <input type="text" id="contact" v-model="request.propertyId" />
+
+    <label for="contact">Contact :</label>
+    <input type="text" id="contact" v-model="request.phoneNumber" />
  
     <button type="submit">Submit</button>
+    
       
     </form>
 </template>
  
 <script>
+import mainService from '../services/MainService'
 export default {
+
   data() {
     return {
       request: {
-        username: '',
-        category: '',
-        otherCategory: '',
+        propertyId: '',
         description: '',
-        contact: '',
+        phoneNumber: ''
       },
+      message: false,
       idCounter: 0
     }
   },
   methods: {
-   
+    submitRequest(){
+      mainService.addMaintenanceRequest(this.request).then(response => {
+
+        if(response.status == 200){
+           this.message = true;
+           this.request = {};       
+        }
+      })
+     
+    }
   }
 }
 </script>
@@ -54,8 +52,9 @@ label{
   display: inline-block;
   text-align: right;
 }
-div{
-  margin-bottom: 10px;;
+h2{
+  margin-bottom: 10px;
+  text-align: center;
 }
 
 button {

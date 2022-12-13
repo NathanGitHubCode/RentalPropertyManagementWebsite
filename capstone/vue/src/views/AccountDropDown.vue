@@ -1,8 +1,8 @@
 <template>
   <div class="main">
     <account-drop-down
-      v-bind:userName="currentUser.username"
-      v-bind:userType="currentUser.role"
+      v-bind:userName="this.$store.state.user.username"
+      v-bind:userType="authorities"
       v-bind:logout="logout"
     />
   </div>
@@ -18,10 +18,8 @@ export default {
   props: { userName: String },
   data() {
     return {
-      currentUser: {
-        username: this.$store.state.user.username,
-        role: this.$store.state.user.authorities[0].name.substring(5, this.$store.state.user.authorities[0].name.length)
-      }
+      authorities: this.$store.state.user.authorities[0].name.substring(5, this.$store.state.user.authorities[0].name.length)
+  
   };
   },
   methods: {
