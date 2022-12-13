@@ -13,11 +13,12 @@ import java.util.List;
 
 @Component
 public class JdbcRequestDao implements RequestDao {
-
+    private  UserDao userDao;
     private JdbcTemplate jdbcTemplate;
 
-    public JdbcRequestDao(JdbcTemplate jdbcTemplate){
+    public JdbcRequestDao(JdbcTemplate jdbcTemplate, UserDao userDao){
         this.jdbcTemplate = jdbcTemplate;
+        this.userDao = userDao;
     }
 
     @Override
@@ -26,24 +27,25 @@ public class JdbcRequestDao implements RequestDao {
         String role = jdbcTemplate.queryForObject(sql1, String.class, principal.getName());
         String sql = "";
         List<Request> maintRequests = new ArrayList<>();
+        int userId = userDao.findIdByUsername(principal.getName());
         if (role.equals("ROLE_LANDLORD")){
              sql = "SELECT mr.request_id, mr.renter_id, mr.property_id, mr.address, mr.maintenance_status_id, mr.employee_id, mr.date, mr.description, mr.contact_phone " +
-                     "FROM maintenance_requests AS mr" +
-                     "JOIN available_properties AS ap ON ap.property_id = mr.property_id" +
-                     "WHERE ap.landlord_id = ?" +
-                     "ORDER BY date";
+                     " FROM maintenance_requests AS mr" +
+                     " JOIN available_properties AS ap ON ap.property_id = mr.property_id" +
+                     " WHERE ap.landlord_id = ?" +
+                     " ORDER BY date";
         }else if (role.equals("ROLE_EMPLOYEE")){
              sql = "SELECT request_id, renter_id, property_id, address, maintenance_status_id, employee_id, date, description, contact_phone " +
                     " FROM maintenance_requests " +
-                     "WHERE employee_id = ?" +
-                      "ORDER BY date";
+                     " WHERE employee_id = ?" +
+                      " ORDER BY date";
         }else if (role.equals("ROLE_RENTER")) {
              sql = "SELECT request_id, renter_id, property_id, address, maintenance_status_id, employee_id, date, description, contact_phone " +
                     " FROM maintenance_requests" +
-                     "WHERE renter_id = ?" +
-                     "ORDER BY date";
+                     " WHERE renter_id = ?" +
+                     " ORDER BY date";
         }
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
         while(results.next()){
             Request request = mapRowToRequest(results);
             maintRequests.add(request);

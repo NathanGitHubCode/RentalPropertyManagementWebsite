@@ -27,11 +27,11 @@ public class RequestController {
         this.propertyDao = propertyDao;
     }
 
-//    @RequestMapping(path = "/maintenanceRequests", method = RequestMethod.GET)
-//    public List<Request> viewRequests(Principal principal){
-//        if()
-//        return requestDao.viewMaintRequests();
-//    }
+    @RequestMapping(path = "/maintenanceRequests", method = RequestMethod.GET)
+    public List<Request> viewRequests(Principal principal){
+
+        return requestDao.viewMaintRequests(principal);
+    }
 
     @RequestMapping(path = "/submitMaintenanceRequest", method = RequestMethod.POST)
     public void submitRequest(@RequestBody RequestDto requestDto, Principal principal){
