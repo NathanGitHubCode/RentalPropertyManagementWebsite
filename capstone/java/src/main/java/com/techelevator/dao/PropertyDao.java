@@ -15,6 +15,8 @@ public interface PropertyDao {
 
     public void updateProperty(Property property);
 
+    public int findPropertyIdByRenterId(Principal principal);
+
 //    public int findLandlordId(Principal principal);
 }
 

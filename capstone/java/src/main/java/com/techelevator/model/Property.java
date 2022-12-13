@@ -2,10 +2,9 @@ package com.techelevator.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Objects;
-import java.awt.image.BufferedImage;
+
 public class Property {
 
     @JsonProperty("property_id")
@@ -19,7 +18,7 @@ public class Property {
     private Integer price;
 
     //Below is wrong and leaving it
-    private Integer landlord_id;
+    private Integer landlordId;
     private boolean isAvailable;
     private String status;
     private int balance;
@@ -67,12 +66,12 @@ public class Property {
         isAvailable = available;
     }
 
-    public Integer getLandlord_id() {
-        return landlord_id;
+    public Integer getLandlordId() {
+        return landlordId;
     }
 
-    public void setLandlord_id(Integer landlord_id) {
-        this.landlord_id = landlord_id;
+    public void setLandlordId(Integer landlordId) {
+        this.landlordId = landlordId;
     }
 
     public int getPropertyId() {

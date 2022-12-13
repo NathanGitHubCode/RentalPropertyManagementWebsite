@@ -35,7 +35,7 @@ public class RequestController {
     public void submitRequest(@RequestBody RequestDto requestDto, Principal principal){
         Request request = new Request();
         request.setRenterId(userDao.findIdByUsername(principal.getName()));
-        request.setPropertyId(requestDto.getPropertyId());
+        request.setPropertyId(propertyDao.findPropertyIdByRenterId(principal));
         request.setDate(LocalDateTime.now());
         request.setDescription(requestDto.getDescription());
         request.setPhoneNumber(requestDto.getPhoneNumber());

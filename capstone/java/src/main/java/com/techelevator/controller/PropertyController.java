@@ -1,14 +1,13 @@
 package com.techelevator.controller;
 
-import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import com.techelevator.dao.PropertyDao;
+import com.techelevator.dao.RentDao;
 import com.techelevator.dao.UserDao;
 import com.techelevator.model.Property;
 import com.techelevator.model.PropertyDto;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.PathVariable;
-import javax.annotation.security.PermitAll;
+
 import java.security.Principal;
 import java.util.List;
 
@@ -17,10 +16,12 @@ import java.util.List;
 public class PropertyController {
     private final PropertyDao propertyDao;
     private final UserDao userDao;
+    private final RentDao rentDao;
 
-    public PropertyController(PropertyDao propertyDao, UserDao userDao ){
+    public PropertyController(PropertyDao propertyDao, UserDao userDao, RentDao rentDao ){
         this.propertyDao = propertyDao;
         this.userDao = userDao;
+        this.rentDao = rentDao;
     }
 
     @RequestMapping(path = "/properties", method = RequestMethod.GET)
@@ -43,7 +44,7 @@ public class PropertyController {
         Property currentProperty = propertyDao.findProperty(propertyId);
         Property property = new Property();
         int principalId = userDao.findIdByUsername(principal.getName());
-        int landlordId = currentProperty.getLandlord_id();
+        int landlordId = currentProperty.getLandlordId();
         if(principalId == landlordId){
             property.setPropertyId(propertyId);
             property.setImgSrc(currentProperty.getImgSrc());
@@ -55,6 +56,14 @@ public class PropertyController {
             property.setAvailable(currentProperty.isAvailable());
             propertyDao.updateProperty(property);
         }
+    }
+
+    @RequestMapping(path = "/updateProperty/assignRenter/{propertyId}/{renterId}", method = RequestMethod.PUT)
+    public void assignRenter(@PathVariable int propertyId, @PathVariable int renterId, Principal principal){
+//        Property currentProperty = propertyDao.findProperty(propertyId);
+//        Property property = new Property();
+//        property.setRenterId(renterId);
+        rentDao.assignRenterToProperty(propertyId, renterId, principal);
     }
 
     @RequestMapping(path = "/whoami", method = RequestMethod.GET)
@@ -71,7 +80,7 @@ public class PropertyController {
         property.setBedrooms(propertyDto.getBedrooms());
         property.setLivingArea(propertyDto.getLivingArea());
         property.setPrice(propertyDto.getPrice());
-        property.setLandlord_id(userDao.findIdByUsername(principal.getName()));
+        property.setLandlordId(userDao.findIdByUsername(principal.getName()));
         property.setAvailable(true);
         return propertyDao.createAvailableProperty(property);
     }

@@ -24,7 +24,7 @@ public class RentController {
     }
 
     @RequestMapping(path = "/viewMyRent", method = RequestMethod.GET)
-    public BigDecimal viewMyRent(Principal principal){
+    public int viewMyRent(Principal principal){
         int id = userDao.findIdByUsername(principal.getName());
         return rentDao.viewMyRent(id);
     }

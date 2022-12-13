@@ -4,13 +4,14 @@ import com.techelevator.model.Property;
 import com.techelevator.model.Rent;
 
 import java.math.BigDecimal;
+import java.security.Principal;
 import java.util.List;
 
 public interface RentDao {
 
-   BigDecimal viewMyRent(int renterId);
+   int viewMyRent(int renterId);
 
    List<Property> viewRentalsByLandlord(int landlordId);
 
-   public void assignRenterToProperty();
+   public void assignRenterToProperty(int propertyId, int renterId, Principal principal);
 }

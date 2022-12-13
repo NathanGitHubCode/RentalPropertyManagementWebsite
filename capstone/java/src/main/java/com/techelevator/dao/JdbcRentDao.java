@@ -8,6 +8,7 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.security.Principal;
 import java.util.Date;
 import java.util.List;
 
@@ -15,16 +16,18 @@ import java.util.List;
 public class JdbcRentDao implements RentDao{
 
     private JdbcTemplate jdbcTemplate;
+    private UserDao userDao;
 
-    public JdbcRentDao(JdbcTemplate jdbcTemplate){
+    public JdbcRentDao(JdbcTemplate jdbcTemplate, UserDao userDao){
         this.jdbcTemplate = jdbcTemplate;
+        this.userDao = userDao;
     }
 
     //ToDo Check if amount is all that is needed
     @Override
-    public BigDecimal viewMyRent(int id){
-        String sql = "SELECT amount FROM rent WHERE renter_id = ?;";
-        BigDecimal rent = jdbcTemplate.queryForObject(sql, BigDecimal.class, id);
+    public int viewMyRent(int id){
+        String sql = "SELECT price FROM available_properties WHERE renter_id = ?;";
+        int rent = jdbcTemplate.queryForObject(sql, Integer.class, id);
         return rent;
     }
 
@@ -40,8 +43,14 @@ public class JdbcRentDao implements RentDao{
     }
 
     @Override
-    public void assignRenterToProperty(){
-
+    public void assignRenterToProperty(int propertyId, int renterId, Principal principal){
+        String sql2 = "SELECT landlord_id FROM available_properties WHERE property_id = ?;";
+        int landlordId = jdbcTemplate.queryForObject(sql2, Integer.class, propertyId);
+        if(landlordId == userDao.findIdByUsername(principal.getName())){
+            String sql = "UPDATE available_properties SET renter_id = ?, is_available = ? WHERE property_id = ?;";
+            jdbcTemplate.update(sql, renterId, false, propertyId);
+        }
+        //Todo what to return if update isn't successful/conditions aren't met
     }
 
 
