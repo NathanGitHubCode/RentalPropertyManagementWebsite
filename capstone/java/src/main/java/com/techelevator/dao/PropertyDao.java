@@ -1,5 +1,6 @@
 package com.techelevator.dao;
 
+import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import com.techelevator.model.Property;
 
 import java.security.Principal;
@@ -12,7 +13,7 @@ public interface PropertyDao {
 
     Property createAvailableProperty(Property property);
 
-    public void updateProperty(int propertyId);
+    public void updateProperty(Property property);
 
 //    public int findLandlordId(Principal principal);
 }

@@ -3,6 +3,7 @@ package com.techelevator.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.Objects;
 import java.awt.image.BufferedImage;
 public class Property {
@@ -16,8 +17,46 @@ public class Property {
     private Integer bedrooms;
     private Integer livingArea;
     private Integer price;
+
+    //Below is wrong and leaving it
     private Integer landlord_id;
     private boolean isAvailable;
+    private String status;
+    private int balance;
+    private Date dueDate;
+    private int renterId;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public int getBalance() {
+        return balance;
+    }
+
+    public void setBalance(int balance) {
+        this.balance = balance;
+    }
+
+    public Date getDueDate() {
+        return dueDate;
+    }
+
+    public void setDueDate(Date dueDate) {
+        this.dueDate = dueDate;
+    }
+
+    public int getRenterId() {
+        return renterId;
+    }
+
+    public void setRenterId(int renterId) {
+        this.renterId = renterId;
+    }
 
     public boolean isAvailable() {
         return isAvailable;

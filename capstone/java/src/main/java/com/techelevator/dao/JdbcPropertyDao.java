@@ -56,9 +56,9 @@ public class JdbcPropertyDao implements PropertyDao {
     }
 
     @Override
-    public void updateProperty(int propertyId){
-        String sql = "UPDATE available_properties SET renter_id = ?, address = ?, bathrooms = ?, bedrooms = ?, living_area = ?, price = ?, is_available = ? WHERE property_id = ?;";
-        jdbcTemplate.update(sql, propertyId);
+    public void updateProperty(Property property){
+        String sql = "UPDATE available_properties SET bathrooms = ?, bedrooms = ?, living_area = ?, price = ?, landlord_id = ?, is_available = ? WHERE property_id = ?;";
+        jdbcTemplate.update(sql, property.getBathrooms(), property.getBedrooms(), property.getLivingArea(), property.getPrice(),property.getLandlord_id(), property.isAvailable(), property.getPropertyId());
     }
 
 //    @Override
@@ -80,6 +80,7 @@ public class JdbcPropertyDao implements PropertyDao {
         property.setBedrooms(rowset.getInt("bedrooms"));
         property.setLivingArea(rowset.getInt("living_area"));
         property.setPrice(rowset.getInt("price"));
+        property.setLandlord_id(rowset.getInt("landlord_id"));
         property.setAvailable(rowset.getBoolean("is_available"));
         return property;
     }

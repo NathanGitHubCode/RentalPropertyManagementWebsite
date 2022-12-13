@@ -36,6 +36,34 @@ public class PropertyController {
 
     @RequestMapping(path = "/addProperty", method = RequestMethod.POST)
     public void addProperty(@RequestBody PropertyDto propertyDto, Principal principal){
+        mapToPropertyFromDto(propertyDto, principal);
+    }
+
+    @RequestMapping(path = "/updateProperty/{propertyId}", method = RequestMethod.PUT)
+    public void updateProperty(@PathVariable int propertyId, Principal principal){
+        Property currentProperty = propertyDao.findProperty(propertyId);
+        Property property = new Property();
+        int principalId = userDao.findIdByUsername(principal.getName());
+        int landlordId = currentProperty.getLandlord_id();
+        if(principalId == landlordId){
+            property.setPropertyId(propertyId);
+            property.setImgSrc(currentProperty.getImgSrc());
+            property.setHasImage(currentProperty.getHasImage());
+            property.setBathrooms(currentProperty.getBathrooms());
+            property.setBedrooms(currentProperty.getBedrooms());
+            property.setLivingArea(currentProperty.getLivingArea());
+            property.setPrice(currentProperty.getPrice());
+            property.setAvailable(currentProperty.isAvailable());
+            propertyDao.updateProperty(property);
+        }
+    }
+
+    @RequestMapping(path = "/whoami", method = RequestMethod.GET)
+    public String whoAmI(Principal principal){
+        return principal.getName();
+    }
+
+    public Property mapToPropertyFromDto(PropertyDto propertyDto, Principal principal){
         Property property = new Property();
         property.setAddress(propertyDto.getAddress());
         property.setImgSrc(propertyDto.getImgSrc());
@@ -46,22 +74,7 @@ public class PropertyController {
         property.setPrice(propertyDto.getPrice());
         property.setLandlord_id(userDao.findIdByUsername(principal.getName()));
         property.setAvailable(true);
-        propertyDao.createAvailableProperty(property);
-    }
-
-    //ToDo: fix this method
-    @RequestMapping(path = "/updateProperty/{propertyId}", method = RequestMethod.PUT)
-    public void updateProperty(@PathVariable int propertyId, Principal principal){
-        Property property = propertyDao.findProperty(propertyId);
-        int principalId = userDao.findIdByUsername(principal.getName());
-        if(principalId == property.getLandlord_id()){
-            propertyDao.updateProperty(propertyId);
-        }
-    }
-
-    @RequestMapping(path = "/whoami", method = RequestMethod.GET)
-    public String whoAmI(Principal principal){
-        return principal.getName();
+        return propertyDao.createAvailableProperty(property);
     }
 
 }

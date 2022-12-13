@@ -21,7 +21,11 @@ CREATE TABLE available_properties (
 	living_area int,
     price int,
 	landlord_id int,
-	is_available boolean
+	is_available boolean,
+	renter_id int,
+	amount int,
+	status varchar(20),
+	due_date date
 );
 
 CREATE TABLE maintenance_requests(
@@ -42,10 +46,11 @@ CREATE TABLE rent(
 	rent_id SERIAL,
 	property_id int,
 	renter_id int,
-	landlord_id int,
 	amount int,
+	status varchar(20),
 	due_date date
 );
 
 COMMIT TRANSACTION;
 
+-- ROLLBACK;
