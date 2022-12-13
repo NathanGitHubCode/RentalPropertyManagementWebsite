@@ -12,7 +12,7 @@ import javax.annotation.security.PermitAll;
 import java.security.Principal;
 import java.util.List;
 
-
+@CrossOrigin
 @RestController
 public class PropertyController {
     private final PropertyDao propertyDao;
@@ -23,7 +23,6 @@ public class PropertyController {
         this.userDao = userDao;
     }
 
-    @CrossOrigin
     @RequestMapping(path = "/properties", method = RequestMethod.GET)
     public List<Property> returnListings(){
         return propertyDao.findAllProperties();

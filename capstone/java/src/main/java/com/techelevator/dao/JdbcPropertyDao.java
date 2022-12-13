@@ -17,9 +17,11 @@ import java.util.Objects;
 @Component
 public class JdbcPropertyDao implements PropertyDao {
     private JdbcTemplate jdbcTemplate;
+    private UserDao userDao;
 
-    public JdbcPropertyDao(JdbcTemplate jdbcTemplate) {
+    public JdbcPropertyDao(JdbcTemplate jdbcTemplate, UserDao userDao) {
         this.jdbcTemplate = jdbcTemplate;
+        this.userDao = userDao;
     }
 
     @Override
@@ -68,10 +70,11 @@ public class JdbcPropertyDao implements PropertyDao {
 //        return landlordId;
 //    }
 
-//    public int findPropertyIdByRenterId(int renterId){
+//    public int findPropertyIdByRenterId(Principal principal){
 //        int propertyId = 0;
+//        int renterId = userDao.findIdByUsername(principal.getName());
 //        String sql = "SELECT property_id FROM available_properties WHERE renter_id = ?;";
-//        SqlRowSet result = jdbcTemplate.queryForObject(sql, )
+//        int result = jdbcTemplate.queryForObject(sql, Integer.class, renterId);
 //    }
 
 

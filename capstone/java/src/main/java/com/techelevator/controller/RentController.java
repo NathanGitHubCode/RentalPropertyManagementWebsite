@@ -5,14 +5,12 @@ import com.techelevator.dao.RentDao;
 import com.techelevator.dao.UserDao;
 import com.techelevator.model.Rent;
 import com.techelevator.model.User;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.security.Principal;
 
+@CrossOrigin
 @RestController
 public class RentController {
     private final RentDao rentDao;
