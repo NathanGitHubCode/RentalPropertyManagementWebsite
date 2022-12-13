@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -34,9 +36,9 @@ public class RequestController {
     @RequestMapping(path = "/submitMaintenanceRequest", method = RequestMethod.POST)
     public void submitRequest(@RequestBody RequestDto requestDto, Principal principal){
         Request request = new Request();
-        request.setRenterId(requestDto.getRenter_id());
+        request.setRenterId(userDao.findIdByUsername(principal.getName()));
         request.setPropertyId(requestDto.getProperty_id());
-        request.setDate(requestDto.getDate());
+        request.setDate(LocalDateTime.now());
         request.setDescription(requestDto.getDescription());
         requestDao.submitRequest(request);
     }

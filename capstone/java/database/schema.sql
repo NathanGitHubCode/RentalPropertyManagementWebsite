@@ -34,7 +34,8 @@ CREATE TABLE maintenance_requests(
 	property_id int,
 	date date,
 	description varchar(1000),
-	maintenance_status_id int
+	maintenance_status_id int,
+	contact_phone varchar(15)
 );
 
 CREATE TABLE maintenance_status(

@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,7 +52,7 @@ public class JdbcRequestDao implements RequestDao {
         request.setRenterId(rowset.getInt("renter_id"));
         request.setPropertyId(rowset.getInt("property_id"));
         request.setMaintStatusId(rowset.getInt("maintenance_status_id"));
-        request.setDate(rowset.getDate("date"));
+        request.setDate(LocalDateTime.now());
         request.setDescription(rowset.getString("description"));
         return request;
     }

@@ -1,5 +1,8 @@
 package com.techelevator.model;
 
+import org.apache.tomcat.jni.Local;
+
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Objects;
 
@@ -8,11 +11,11 @@ public class Request {
     private int renterId;
     private int propertyId;
     private int maintStatusId;
-    private Date date;
+    private LocalDateTime date;
     private String phone_number;
     private String description;
 
-    public Request(int requestId, int renterId, int propertyId, int maintStatusId, Date date, String description, String phone_number) {
+    public Request(int requestId, int renterId, int propertyId, int maintStatusId, LocalDateTime date, String description, String phone_number) {
         this.requestId = requestId;
         this.renterId = renterId;
         this.propertyId = propertyId;
@@ -58,11 +61,11 @@ public class Request {
         this.maintStatusId = maintStatusId;
     }
 
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
