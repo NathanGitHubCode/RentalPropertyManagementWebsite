@@ -17,7 +17,7 @@
       </form>
     <div 
     class="property-card"
-    v-for="property in this.$store.state.rentalProperties"
+    v-for="(property, index) in this.$store.state.rentalProperties"
     v-bind:key="property.id">
       <img :src="property.imgSrc" />
       <div class="property-details">
@@ -25,7 +25,7 @@
         <h1 id="bathrooms">Bathrooms: {{ property.bathrooms }}</h1>
         <h1 id="bedrooms">Bedrooms: {{ property.bedrooms }}</h1>
         <h1 id="price">Price: ${{ property.price }}</h1>
-        <button class="purchase" @click="purchaseRentalProperty">Purchase Property </button>
+        <button class="purchase" @click="purchaseRentalProperty(index, property)">Purchase Property </button>
       </div>
     </div>
   </div>
@@ -43,6 +43,10 @@ data() {
       maxPrice: null,
       beds: null, 
       baths: null
+    },
+    purchaseProp: {
+        address: ''  
+
     }
   }
 },
@@ -55,13 +59,10 @@ methods: {
        }
     });
    },
-   purchaseRentalProperty(){
-    //  this.$store.commit('SET_PURCHASED_PROPERTIES');
-    //  rentService.purchaseProperty().then( response => {
-    //     if(response.status === 200) {
+   purchaseRentalProperty(index, property){
+      this.$store.commit('SET_PURCHASED_PROPERTIES', index);
+      this.purchaseProp.address = property.address;
 
-    //     }
-    //  });
    }
   },
 

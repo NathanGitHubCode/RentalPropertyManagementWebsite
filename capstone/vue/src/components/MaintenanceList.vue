@@ -24,9 +24,15 @@
           class="status"
           id="complete-button"
           type="button" 
-          v-if="!isCompleted"  
-          @click="markRequestComplete">Mark Complete</td>
-          <div class="status-complete" v-else>
+          v-if="main.maintStatusId == 1 && role == 'RENTER'"  
+          @click="markRequestComplete(main.requestId)">Mark Complete</td>
+           <td 
+          class="status"
+          id="complete-button"
+          type="button" 
+          v-if="main.maintStatusId == 1 && role == 'LANDLORD'"  
+          @click="markRequestComplete">Assign Task</td>
+          <div class="status-complete" v-if="main.maintStatusId == 3">
           <td class="status-text" >Completed</td>
           </div>
       </tr>
@@ -40,7 +46,7 @@ import mainService from '../services/MainService.js';
 export default {
   data() {
     return {
-      isCompleted: false
+      role: this.$store.state.user.authorities[0].name.substring(5, this.$store.state.user.authorities[0].name.length)
     }
   },
   methods: {
@@ -51,12 +57,12 @@ export default {
         }
       });
     },
-    markRequestComplete(){
-      const ID = this.$route.params.ID;
-      this.isCompleted = true;
-      mainService.markRequestComplete(ID).then( response => {
+    markRequestComplete(requestId){
+      alert(requestId)
+     // const ID = this.$route.params.ID;
+      mainService.markRequestComplete(requestId).then( response => {
           if(response.status === 200) {
-            this.isCompleted = true
+            this.$store.commit('UPDATE_REQUEST_STATUS')
           }
       });
     }

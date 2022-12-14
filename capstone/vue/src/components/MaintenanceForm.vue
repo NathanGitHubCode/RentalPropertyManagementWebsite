@@ -4,9 +4,6 @@
     <br />
     <label for="description">Description:</label>
     <input type="text" id="description" v-model="request.description"/>
- 
-    <label for="contact">Property ID:</label>
-    <input type="text" id="contact" v-model="request.propertyId" />
 
     <label for="contact">Contact Phone:</label>
     <input type="text" id="contact" v-model="request.phoneNumber" />
@@ -24,7 +21,6 @@ export default {
   data() {
     return {
       request: {
-        propertyId: '',
         description: '',
         phoneNumber: ''
       },

@@ -22,8 +22,10 @@ export default new Vuex.Store({
     loggedIn: false,
     isDropdownVisible: false,
     rentalProperties: [],
+    purchasedProperties: [],
     maintenanceList: [],
-    purchasedProperties: []
+    employeeList: []
+    
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -53,8 +55,24 @@ export default new Vuex.Store({
     SET_MAINTENANCE(state, maintenance) {
       state.maintenanceList = maintenance;
     },
-    SET_PURCHASED_PROPERTIES(state, property) {
-      state.purchasedProperties += property;
+    SET_PURCHASED_PROPERTIES(state, index) {
+      // const availProps = state.rentalProperties.filter( property => {
+      //  if(property.zpid == ID){
+      //   return property;
+      //  }
+       
+      // });
+
+      // const propIndex = state.rentalProperties.indexOf(availProps);
+      
+      // if(propIndex > -1) {
+        state.rentalProperties.splice(index, 1);
+        // state.purchasedProperties.push(availProps);
+      // }
+
+    },
+    SET_EMPLOYEES(state, employees) {
+      state.employeeList = employees;
     }
   }
 })

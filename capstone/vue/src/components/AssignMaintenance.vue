@@ -6,14 +6,14 @@
       <label>
         Maintenance Request:
         <select v-model="maintenanceRequest">
-          <option v-for="request in maintenanceRequests" v-bind:key="request">{{ request.request }}</option>
+          <option v-for="request in this.$store.state.maintenanceList" v-bind:key="request.id">{{ request.request }}</option>
         </select>
       </label>
       <br />
       <label>
         Assign To:
         <select v-model="maintenancePersonId">
-          <option v-for="person in maintenancePeople" v-bind:key="person">{{ person.name }}</option>
+          <option v-for="employee in this.$store.state.employeeList" v-bind:key="employee.id">{{ employee.username }}</option>
         </select>
       </label>
       <br />
@@ -23,6 +23,7 @@
 </template>
  
 <script>
+import mainService from '../services/MainService';
 export default {
   data() {
     return {
@@ -37,7 +38,20 @@ export default {
       // Assign the selected maintenance task to the selected property
       // and maintenance person, using the provided propertyId,
       // maintenanceType, and maintenancePersonId values.
+    },
+    employeeList(){
+      mainService
+      .getEmployees()
+      .then( response => {
+        if(response.status === 200) {
+          this.$store.commit('SET_EMPLOYEES', response.data)
+        }
+
+      })
     }
+  },
+  created() {
+    this.employeeList();
   }
 };
 </script>
