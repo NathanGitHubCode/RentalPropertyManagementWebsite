@@ -7,7 +7,7 @@ public class UpdatePropertyDto {
     private Integer bedrooms;
     private Integer livingArea;
     private Integer price;
-    private boolean isAvailable;
+    private boolean available;
 
     public int getPropertyId() {
         return propertyId;
@@ -50,10 +50,10 @@ public class UpdatePropertyDto {
     }
 
     public boolean isAvailable() {
-        return isAvailable;
+        return available;
     }
 
     public void setAvailable(boolean available) {
-        isAvailable = available;
+        this.available = available;
     }
 }

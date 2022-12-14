@@ -59,6 +59,13 @@ public class JdbcPropertyDao implements PropertyDao {
     }
 
 //    @Override
+//    public void updateProperty(Property property){
+//        Property propCheck = property;
+//        String sql = "UPDATE available_properties SET bathrooms = ?, bedrooms = ?, living_area = ?, price = ? WHERE property_id = ?;";
+//        jdbcTemplate.update(sql, property.getBathrooms(), property.getBedrooms(), property.getLivingArea(), property.getPrice(), property.getPropertyId());
+//    }
+
+//    @Override
 //    public int findLandlordId(Principal principal){
 //        String sql = "SELECT properties.landlord_id FROM properties JOIN users ON properties.landlord_id = users.user_id WHERE users.user_id = ?;";
 //        int landlordId = jdbcTemplate.queryForObject(sql, Integer.class, principal.getName());
