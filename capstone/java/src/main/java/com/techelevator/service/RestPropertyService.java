@@ -23,7 +23,8 @@ import java.util.List;
 public class RestPropertyService {
 
     private static final String API_KEY = "X-RapidAPI-Key";
-    private static final String API_VALUE = "c786a1110dmsh96a4d70ff5f2b67p1e1552jsn2f2f31d7153e";
+    private static final String API_VALUE = "81dc04c5f7mshc711fd0b5999b97p1795f2jsn603afa44dda4";
+//            "c786a1110dmsh96a4d70ff5f2b67p1e1552jsn2f2f31d7153e";
     private static final String API_URL = "https://zillow69.p.rapidapi.com/search";
     private final RestTemplate restTemplate;
 
@@ -39,9 +40,19 @@ public class RestPropertyService {
         HttpEntity<String> entity = new HttpEntity<>(null, headers); //ToDo Make sure this is correct
 
         try{
-            ResponseEntity<ZillowRoot> response = restTemplate.exchange(
-                    API_URL + "?location=" + location + "&status_type=ForRent&home_type=Apartments&rentMinPrice=" + rentMinPrice +
-                            "&rentMaxPrice=" + rentMaxPrice + "&bedsMin=" + bedsMin + "&bedsMax=" + bedsMax, HttpMethod.GET, entity, ZillowRoot.class);
+            ResponseEntity<ZillowRoot> response = null;
+
+            if (rentMinPrice == 0 && rentMaxPrice == 0 && bedsMin == 0 && bedsMax == 0) {
+                response = restTemplate.exchange(
+                        API_URL + "?location=" + location + "&status_type=ForRent&home_type=Apartments", HttpMethod.GET, entity, ZillowRoot.class);
+
+            }
+            else{
+                    response = restTemplate.exchange(
+                            API_URL + "?location=" + location + "&status_type=ForRent&home_type=Apartments&rentMinPrice=" + rentMinPrice +
+                                    "&rentMaxPrice=" + rentMaxPrice + "&bedsMin=" + bedsMin + "&bedsMax=" + bedsMax, HttpMethod.GET, entity, ZillowRoot.class);
+                }
+
 
             if(response != null && response.getBody() != null){
                 return response.getBody().getProps().toArray(new Props[0]);

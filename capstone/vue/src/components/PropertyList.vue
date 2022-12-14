@@ -25,6 +25,7 @@
         <h1 id="bathrooms">Bathrooms: {{ property.bathrooms }}</h1>
         <h1 id="bedrooms">Bedrooms: {{ property.bedrooms }}</h1>
         <h1 id="price">Price: ${{ property.price }}</h1>
+        <button class="purchase" @click="purchaseRentalProperty">Purchase Property </button>
       </div>
     </div>
   </div>
@@ -52,12 +53,32 @@ methods: {
        if(response.status === 200) {
         this.$store.commit('SET_PROPERTIES', response.data);
        }
-    })
+    });
+   },
+   purchaseRentalProperty(){
+    //  this.$store.commit('SET_PURCHASED_PROPERTIES');
+    //  rentService.purchaseProperty().then( response => {
+    //     if(response.status === 200) {
+
+    //     }
+    //  });
    }
   },
 
   created() {
     this.getProperties();
+      if(
+      this.filter.minPrice === null,
+      this.filter.maxPrice === null,
+      this.filter.beds === null,
+      this.filter.baths === null
+      )
+      {
+      this.filter.minPrice = 0;
+      this.filter.maxPrice = 0,
+      this.filter.beds = 0,
+      this.filter.baths = 0
+      }
   }
 }
 </script>

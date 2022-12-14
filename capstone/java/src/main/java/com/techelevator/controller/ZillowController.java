@@ -16,8 +16,8 @@ public class ZillowController {
     }
 
     @RequestMapping(path = "/rentals/{location}/{rentMinPrice}/{rentMaxPrice}/{bedsMin}/{bedsMax}", method = RequestMethod.GET)
-    public List<PropertyDetailsDto> getRentalPropertiesList(@PathVariable Integer location, @PathVariable Integer rentMinPrice,
-                                                            @PathVariable Integer rentMaxPrice, @PathVariable Integer bedsMin, @PathVariable Integer bedsMax){
+    public List<PropertyDetailsDto> getRentalPropertiesList(@PathVariable Integer location, @PathVariable(value = "") Integer rentMinPrice,
+                                                            @PathVariable(value = "") Integer rentMaxPrice, @PathVariable(value = "") Integer bedsMin, @PathVariable(value = "") Integer bedsMax){
         List<PropertyDetailsDto> propertyDetailsDtoList = restPropertyService.getPropertyDetailsDtoList(location, rentMinPrice, rentMaxPrice, bedsMin, bedsMax);
         return propertyDetailsDtoList;
     }

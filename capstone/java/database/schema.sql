@@ -12,7 +12,7 @@ CREATE TABLE users (
 );
 
 CREATE TABLE available_properties (
-    property_id SERIAL,
+    property_id int,
     address varchar(100),
     property_image varchar(1000),
     has_image boolean,
@@ -22,10 +22,7 @@ CREATE TABLE available_properties (
     price int,
 	landlord_id int,
 	is_available boolean,
-	renter_id int,
-	amount int,
-	status varchar(20),
-	due_date date
+	renter_id int
 );
 
 CREATE TABLE maintenance_requests(

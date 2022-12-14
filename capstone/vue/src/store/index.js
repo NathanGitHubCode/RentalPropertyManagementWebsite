@@ -22,7 +22,8 @@ export default new Vuex.Store({
     loggedIn: false,
     isDropdownVisible: false,
     rentalProperties: [],
-    maintenanceList: []
+    maintenanceList: [],
+    purchasedProperties: []
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -51,6 +52,9 @@ export default new Vuex.Store({
     },
     SET_MAINTENANCE(state, maintenance) {
       state.maintenanceList = maintenance;
+    },
+    SET_PURCHASED_PROPERTIES(state, property) {
+      state.purchasedProperties += property;
     }
   }
 })

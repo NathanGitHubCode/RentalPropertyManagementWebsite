@@ -12,6 +12,10 @@ export default {
         const beds = filter.beds;
         const bath = filter.baths;
         return axios.get(`/rentals/${location}/${minPrice}/${maxPrice}/${beds}/${bath}`)
+    },
+    
+    purchaseProperty(property){
+        return axios.post('/addProperty', property);
     }
     
    
