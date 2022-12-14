@@ -11,8 +11,9 @@ CREATE TABLE users (
 	CONSTRAINT PK_user PRIMARY KEY (user_id)
 );
 
+DROP TABLE IF EXISTS available_properties;
 CREATE TABLE available_properties (
-    property_id int,
+    property_id SERIAL,
     address varchar(100),
     property_image varchar(1000),
     has_image boolean,
@@ -22,7 +23,10 @@ CREATE TABLE available_properties (
     price int,
 	landlord_id int,
 	is_available boolean,
-	renter_id int
+	renter_id int,
+	status varchar(15),
+	balance int,
+	due_date date
 );
 
 CREATE TABLE maintenance_requests(
@@ -37,19 +41,9 @@ CREATE TABLE maintenance_requests(
 	contact_phone varchar(15)
 );
 
-CREATE TABLE maintenance_status(
-	maintenance_status_id int,
-	employee_id int
-);
 
-CREATE TABLE rent(
-	rent_id SERIAL,
-	property_id int,
-	renter_id int,
-	amount int,
-	status varchar(20),
-	due_date date
-);
+
+DROP TABLE IF EXISTS rent, maintenance_status_id;
 
 
 

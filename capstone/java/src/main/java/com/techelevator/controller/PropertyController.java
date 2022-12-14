@@ -5,6 +5,7 @@ import com.techelevator.dao.RentDao;
 import com.techelevator.dao.UserDao;
 import com.techelevator.model.Property;
 import com.techelevator.model.PropertyDto;
+import com.techelevator.model.UpdatePropertyDto;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -39,24 +40,41 @@ public class PropertyController {
         mapToPropertyFromDto(propertyDto, principal);
     }
 
-    @RequestMapping(path = "/updateProperty/{propertyId}", method = RequestMethod.PUT)
-    public void updateProperty(@PathVariable int propertyId, Principal principal){
-        Property currentProperty = propertyDao.findProperty(propertyId);
+    @RequestMapping(path = "/updateProperty/{landlordId}", method = RequestMethod.PUT)
+    public void updateProperty(@RequestBody UpdatePropertyDto updatePropertyDto, @PathVariable int landlordId, Principal principal) {
+//        Property currentProperty = propertyDao.findProperty(propertyDto.getPropertyId());
         Property property = new Property();
         int principalId = userDao.findIdByUsername(principal.getName());
-        int landlordId = currentProperty.getLandlordId();
-        if(principalId == landlordId){
-            property.setPropertyId(propertyId);
-            property.setImgSrc(currentProperty.getImgSrc());
-            property.setHasImage(currentProperty.getHasImage());
-            property.setBathrooms(currentProperty.getBathrooms());
-            property.setBedrooms(currentProperty.getBedrooms());
-            property.setLivingArea(currentProperty.getLivingArea());
-            property.setPrice(currentProperty.getPrice());
-            property.setAvailable(currentProperty.isAvailable());
+        if (principalId == landlordId) {
+            property.setPropertyId(updatePropertyDto.getPropertyId());
+            property.setBathrooms(updatePropertyDto.getBathrooms());
+            property.setBedrooms(updatePropertyDto.getBedrooms());
+            property.setLivingArea(updatePropertyDto.getLivingArea());
+            property.setPrice(updatePropertyDto.getPrice());
+            property.setAvailable(updatePropertyDto.isAvailable());
             propertyDao.updateProperty(property);
         }
+
     }
+
+//    @RequestMapping(path = "/updateProperty/{propertyId}", method = RequestMethod.PUT)
+//    public void updateProperty(@PathVariable int propertyId, Principal principal){
+//        Property currentProperty = propertyDao.findProperty(propertyId);
+//        Property property = new Property();
+//        int principalId = userDao.findIdByUsername(principal.getName());
+//        int landlordId = currentProperty.getLandlordId();
+//        if(principalId == landlordId){
+//            property.setPropertyId(propertyId);
+//            property.setImgSrc(currentProperty.getImgSrc());
+//            property.setHasImage(currentProperty.getHasImage());
+//            property.setBathrooms(currentProperty.getBathrooms());
+//            property.setBedrooms(currentProperty.getBedrooms());
+//            property.setLivingArea(currentProperty.getLivingArea());
+//            property.setPrice(currentProperty.getPrice());
+//            property.setAvailable(currentProperty.isAvailable());
+//            propertyDao.updateProperty(property);
+//        }
+//    }
 
     @RequestMapping(path = "/updateProperty/assignRenter/{propertyId}/{renterId}", method = RequestMethod.PUT)
     public void assignRenter(@PathVariable int propertyId, @PathVariable int renterId, Principal principal){

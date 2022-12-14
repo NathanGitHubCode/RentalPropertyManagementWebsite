@@ -13,6 +13,7 @@ public class PropertyDto {
     private Integer livingArea;
     private Integer price;
     private Integer landlordId;
+    private boolean isAvailable;
 
     public Integer getLandlordId() {
         return landlordId;
@@ -22,7 +23,7 @@ public class PropertyDto {
         this.landlordId = landlordId;
     }
 
-    private boolean isAvailable;
+
 
     public boolean isAvailable() {
         return isAvailable;
