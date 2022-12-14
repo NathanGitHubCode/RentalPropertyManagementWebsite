@@ -1,22 +1,14 @@
 import axios from "axios";
 
 export default {
-    getRentList(userID){
-        return axios.get(`/rent/${userID}`)
+
+    viewRent() {
+        return axios.get('/viewRent');
     },
-    
-    getPropertyList(filter){
-        const location = filter.zipCode;
-        const minPrice = filter.minPrice;
-        const maxPrice = filter.maxPrice;
-        const beds = filter.beds;
-        const bath = filter.baths;
-        return axios.get(`/rentals/${location}/${minPrice}/${maxPrice}/${beds}/${bath}`)
-    },
-    
-    purchaseProperty(property){
-        return axios.post('/addProperty', property);
+    assignRenter(propertyId) {
+        return axios.put(`/properties/${propertyId}`)
     }
-    
-   
+
+
+
 }

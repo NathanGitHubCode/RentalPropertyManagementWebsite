@@ -1,7 +1,8 @@
 <template>
   <div>
     <h3 id="header">Dreamville Properties</h3>
-      <form class="filter-list" @submit.prevent="getProperties">
+    <div class="landlord-view" v-if="role == 'LANDLORD'">
+      <form class="filter-list" @submit.prevent="getLandlordProperties">
         <label>Zip Code:</label>
         <input type="text" placeholder="Zipcode" v-model.number="filter.zipCode"/>
         <label>Min Price:</label>
@@ -13,11 +14,13 @@
         <label>Baths:</label>
         <input type="number" placeholder="# of Baths" v-model.number="filter.baths"/>
         <button type="submit"> Enter </button>
-
       </form>
+
+    <h2 v-if="message">Thank you for using Dreamville Properties. You now own property. </h2>
+
     <div 
     class="property-card"
-    v-for="(property, index) in this.$store.state.rentalProperties"
+    v-for="(property, index) in this.$store.state.landlordProperties"
     v-bind:key="property.id">
       <img :src="property.imgSrc" />
       <div class="property-details">
@@ -28,11 +31,31 @@
         <button class="purchase" @click="purchaseRentalProperty(index, property)">Purchase Property </button>
       </div>
     </div>
+    </div>
+
+    <div class="user-view" v-else>
+       <div 
+       class="property-card"
+       v-for="(property, index) in this.$store.state.userProperties"
+       v-bind:key="property.id">
+      <img :src="property.imgSrc" />
+      <div class="property-details">
+        <h1 id="address">Address: {{ property.address }}</h1>
+        <h1 id="bathrooms">Bathrooms: {{ property.bathrooms }}</h1>
+        <h1 id="bedrooms">Bedrooms: {{ property.bedrooms }}</h1>
+        <h1 id="price">Price: ${{ property.price }}</h1>
+        <button class="purchase" @click="rentProperty(property.id, index)"> Rent Property </button>
+      </div>
+
+    </div>
+    </div>
   </div>
 </template>
 
 <script>
+import propService from '../services/PropService'
 import rentService from '../services/RentService'
+
 export default {
 
 data() {
@@ -45,29 +68,71 @@ data() {
       baths: null
     },
     purchaseProp: {
-        address: ''  
-
-    }
+        address: null,
+        propertyImage: null,
+        hasImage: null,
+        bathrooms: null,
+        bedrooms: null,
+        livingArea: null,
+        price: null
+    },
+    message: false,
+    role: this.$store.state.user.authorities[0].name.substring(5, this.$store.state.user.authorities[0].name.length)
   }
 },
 
 methods: {
-  getProperties() {
-    rentService.getPropertyList(this.filter).then( response => {
+  getLandlordProperties() {
+    propService.getLandlordProperties(this.filter).then( response => {
        if(response.status === 200) {
-        this.$store.commit('SET_PROPERTIES', response.data);
+        this.$store.commit('SET_LANDLORD_PROPERTIES', response.data);
        }
     });
    },
+
+   getUserProperties() {
+    propService.getUserProperties().then( response => {
+       if(response.status === 200) {
+        this.$store.commit('SET_USER_PROPERTIES', response.data);
+       }
+    });
+   },
+
    purchaseRentalProperty(index, property){
-      this.$store.commit('SET_PURCHASED_PROPERTIES', index);
-      this.purchaseProp.address = property.address;
+      this.$store.commit('UPDATE_LANDLORD_PROPERTIES', index);
+
+      this.purchaseProp = property;
+
+      propService
+      .purchaseProperty(this.purchaseProp)
+      .then(response => {
+        if(response.status == 200) {
+          this.purchaseProp = {};
+          this.message = true;
+        }
+      });
+
+   },
+
+   rentProperty(propertyId, index){
+     this.$store.commit('UPDATE_USER_PROPERTIES', index);
+
+      rentService
+      .assignRenter(propertyId)
+      .then(response => {
+        if(response.status == 200) {
+          this.$router.push('/browseProperties');
+        }
+      });
 
    }
+
+
   },
 
   created() {
-    this.getProperties();
+    this.getLandlordProperties();
+    this.getUserProperties();
       if(
       this.filter.minPrice === null,
       this.filter.maxPrice === null,

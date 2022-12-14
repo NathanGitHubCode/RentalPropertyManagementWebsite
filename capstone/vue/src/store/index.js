@@ -21,8 +21,8 @@ export default new Vuex.Store({
     user: currentUser || {},
     loggedIn: false,
     isDropdownVisible: false,
-    rentalProperties: [],
-    purchasedProperties: [],
+    landlordProperties: [],
+    userProperties: [],
     maintenanceList: [],
     employeeList: []
     
@@ -49,13 +49,13 @@ export default new Vuex.Store({
     LOGGED_IN(state) {
         state.loggedIn = true;
     },
-    SET_PROPERTIES(state, properties) {
-      state.rentalProperties = properties;
+    SET_LANDLORD_PROPERTIES(state, properties) {
+      state.landlordProperties = properties;
     },
     SET_MAINTENANCE(state, maintenance) {
       state.maintenanceList = maintenance;
     },
-    SET_PURCHASED_PROPERTIES(state, index) {
+    UPDATE_LANDLORD_PROPERTIES(state, index) {
       // const availProps = state.rentalProperties.filter( property => {
       //  if(property.zpid == ID){
       //   return property;
@@ -66,10 +66,16 @@ export default new Vuex.Store({
       // const propIndex = state.rentalProperties.indexOf(availProps);
       
       // if(propIndex > -1) {
-        state.rentalProperties.splice(index, 1);
+        state.landlordProperties.splice(index, 1);
         // state.purchasedProperties.push(availProps);
       // }
 
+    },
+    SET_USER_PROPERTIES(state, properties) {
+      state.userProperties = properties;
+    },
+    UPDATE_USER_PROPERTIES(state, index){
+      state.userProperties.splice(index, 1);
     },
     SET_EMPLOYEES(state, employees) {
       state.employeeList = employees;

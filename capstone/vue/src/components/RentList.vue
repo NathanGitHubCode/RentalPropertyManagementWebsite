@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import rentService from '../services/RentService';
+import rentService from '../services/PropService';
 import PayRentForm from '../components/PayRentForm.vue';
 
 export default {
