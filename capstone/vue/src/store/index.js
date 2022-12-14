@@ -20,7 +20,6 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || {},
     loggedIn: false,
-    isDropdownVisible: false,
     landlordProperties: [],
     userProperties: [],
     maintenanceList: [],
@@ -44,7 +43,6 @@ export default new Vuex.Store({
       state.user = {};
       axios.defaults.headers.common = {};
       state.loggedIn = false;
-      state.isDropdownVisible = false;
     },
     LOGGED_IN(state) {
         state.loggedIn = true;

@@ -9,18 +9,16 @@
 
     <div class="dropdown-all"
     v-else>
-    <button 
+    <h1 
     class="dropdown"
-    @mouseenter="toggleDropdown"
-    @mouseleave="toggleDropdown"
+    @click="toggleDropdown"
     >
       {{ userName }} 
-    </button>
+    </h1>
 
     <div 
     class="dropdown-content" 
     id="account-drop"
-    @mouseenter="toggleDropdown"
     @mouseleave="toggleDropdown">
       <p>Username: {{ userName }}</p>
       <p>Account Type: {{ userType }}</p>
@@ -53,18 +51,15 @@ props: {
 };
 </script>
 
-<style>
 
-.login-button{
-    justify-content: center;
-}
+<style scoped>
 
 .nav-element{
   display: flex;
   justify-content: center;
 }
 
-.nav-element > *{
+.login-button{
   background: rgba(104, 0, 0);
   color: white;
   font-size: 1rem;
@@ -78,34 +73,23 @@ props: {
   display: flex;
 }
 
-.nav-element :hover, .nav-element :focus{
-  color: white;
-  background-color: rgb(129, 0, 0);
-  border: 200px;
-  }
-  
-
 
 .dropdown-content {
   display: none;
-  position: absolute;
+  position:absolute;
   background-color: #f1f1f1;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  /* z-index: 1; */
+  z-index: 1;
+  margin-block: 23px;
 }
 
-/* Links inside the dropdown */
 .dropdown-content > * {
   color: black;
   padding: 12px 16px;
   text-decoration: none;
 }
 
-/* Change color of dropdown links on hover */
-.dropdown-content > *:hover {
-  background-color: #ddd;
-}
 
 .dropdown-all {
   position: relative;
@@ -113,18 +97,34 @@ props: {
   align-items: center;  
 }
 
-.dropdown-all > * {
+ .dropdown-all > * {
     color: white;
   }
 
   .show {
-  display:block;
+  display:flex;
+  flex-wrap: wrap;
+  justify-self: flex-start;
+  align-self: flex-start; 
+  justify-content: flex-start;
+  justify-items: flex-start;
   }
 
+
   .dropdown{
+    background-color: black;
     color:white;
-    background-color: rgba(104, 0, 0);
     margin: -10px;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px; 
+    text-align: center;
+    cursor: pointer;
+    
+  }
+
+  .dropdown:hover {
+    background-color: rgb(65, 65, 65);
   }
 
 </style>

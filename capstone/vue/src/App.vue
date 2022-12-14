@@ -86,6 +86,10 @@ export default {
 
 <style>
 
+.nav-bar > .home-nav {
+  justify-content: flex-start;
+}
+
   .nav-bar:hover {
     color: white;    
   }
