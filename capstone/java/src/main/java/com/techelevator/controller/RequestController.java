@@ -49,8 +49,6 @@ public class RequestController {
     @RequestMapping(path = "/assignMaintenanceWorker/employee/{employeeId}/property/{propertyId}/request/{requestId}", method = RequestMethod.PUT)
     public void assignWorker(@PathVariable int propertyId, @PathVariable int employeeId, @PathVariable int requestId, Principal principal){
         requestDao.assignEmployeeToRequest(propertyId, employeeId, requestId, principal);
-
-
     }
 
 }
