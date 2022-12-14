@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-   <body>
     <div class="container">
       <div class="header">
         <h3>Welcome to Dreamville Rentals</h3>
@@ -20,7 +19,6 @@
       [Insert footer content]
     </div>
    </div>
-  </body>
  </div>
 </template>
 
@@ -32,7 +30,7 @@ export default {
 
 <style>
 
- body {
+ .home {
       font-family: Arial, sans-serif;
       margin: 0px;
       background-image: 

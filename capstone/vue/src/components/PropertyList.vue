@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="property-page">
     <h3 id="header">Dreamville Properties</h3>
     <div class="landlord-view" v-if="role == 'LANDLORD'">
       <form class="filter-list" @submit.prevent="getLandlordProperties">
@@ -74,7 +74,7 @@ data() {
         bathrooms: null,
         bedrooms: null,
         livingArea: null,
-        price: null
+        price: null,
     },
     message: false,
     role: this.$store.state.user.authorities[0].name.substring(5, this.$store.state.user.authorities[0].name.length)
@@ -150,6 +150,7 @@ methods: {
 </script>
 
 <style scoped>
+
 
 .property-card{
   background: white;

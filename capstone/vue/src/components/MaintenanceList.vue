@@ -32,7 +32,7 @@
           type="button" 
           v-if="main.maintStatusId == 1 && role == 'LANDLORD'"  
           @click="markRequestComplete">Assign Task</td>
-          <div class="status-complete" v-if="main.maintStatusId == 3">
+          <div class="status-complete" v-if="main.maintStatusId == 2">
           <td class="status-text" >Completed</td>
           </div>
       </tr>
