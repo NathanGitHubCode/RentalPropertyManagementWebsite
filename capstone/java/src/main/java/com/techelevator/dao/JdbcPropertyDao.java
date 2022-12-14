@@ -58,6 +58,8 @@ public class JdbcPropertyDao implements PropertyDao {
         jdbcTemplate.update(sql, property.getBathrooms(), property.getBedrooms(), property.getLivingArea(), property.getPrice(), property.isAvailable(), property.getPropertyId());
     }
 
+
+
 //    @Override
 //    public void updateProperty(Property property){
 //        Property propCheck = property;
@@ -105,7 +107,7 @@ public class JdbcPropertyDao implements PropertyDao {
 //        if(rowset.getInt("balance") != null){
         property.setBalance(rowset.getInt("balance"));
         if(rowset.getString("status") != null) {
-            property.setStatus(rowset.getString("status"));
+            property.setStatus(rowset.getInt("status"));
         }
         if(rowset.getString("due_date") != null) {
             property.setDueDate(rowset.getDate("due_date"));

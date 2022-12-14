@@ -7,7 +7,7 @@ import java.util.Objects;
 
 public class Property {
 
-    @JsonProperty("property_id")
+//    @JsonProperty("property_id")
     private int propertyId;
     private String address;
     private String imgSrc;
@@ -18,16 +18,16 @@ public class Property {
     private Integer price;
     private Integer landlordId;
     private boolean isAvailable;
-    private String status;
+    private int status;
     private int balance;
     private Date dueDate;
     private int renterId;
 
-    public String getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 

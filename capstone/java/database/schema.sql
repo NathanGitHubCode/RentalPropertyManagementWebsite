@@ -24,7 +24,7 @@ CREATE TABLE available_properties (
 	landlord_id int,
 	is_available boolean,
 	renter_id int,
-	status varchar(15),
+	status int,
 	balance int,
 	due_date date
 );

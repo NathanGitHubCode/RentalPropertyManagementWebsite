@@ -52,4 +52,9 @@ public class RequestController {
         requestDao.assignEmployeeToRequest(propertyId, employeeId, requestId, principal);
     }
 
+    @RequestMapping(path = "/completeMaintenanceRequest/{requestId}", method = RequestMethod.PUT)
+    public void markCompleteRequest(@PathVariable int requestId, Principal principal){
+        requestDao.updateMaintenanceStatusToComplete(requestId, principal);
+    }
+
 }

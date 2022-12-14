@@ -7,26 +7,19 @@ import java.util.Objects;
 public class Rent {
     private int rentId;
     private int renterId;
-    private BigDecimal amount;
     private int propertyId;
     private Date date;
-    private String status;
+    private int status;
 
     public Rent() {
 
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Rent rent = (Rent) o;
-        return rentId == rent.rentId && renterId == rent.renterId && propertyId == rent.propertyId && Objects.equals(amount, rent.amount) && Objects.equals(date, rent.date) && Objects.equals(status, rent.status);
-    }
+
 
     @Override
     public int hashCode() {
-        return Objects.hash(rentId, renterId, amount, propertyId, date, status);
+        return Objects.hash(rentId, renterId, propertyId, date, status);
     }
 
     public int getRentId() {
@@ -45,13 +38,7 @@ public class Rent {
         this.renterId = renterId;
     }
 
-    public BigDecimal getAmount() {
-        return amount;
-    }
 
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
 
     public int getPropertyId() {
         return propertyId;
@@ -69,18 +56,17 @@ public class Rent {
         this.date = date;
     }
 
-    public String getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
-    public Rent(int rentId, int renterId, BigDecimal amountDue, int propertyId, Date date, String status) {
+    public Rent(int rentId, int renterId, int propertyId, Date date, int status) {
         this.rentId = rentId;
         this.renterId = renterId;
-        this.amount = amountDue;
         this.propertyId = propertyId;
         this.date = date;
         this.status = status;
