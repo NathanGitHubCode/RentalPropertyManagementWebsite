@@ -13,8 +13,6 @@ public interface PropertyDao {
 
     Property createAvailableProperty(Property property);
 
-//    public Integer purchaseProperty();
-
     public void updateProperty(Property property);
 
     public int findPropertyIdByRenterId(Principal principal);

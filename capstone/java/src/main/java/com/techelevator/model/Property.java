@@ -16,8 +16,6 @@ public class Property {
     private Integer bedrooms;
     private Integer livingArea;
     private Integer price;
-
-    //Below is wrong and leaving it
     private Integer landlordId;
     private boolean isAvailable;
     private String status;
