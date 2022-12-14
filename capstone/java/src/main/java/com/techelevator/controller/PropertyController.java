@@ -40,10 +40,11 @@ public class PropertyController {
         mapToPropertyFromDto(propertyDto, principal);
     }
 
-    @RequestMapping(path = "/updateProperty/{landlordId}", method = RequestMethod.PUT)
-    public void updateProperty(@RequestBody UpdatePropertyDto updatePropertyDto, @PathVariable int landlordId, Principal principal) {
-//        Property currentProperty = propertyDao.findProperty(propertyDto.getPropertyId());
+    @RequestMapping(path = "/updateProperty", method = RequestMethod.PUT)
+    public void updateProperty(@RequestBody UpdatePropertyDto updatePropertyDto, Principal principal) {
+        Property currentProperty = propertyDao.findProperty(updatePropertyDto.getPropertyId());
         Property property = new Property();
+        int landlordId = currentProperty.getLandlordId();
         int principalId = userDao.findIdByUsername(principal.getName());
         if (principalId == landlordId) {
             property.setPropertyId(updatePropertyDto.getPropertyId());

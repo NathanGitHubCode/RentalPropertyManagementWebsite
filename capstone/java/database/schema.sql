@@ -43,8 +43,6 @@ CREATE TABLE maintenance_requests(
 
 
 
-DROP TABLE IF EXISTS rent, maintenance_status_id;
-
 
 
 COMMIT TRANSACTION;

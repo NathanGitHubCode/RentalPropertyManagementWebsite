@@ -37,6 +37,7 @@ public class RequestController {
     @RequestMapping(path = "/requestMaintenance", method = RequestMethod.POST)
     public void submitRequest(@RequestBody RequestDto requestDto, Principal principal){
         Request request = new Request();
+        String id = principal.getName();
         request.setRenterId(userDao.findIdByUsername(principal.getName()));
         request.setPropertyId(propertyDao.findPropertyIdByRenterId(principal));
         request.setAddress(propertyDao.findAddressByPropertyId(propertyDao.findPropertyIdByRenterId(principal)));
