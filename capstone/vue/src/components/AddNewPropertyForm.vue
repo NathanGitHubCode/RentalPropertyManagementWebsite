@@ -2,7 +2,8 @@
   <div>
     <form @submit.prevent="addRentalProperty">
 
-      <h2 v-if="message">Thank you for using Dreamville Properties.</h2>
+      <h2 v-if="landlordMessage">Thank you for using Dreamville Properties.</h2>
+      <h2 v-if="userMessage">You must be a landlord to add a property</h2>
 
     <div class="input-element">
       <label>Image:</label>
@@ -45,25 +46,32 @@ export default {
         bathrooms: 0,
         area: 0,
         landlordId: this.$store.state.user.id
-      }
+      },
+      landlordMessage: false,
+      userMessage: false
     }
     },
     methods: {
          addRentalProperty() {
       // TODO: Add the rental property to the database
+      if(this.$store.state.user.authorities[0].name.substring(5, this.$store.state.user.authorities[0].name.length) == 'LANDLORD'){
         propService
         .addProperty(this.formData)
         .then( response => {
           if(response.status == 200){
             this.$store.commit('ADD_USER_PROP', response.data)
             this.formData = {};
+            this.landlordMessage = true
             this.$router.push('/browseProperties')
           }
         });
 
       }
+      else{
+          this.userMessage = true
+      }
     }
-
+  }
 }
 </script>
 

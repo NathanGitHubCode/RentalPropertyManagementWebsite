@@ -10,6 +10,9 @@ export default {
     },
     listRenters(){
         return axios.get('/getRenters');
+    },
+    payRent(propertyId){
+        return axios.put(`/updateRentStatusToPaid/${propertyId}`);
     }
 
 

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.security.Principal;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -59,11 +60,23 @@ public class JdbcRentDao implements RentDao{
     public void assignRenterToProperty(int propertyId, int renterId, Principal principal){
         String sql2 = "SELECT landlord_id FROM available_properties WHERE property_id = ?;";
         int landlordId = jdbcTemplate.queryForObject(sql2, Integer.class, propertyId);
-        if(landlordId != userDao.findIdByUsername(principal.getName())){
-            String sql = "UPDATE available_properties SET renter_id = ?, is_available = ? WHERE property_id = ?;";
-            jdbcTemplate.update(sql, renterId, false, propertyId);
+        if(landlordId != userDao.findIdByUsername(principal.getName()) && renterId != userDao.findIdByUsername(principal.getName())){
+            LocalDate dueDate = LocalDate.now().plusMonths(1);
+            int status = 1;
+            String sql = "UPDATE available_properties SET renter_id = ?, is_available = ?, due_date = ?, balance = price , status = ? WHERE property_id = ?;";
+            jdbcTemplate.update(sql, renterId, false, dueDate, status, propertyId);
         }
         //Todo what to return if update isn't successful/conditions aren't met
+    }
+
+    @Override
+    public void updateRentStatus(int propertyId, Principal principal) {
+        String sql2 = "SELECT renter_id FROM available_properties WHERE property_id = ?;";
+        int renterId = jdbcTemplate.queryForObject(sql2, Integer.class, propertyId);
+        if (renterId == userDao.findIdByUsername(principal.getName())) {
+            String sql = "UPDATE available_properties SET status = ?, due_date = ? WHERE property_id = ?;";
+            jdbcTemplate.update(sql, 2, LocalDate.now().plusMonths(1));
+        }
     }
 
 

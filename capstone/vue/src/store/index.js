@@ -51,13 +51,16 @@ export default new Vuex.Store({
         state.loggedIn = true;
     },
     SET_LANDLORD_PROPERTIES(state, properties) {
-      properties.filter( landlordProp => {
-        state.userProperties.filter( userProp => {
-            if(landlordProp.address != userProp.address) {
-              state.landlordProperties.push(landlordProp);
-            }
-          });
-      });
+     state.landlordProperties = properties;
+
+     state.landlordProperties.filter( landlordProp => {
+       let prop = state.landlordProperties.indexOf(landlordProp);
+       state.userProperties.filter( userProp => {
+         if(landlordProp.address == userProp.address){
+            state.landlordProperties.splice(prop, 1);
+         }
+       });
+     });
     },
     SET_MAINTENANCE(state, maintenance) {
       state.maintenanceList = maintenance;
@@ -94,7 +97,11 @@ export default new Vuex.Store({
       state.userProperties.push(property);
     },
     SET_RENTED_PROPS(state, properties){
-      state.rentedProperties = properties;
+      properties.filter( prop => {
+          if(prop.renterId == state.user.id){
+            state.rentedProperties.push(prop)
+          }
+      }); 
     }
   }
 })

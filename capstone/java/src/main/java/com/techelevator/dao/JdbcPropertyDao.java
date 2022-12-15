@@ -106,9 +106,9 @@ public class JdbcPropertyDao implements PropertyDao {
         property.setRenterId(rowset.getInt("renter_id"));
 //        if(rowset.getInt("balance") != null){
         property.setBalance(rowset.getInt("balance"));
-        if(rowset.getString("status") != null) {
+//        if(rowset.getInt("status") != null) { }
             property.setStatus(rowset.getInt("status"));
-        }
+
         if(rowset.getString("due_date") != null) {
             property.setDueDate(rowset.getDate("due_date"));
         }

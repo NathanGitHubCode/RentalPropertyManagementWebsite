@@ -23,7 +23,7 @@ import java.util.List;
 public class RestPropertyService {
 
     private static final String API_KEY = "X-RapidAPI-Key";
-    private static final String API_VALUE = "4b3b13aa59mshc55a207abaeab72p1e900ejsn2e91c34ef760";
+    private static final String API_VALUE = "d4c62593b2msh03dbb10173ce61fp153dccjsn5ba794fe7525";
     private static final String API_URL = "https://zillow69.p.rapidapi.com/search";
     private final RestTemplate restTemplate;
 

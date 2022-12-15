@@ -1,7 +1,7 @@
 <template>
   <div class="property-page">
     <h3 id="header">Dreamville Properties</h3>
-    <div class="landlord-view" v-if="role == 'LANDLORD'">
+    <div class="landlord-view" v-if="this.$store.state.user.authorities[0].name.substring(5, this.$store.state.user.authorities[0].name.length) == 'LANDLORD'">
       <form class="filter-list" @submit.prevent="getLandlordProperties">
         <label>Zip Code:</label>
         <input type="text" placeholder="Zipcode" v-model.number="filter.zipCode"/>
@@ -27,7 +27,7 @@
         <h1 id="address">Address: {{ property.address }}</h1>
         <h1 id="bathrooms">Bathrooms: {{ property.bathrooms }}</h1>
         <h1 id="bedrooms">Bedrooms: {{ property.bedrooms }}</h1>
-        <h1 id="price">Price: ${{ property.price }}</h1>
+        <h1 id="price">Listing Price: ${{ property.price * 101 }}</h1>
         <button class="purchase" @click="purchaseRentalProperty(index, property)">Purchase Property </button>
       </div>
     </div>
@@ -44,7 +44,7 @@
         <h1 id="address">Address: {{ property.address }}</h1>
         <h1 id="bathrooms">Bathrooms: {{ property.bathrooms }}</h1>
         <h1 id="bedrooms">Bedrooms: {{ property.bedrooms }}</h1>
-        <h1 id="price">Price: ${{ property.price / 12}}</h1>
+        <h1 id="price">Rent: ${{ property.price }}</h1>
         <button class="purchase" @click="rentProperty(property.propertyId, index)"> Rent Property </button>
       </div>
 

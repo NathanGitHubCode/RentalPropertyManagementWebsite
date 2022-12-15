@@ -70,8 +70,8 @@ public class Props {
     private String propertyType;
     @JsonProperty("listingStatus")
     private String listingStatus;
-    @JsonProperty("listingSubType")
-    private List<Object> listingSubType = null;
+//    @JsonProperty("listingSubType")
+//    private List<Object> listingSubType = null;
     @JsonProperty("price")
     private Integer price;
     @JsonProperty("latitude")
@@ -242,16 +242,16 @@ public class Props {
     public void setListingStatus(String listingStatus) {
         this.listingStatus = listingStatus;
     }
-
-    @JsonProperty("listingSubType")
-    public List<Object> getListingSubType() {
-        return listingSubType;
-    }
-
-    @JsonProperty("listingSubType")
-    public void setListingSubType(List<Object> listingSubType) {
-        this.listingSubType = listingSubType;
-    }
+//
+//    @JsonProperty("listingSubType")
+//    public List<Object> getListingSubType() {
+//        return listingSubType;
+//    }
+//
+//    @JsonProperty("listingSubType")
+//    public void setListingSubType(List<Object> listingSubType) {
+//        this.listingSubType = listingSubType;
+//    }
 
     @JsonProperty("price")
     public Integer getPrice() {

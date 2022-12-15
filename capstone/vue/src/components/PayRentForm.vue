@@ -30,13 +30,14 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
-.rent-form {
-    display: flex;
-    background-color: wheat;
-    width: 100%;
-    height: 100vh;
+/* .rent-form {
+   display: none;
+} */
+
+.rent-form > *{
+    justify-content: center;
 }
 
 </style>

@@ -85,6 +85,10 @@ export default {
 
 <style>
 
+body{
+  margin: 0px;
+}
+
 .nav-bar > .home-nav {
   justify-content: flex-start;
 }

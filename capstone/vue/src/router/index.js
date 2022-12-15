@@ -11,6 +11,7 @@ import AssignMaintenance from '../components/AssignMaintenance.vue'
 import store from '../store/index'
 import AddNewProperty from "../views/AddNewProperty.vue"
 import Home from "../views/Home.vue"
+import AboutUs from "../components/AboutUs.vue"
 
 Vue.use(Router)
 
@@ -105,6 +106,14 @@ const router = new Router({
       component: AssignMaintenance,
       meta: {
         requiresAuth: true
+      }
+    },
+    {
+      path: "/aboutUs",
+      name: "about-us",
+      component: AboutUs,
+      meta: {
+        requiresAuth: false
       }
     }
   ]
