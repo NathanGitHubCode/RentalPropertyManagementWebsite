@@ -52,6 +52,18 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
+.rent-list{
+  background: white;
+  display: flex;
+  margin: 10px 10px 10px 10px;
+}
+
+img {
+  width: 10vw;
+  height: 15vh;
+  margin: 8px;
+}
 
 </style>
