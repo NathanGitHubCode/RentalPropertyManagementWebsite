@@ -15,7 +15,7 @@ export default {
         return axios.get('/properties');
     },
     
-    purchaseProperty(property){
+    addProperty(property){
         return axios.post('/addProperty', property);
     }
 

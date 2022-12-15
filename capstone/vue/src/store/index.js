@@ -89,6 +89,12 @@ export default new Vuex.Store({
     },
     SET_RENTERS(state, renters) {
       state.renterList = renters;
+    },
+    ADD_USER_PROP(state, property){
+      state.userProperties.push(property);
+    },
+    SET_RENTED_PROPS(state, properties){
+      state.rentedProperties = properties;
     }
   }
 })

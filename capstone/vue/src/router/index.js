@@ -60,11 +60,11 @@ const router = new Router({
       }
     },
     {
-      path:"/rent/:userID",
+      path:"/viewMyRent",
       name: "rent",
       component: Rent,
       meta: {
-        requiresAuth: false
+        requiresAuth: true
       }
     },
     {
@@ -80,7 +80,7 @@ const router = new Router({
       name: "maintenance-list",
       component: MaintenanceList,
       meta: {
-        requiresAuth: false
+        requiresAuth: true
       }
     },
     {
@@ -88,7 +88,7 @@ const router = new Router({
       name: "add-property",
       component: AddNewProperty,
       meta: {
-        requiresAuth: false
+        requiresAuth: true
       }
     },
     {
@@ -96,7 +96,7 @@ const router = new Router({
       name: "request-maintenance",
       component: MaintenanceForm,
       meta: {
-        requiresAuth: false
+        requiresAuth: true
       }
     },
     {
@@ -104,7 +104,7 @@ const router = new Router({
       name: "assign-maintenance",
       component: AssignMaintenance,
       meta: {
-        requiresAuth: false
+        requiresAuth: true
       }
     }
   ]

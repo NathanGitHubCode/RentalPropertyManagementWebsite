@@ -1,6 +1,16 @@
 <template>
   <div>
-    <form>
+    <form @submit.prevent="addRentalProperty">
+
+      <h2 v-if="message">Thank you for using Dreamville Properties.</h2>
+
+    <div class="input-element">
+      <label>Image:</label>
+      <input type="text" v-model="formData.image" />
+    </div>  
+
+      <img :src="formData.image" />
+      
       <label>Address:</label>
       <input v-model="formData.address" type="text" />
  
@@ -16,37 +26,41 @@
       <label>Area: </label>
       <input v-model="formData.area" type="number" />
  
-      <!-- <label>Amenities:</label>
-      <div  id="amenities" v-for="amenity in amenities" v-bind:key="amenity">
-        <label > {{ amenity }} </label>
-        <input 
-          v-model="formData.amenities[amenity]"
-          type="checkbox" 
-        />
-      </div> -->
- 
-      <button @click="addRentalProperty">Add Property</button>
+      <button type="submit" >Add Property</button>
     </form>
   </div>
 </template>
 
 <script>
+import propService from '../services/PropService'
 export default {
     data() {
     return {
       // Initialize the form data
       formData: {
+        image: '',
         address: '',
-        rent: 0,
+        balance: 0,
         bedrooms: 0,
         bathrooms: 0,
         area: 0,
-      },
+        landlordId: this.$store.state.user.id
+      }
     }
     },
     methods: {
          addRentalProperty() {
       // TODO: Add the rental property to the database
+        propService
+        .addProperty(this.formData)
+        .then( response => {
+          if(response.status == 200){
+            this.$store.commit('ADD_USER_PROP', response.data)
+            this.formData = {};
+            this.$router.push('/browseProperties')
+          }
+        });
+
       }
     }
 

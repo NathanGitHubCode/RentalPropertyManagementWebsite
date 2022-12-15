@@ -16,7 +16,7 @@
         <button type="submit"> Enter </button>
       </form>
 
-    <h2 v-if="message">Thank you for using Dreamville Properties. You now own property. </h2>
+    <h2 v-if="message">Thank you for using Dreamville Properties.</h2>
 
     <div 
     class="property-card"
@@ -106,7 +106,7 @@ methods: {
       this.purchaseProp = property;
 
       propService
-      .purchaseProperty(this.purchaseProp)
+      .addProperty(this.purchaseProp)
       .then(response => {
         if(response.status == 200) {
           this.purchaseProp = {};
@@ -187,7 +187,7 @@ img {
 .filter-list {
   display: inline-flex;
   flex-wrap: nowrap;
-  background: blueviolet;  
+  background: black;  
   padding: 50px;
   width: 95vw;
   height: 10vh;
