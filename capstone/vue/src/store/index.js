@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+// import { use } from 'chai'
 
 Vue.use(Vuex)
 
@@ -22,8 +23,10 @@ export default new Vuex.Store({
     loggedIn: false,
     landlordProperties: [],
     userProperties: [],
+    rentedProperties: [],
     maintenanceList: [],
-    employeeList: []
+    employeeList: [],
+    renterList: []
     
   },
   mutations: {
@@ -48,7 +51,13 @@ export default new Vuex.Store({
         state.loggedIn = true;
     },
     SET_LANDLORD_PROPERTIES(state, properties) {
-      state.landlordProperties = properties;
+      properties.filter( landlordProp => {
+        state.userProperties.filter( userProp => {
+            if(landlordProp.address != userProp.address) {
+              state.landlordProperties.push(landlordProp);
+            }
+          });
+      });
     },
     SET_MAINTENANCE(state, maintenance) {
       state.maintenanceList = maintenance;
@@ -77,6 +86,9 @@ export default new Vuex.Store({
     },
     SET_EMPLOYEES(state, employees) {
       state.employeeList = employees;
+    },
+    SET_RENTERS(state, renters) {
+      state.renterList = renters;
     }
   }
 })

@@ -59,7 +59,7 @@ public class JdbcRentDao implements RentDao{
     public void assignRenterToProperty(int propertyId, int renterId, Principal principal){
         String sql2 = "SELECT landlord_id FROM available_properties WHERE property_id = ?;";
         int landlordId = jdbcTemplate.queryForObject(sql2, Integer.class, propertyId);
-        if(landlordId == userDao.findIdByUsername(principal.getName())){
+        if(landlordId != userDao.findIdByUsername(principal.getName())){
             String sql = "UPDATE available_properties SET renter_id = ?, is_available = ? WHERE property_id = ?;";
             jdbcTemplate.update(sql, renterId, false, propertyId);
         }

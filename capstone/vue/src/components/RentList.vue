@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import rentService from '../services/PropService';
 import PayRentForm from '../components/PayRentForm.vue';
+import rentService from '../services/RentService';
 
 export default {
   components: { PayRentForm },
@@ -34,7 +34,7 @@ export default {
 
   methods: {
     listRents() {
-      rentService.getRentList(this.properties.renter).then( response => {
+      rentService.viewRent().then( response => {
         if(response.status == 200) {
           this.properties = this.response.data;
           this.$store.commit('SET_RENTED_PROPS', this.properties);

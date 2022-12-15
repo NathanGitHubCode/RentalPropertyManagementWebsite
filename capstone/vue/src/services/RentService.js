@@ -5,8 +5,11 @@ export default {
     viewRent() {
         return axios.get('/viewRent');
     },
-    assignRenter(propertyId) {
-        return axios.put(`/properties/${propertyId}`)
+    assignRenter(propertyId, renterId) {
+        return axios.put(`/updateProperty/assignRenter/${propertyId}/${renterId}`);
+    },
+    listRenters(){
+        return axios.get('/getRenters');
     }
 
 

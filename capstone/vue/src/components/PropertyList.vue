@@ -37,14 +37,15 @@
        <div 
        class="property-card"
        v-for="(property, index) in this.$store.state.userProperties"
+       v-show="property.available == true"
        v-bind:key="property.id">
       <img :src="property.imgSrc" />
       <div class="property-details">
         <h1 id="address">Address: {{ property.address }}</h1>
         <h1 id="bathrooms">Bathrooms: {{ property.bathrooms }}</h1>
         <h1 id="bedrooms">Bedrooms: {{ property.bedrooms }}</h1>
-        <h1 id="price">Price: ${{ property.price }}</h1>
-        <button class="purchase" @click="rentProperty(property.id, index)"> Rent Property </button>
+        <h1 id="price">Monthly: ${{ property.price }}</h1>
+        <button class="purchase" @click="rentProperty(property.propertyId, index)"> Rent Property </button>
       </div>
 
     </div>
@@ -76,6 +77,7 @@ data() {
         livingArea: null,
         price: null,
     },
+    renterId: null,
     message: false,
     role: this.$store.state.user.authorities[0].name.substring(5, this.$store.state.user.authorities[0].name.length)
   }
@@ -116,9 +118,9 @@ methods: {
 
    rentProperty(propertyId, index){
      this.$store.commit('UPDATE_USER_PROPERTIES', index);
-
+     const renterId = this.$store.state.user.id;
       rentService
-      .assignRenter(propertyId)
+      .assignRenter(propertyId, renterId)
       .then(response => {
         if(response.status == 200) {
           this.$router.push('/browseProperties');
@@ -126,6 +128,16 @@ methods: {
       });
 
    }
+  //  ,   getRentId(){
+  //    rentService
+  //    .listRenters()
+  //    .then( response => {
+  //      if(response.status == 200) {
+  //        this.$store.commit('SET_RENTERS', response.data);
+  //        if (response.data.username == this.$store.state.)
+  //      }
+  //    })
+  //  }
 
 
   },
