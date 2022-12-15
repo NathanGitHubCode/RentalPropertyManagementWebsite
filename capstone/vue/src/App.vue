@@ -32,8 +32,7 @@
         id="rent-drop"
         @mouseenter="toggleRent()"
         @mouseleave="toggleRent()">
-            <router-link v-bind:to="{ name: 'rent', params: { id: userID } }">View Rent</router-link>
-            
+            <router-link v-bind:to="{ name: 'rent' }">View Rent</router-link>    
         </div>
       </div>
       <div class="dropdown-all">
