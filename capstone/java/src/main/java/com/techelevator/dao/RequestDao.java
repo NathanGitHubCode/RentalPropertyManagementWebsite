@@ -11,7 +11,7 @@ public interface RequestDao {
 
     Request submitRequest(Request request);
 
-    void assignEmployeeToRequest(int propertyId, int employeeId, int requestId, Principal principal);
+    void assignEmployeeToRequest(int employeeId, int requestId, Principal principal);
 
     void updateMaintenanceStatusToComplete(int requestId, Principal principal);
 

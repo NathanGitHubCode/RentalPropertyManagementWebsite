@@ -63,9 +63,9 @@ public class JdbcRequestDao implements RequestDao {
     }
 
     @Override
-    public void assignEmployeeToRequest(int propertyId, int employeeId, int requestId, Principal principal){
-        String sql2 = "SELECT ap.landlord_id FROM available_properties AS ap JOIN maintenance_requests AS mr ON mr.property_id = ap.property_id WHERE mr.property_id = ?;";
-        int landlordId = jdbcTemplate.queryForObject(sql2, Integer.class, propertyId);
+    public void assignEmployeeToRequest(int requestId, int employeeId, Principal principal){
+        String sql2 = "SELECT ap.landlord_id FROM available_properties AS ap JOIN maintenance_requests AS mr ON mr.property_id = ap.property_id WHERE mr.request_id = ?;";
+        int landlordId = jdbcTemplate.queryForObject(sql2, Integer.class, requestId);
         int principalId = userDao.findIdByUsername(principal.getName());
         if(landlordId == principalId){
             String sql = "UPDATE maintenance_requests SET employee_id = ?, maintenance_status_id = ? WHERE request_id = ?;";

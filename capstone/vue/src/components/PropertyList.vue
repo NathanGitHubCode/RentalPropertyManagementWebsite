@@ -44,7 +44,7 @@
         <h1 id="address">Address: {{ property.address }}</h1>
         <h1 id="bathrooms">Bathrooms: {{ property.bathrooms }}</h1>
         <h1 id="bedrooms">Bedrooms: {{ property.bedrooms }}</h1>
-        <h1 id="price">Monthly: ${{ property.price }}</h1>
+        <h1 id="price">Price: ${{ property.price / 12}}</h1>
         <button class="purchase" @click="rentProperty(property.propertyId, index)"> Rent Property </button>
       </div>
 
@@ -187,10 +187,10 @@ img {
 .filter-list {
   display: inline-flex;
   flex-wrap: nowrap;
-  background: black;  
-  padding: 50px;
-  width: 95vw;
-  height: 10vh;
+  background: chocolate;  
+  padding: 10px;
+  width: 99%;
+  height: 5vh;
 
 }
 

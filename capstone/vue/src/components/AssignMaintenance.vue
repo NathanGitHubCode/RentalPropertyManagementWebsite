@@ -5,15 +5,15 @@
 
       <label>
         Maintenance Request:
-        <select v-model="maintenanceRequest">
-          <option v-for="request in this.$store.state.maintenanceList" v-bind:key="request.id">{{ request.request }}</option>
+        <select v-model="requestId">
+          <option v-for="request in this.$store.state.maintenanceList" v-bind:key="request.id">{{ request.requestId }}</option>
         </select>
       </label>
       <br />
       <label>
         Assign To:
-        <select v-model="maintenancePersonId">
-          <option v-for="employee in this.$store.state.employeeList" v-bind:key="employee.id">{{ employee.username }}</option>
+        <select v-model="employeeId">
+          <option v-for="employee in this.$store.state.employeeList" v-bind:key="employee">{{ employee.id }}</option>
         </select>
       </label>
       <br />
@@ -27,8 +27,8 @@ import mainService from '../services/MainService';
 export default {
   data() {
     return {
-      maintenanceRequest: null,
-      maintenancePersonId: null,
+      requestId: null,
+      employeeId: null,
       maintenanceRequests: [],
       maintenancePeople: []
     };
@@ -38,6 +38,16 @@ export default {
       // Assign the selected maintenance task to the selected property
       // and maintenance person, using the provided propertyId,
       // maintenanceType, and maintenancePersonId values.
+      mainService
+      .assignWorker(this.requestId, this.employeeId)
+      .then( response => {
+        if(response.status == 200) {
+          this.requestId = null;
+          this.employeeId = null;
+          this.$router.push('/maintenance')
+          
+        }
+      })
     },
     employeeList(){
       mainService

@@ -6,16 +6,16 @@
 
     <div class="input-element">
       <label>Image:</label>
-      <input type="text" v-model="formData.image" />
+      <input type="text" v-model="formData.imgSrc" />
     </div>  
 
-      <img :src="formData.image" />
+      <img :src="formData.imgSrc" />
       
       <label>Address:</label>
       <input v-model="formData.address" type="text" />
  
       <label>Listing Price:</label>
-      <input v-model="formData.rent" type="number" />
+      <input v-model="formData.price" type="number" />
  
       <label>Bedrooms:</label>
       <input v-model="formData.bedrooms" type="number" />
@@ -38,9 +38,9 @@ export default {
     return {
       // Initialize the form data
       formData: {
-        image: '',
+        imgSrc: '',
         address: '',
-        balance: 0,
+        price: 0,
         bedrooms: 0,
         bathrooms: 0,
         area: 0,

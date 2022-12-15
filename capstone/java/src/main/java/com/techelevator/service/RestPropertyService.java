@@ -24,7 +24,6 @@ public class RestPropertyService {
 
     private static final String API_KEY = "X-RapidAPI-Key";
     private static final String API_VALUE = "4b3b13aa59mshc55a207abaeab72p1e900ejsn2e91c34ef760";
-//            "c786a1110dmsh96a4d70ff5f2b67p1e1552jsn2f2f31d7153e";
     private static final String API_URL = "https://zillow69.p.rapidapi.com/search";
     private final RestTemplate restTemplate;
 

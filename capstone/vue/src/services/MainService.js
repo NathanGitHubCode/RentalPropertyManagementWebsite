@@ -9,9 +9,12 @@ export default {
         return axios.post('/requestMaintenance', request)
     },
     markRequestComplete(requestId) {
-        return axios.put(`/updateMaintenanceRequest/${requestId}`)
+        return axios.put(`/completeMaintenanceRequest/${requestId}`)
     },
     getEmployees(){
         return axios.get('/getEmployees');
+    },
+    assignWorker(employeeId, requestId){
+        return axios.put(`/assignMaintenanceWorker/employee/${employeeId}/request/${requestId}`);
     }
 }

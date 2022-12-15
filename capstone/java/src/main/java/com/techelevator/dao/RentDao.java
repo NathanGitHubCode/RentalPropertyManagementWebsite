@@ -14,7 +14,7 @@ public interface RentDao {
 
    List<PropertyLandlordRent> viewRentalsByLandlord(int landlordId);
 
-   public void assignRenterToProperty(int propertyId, int renterId, Principal principal);
+   void assignRenterToProperty(int propertyId, int renterId, Principal principal);
 
    void updateLandlordRentDetails(Property property, Principal principal);
 }

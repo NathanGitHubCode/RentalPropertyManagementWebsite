@@ -76,7 +76,7 @@ const router = new Router({
       }
     },
     {
-      path: "/maintenance/:userID",
+      path: "/maintenance",
       name: "maintenance-list",
       component: MaintenanceList,
       meta: {

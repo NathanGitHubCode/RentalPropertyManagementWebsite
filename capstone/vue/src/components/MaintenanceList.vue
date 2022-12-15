@@ -7,6 +7,7 @@
         <th class="properties-header">Property</th>
         <th class="description-header">Description</th>
         <th class="date-header">Date</th>
+        <th class="employee-header">Worker</th>
         <th class="contact-header">Phone</th>
         <th class="status-header">Status</th>
       </tr>
@@ -19,22 +20,29 @@
           <td class="properties">{{ main.propertyId }}</td>
           <td class="description">{{ main.description }}</td>
           <td class="date">{{ main.date }}</td>
+          <td class="employee">{{ main.employeeId}}</td>
           <td class="contact">{{ main.phoneNumber }}</td>
           <td 
           class="status"
           id="complete-button"
           type="button" 
-          v-if="main.maintStatusId == 1 && role == 'RENTER'"  
+          v-if="main.maintStatusId == 2 && role == 'EMPLOYEE'"  
           @click="markRequestComplete(main.requestId)">Mark Complete</td>
            <td 
           class="status"
           id="complete-button"
           type="button" 
           v-if="main.maintStatusId == 1 && role == 'LANDLORD'"  
-          @click="markRequestComplete">Assign Task</td>
-          <div class="status-complete" v-if="main.maintStatusId == 2">
-          <td class="status-text" >Completed</td>
-          </div>
+          @click="assignTask">Assign Task</td>
+          <td 
+          class="status-text"
+          v-if="main.maintStatusId == 2 && role =='LANDLORD'"
+          > Assigned </td>
+          <td 
+          class="status-text" 
+          v-if="main.maintStatusId == 3"
+          >Completed</td>
+        
       </tr>
       </tbody>
     </table>
@@ -59,13 +67,16 @@ export default {
     },
     markRequestComplete(requestId){
       alert(requestId)
-     // const ID = this.$route.params.ID;
       mainService.markRequestComplete(requestId).then( response => {
           if(response.status === 200) {
-            this.$store.commit('UPDATE_REQUEST_STATUS')
+            this.$store.commit('UPDATE_REQUEST_STATUS');
           }
       });
+    },
+    assignTask(){
+      this.$router.push('assignMaintenance');
     }
+
   },
   created() {
     this.getMaintenanceList();
