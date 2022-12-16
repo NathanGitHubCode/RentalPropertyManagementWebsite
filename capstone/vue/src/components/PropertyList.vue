@@ -1,7 +1,6 @@
 <template>
   <div class="property-page">
-    <h3 id="header"
-    v-if="this.$store.state.user != null">Dreamville Properties</h3>
+    <h3 id="header">Dreamville Properties</h3>
     <div class="landlord-view" v-if="this.$store.state.user.authorities[0].name.substring(5, this.$store.state.user.authorities[0].name.length) == 'LANDLORD'">
       <form class="filter-list" @submit.prevent="getLandlordProperties">
         <label>Zip Code:</label>
@@ -14,7 +13,7 @@
         <input type="number" placeholder="# of Beds" v-model.number="filter.beds"/>
         <label>Baths:</label>
         <input type="number" placeholder="# of Baths" v-model.number="filter.baths"/>
-        <button type="submit"> Enter </button>
+        <button type="submit" class="filter-button"> Enter </button>
       </form>
 
     <h2 v-if="message">Thank you for using Dreamville Properties.</h2>
@@ -38,17 +37,16 @@
        <div 
        class="property-card"
        v-for="(property, index) in this.$store.state.userProperties"
-       v-show="property.available == true"
        v-bind:key="property.id">
-      <img :src="property.imgSrc" />
-      <div class="property-details">
+      <div class="property-details"
+      v-if="property.available == true">
+        <img :src="property.imgSrc" />
         <h1 id="address">Address: {{ property.address }}</h1>
         <h1 id="bathrooms">Bathrooms: {{ property.bathrooms }}</h1>
         <h1 id="bedrooms">Bedrooms: {{ property.bedrooms }}</h1>
         <h1 id="price">Rent: ${{ property.price }}</h1>
         <button class="purchase" 
         @click="rentProperty(property.propertyId, index)"
-        v-if="this.$store.state.user != {}"
         > Rent Property </button>
       </div>
 
@@ -99,6 +97,7 @@ methods: {
    getUserProperties() {
     propService.getUserProperties().then( response => {
        if(response.status === 200) {
+
         this.$store.commit('SET_USER_PROPERTIES', response.data);
        }
     });
@@ -147,7 +146,6 @@ methods: {
   },
 
   created() {
-    this.getLandlordProperties();
     this.getUserProperties();
       if(
       this.filter.minPrice === null,
@@ -167,13 +165,22 @@ methods: {
 
 <style scoped>
 
+.filter-button:hover{
+  background-color: #ec9d36;
+}
+
+label{
+    color: white;
+
+}
+
 .property-page{
   width: 99%;
 }
 
 
 .property-card{
-  background: white;
+  background: rgb(205, 247, 255);
   display: flex;
   margin: 10px 10px 10px 10px;
 }
@@ -190,15 +197,19 @@ img {
 
 #header {
   font-size: 35px;
+  text-align: center;
+  font-style: italic;
 }
 
 .filter-list {
   display: inline-flex;
   flex-wrap: nowrap;
-  background: rgba(104, 0, 0) ;  
+  background: rgb(8, 134, 61) ;  
   padding: 10px;
   width: 99%;
   height: 5vh;
+  margin-left: 7px;
+  justify-content: space-around;
 
 }
 

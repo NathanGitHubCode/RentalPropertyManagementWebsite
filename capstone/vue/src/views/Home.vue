@@ -5,8 +5,10 @@
         <h3>Welcome to Dreamville Rentals</h3>
       </div>
   <div class="main">
+    <div class="amenities" >
     <h2>Rental Property Amenities</h2>
     <p>Our rental property offers the following amenities for our tenants to enjoy:</p>
+    </div>
     <ul>
       <h1 id="list-item-label">Fitness Center</h1>
       <li>Our state-of-the-art fitness center is fully equipped with a wide range of cardiovascular and weight-training equipment, including treadmills, stationary bikes, ellipticals, and free weights. The fitness center is open 24 hours a day, so tenants can work out at a time that is convenient for them.</li>
@@ -77,13 +79,17 @@ h2 {
 
     .header {
       grid-area: header;
-
+      font-size: 30px;
+      color: white;
+      text-align: center;
+      font-style:oblique;
+      text-decoration: underline;
+    
     }
 
     .main {
       grid-area: main;
       padding: 20px;
-     
     }
     .sidebar-left {
       background-color: #fff;
@@ -113,16 +119,17 @@ h2 {
     #list-item-label {
       font-size: 24px;
       text-align: center;
-      text-decoration: underline;
+      text-decoration: none;
+      font-style: italic;
     }
     h2 {
       font-size: 18px;
     }
-    h3 {
-      text-align: center;
+    /* h3 {
+      text-align: left; 
       padding: 20px;
       
-    }
+    } */
     ul {
       list-style-type: none;
       padding: 0;
@@ -143,6 +150,22 @@ h2 {
       font-weight: bold;
     }
 
-  
+    ul > li {
+      background-color: rgb(8, 134, 61);
+      color: white;
+
+    }
+
+    ul > h1 {
+      background-color: #ec9d36;
+      color: white;
+      margin-left: 40%;
+      margin-right: 40%;
+    }
+  .main > div {
+    font-weight: bolder;
+    text-decoration: underline;
+  }
+
 
 </style>

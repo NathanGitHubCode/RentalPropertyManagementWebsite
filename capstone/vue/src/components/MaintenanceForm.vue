@@ -44,6 +44,10 @@ export default {
 </script>
 
 <style scoped>
+
+form{
+  margin-top: 10vh;
+}
 label{
   display: inline-block;
   text-align: right;

@@ -99,7 +99,7 @@ body{
 
 
   .nav-bar {
-      background-color: rgba(104, 0, 0);
+      background-color: rgb(8, 134, 61);
       padding: auto;
       display:flex;
       flex-wrap: wrap;
@@ -134,7 +134,7 @@ body{
 /* Dropdown button on hover & focus */
 .drop:hover, .drop:focus {
   color: white;
-  background-color: rgb(129, 0, 0) ;
+  background-color: rgba(230, 149, 27, 0.3) ;
 
 }
 
@@ -149,7 +149,7 @@ body{
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #f1f1f1;
+  background-color: white;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
@@ -165,7 +165,8 @@ body{
 
 /* Change color of dropdown links on hover */
 .dropdown-content > *:hover {
-  background-color: #ddd;
+  background-color: #ec9d36;
+  color: white;
   }
 
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */

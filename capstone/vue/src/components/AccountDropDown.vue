@@ -60,7 +60,7 @@ props: {
 }
 
 .login-button{
-  background: rgba(104, 0, 0);
+  background: rgb(8, 134, 61);
   color: white;
   font-size: 1rem;
   font-weight: bold;

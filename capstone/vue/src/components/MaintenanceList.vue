@@ -90,7 +90,7 @@ export default {
   margin: 10px 10px 10px 10px;
   width: 99%;
   height: 100vh;
-  background-color: white;
+  background-color: gray;
 }
 
 
@@ -100,6 +100,7 @@ text-align: left;
 background-color: rgb(219, 219, 219);
 border: 10px;
 padding-left: 5px;
+color: black;
 }
 
 .properties{

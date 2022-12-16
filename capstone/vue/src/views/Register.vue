@@ -1,7 +1,7 @@
 <template>
   <div id="register" class="text-center">
     <form class="form-register" @submit.prevent="register">
-      <h1 class="h3 mb-3 font-weight-normal">Create Account</h1>
+      <h1 class="h3 mb-3 font-weight-normal" id="create-account">Create Account</h1>
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
       </div>
@@ -32,12 +32,15 @@
         v-model="user.confirmPassword"
         required
       />
+      <div class="register-role">
+      <label for="role">Role</label>
         <select id="role" v-model="user.role">
             <option value="Renter">Renter</option>
             <option value="Landlord">Landlord</option>
             <option value="Employee">Employee</option>
           </select> 
-      <router-link :to="{ name: 'login' }">Have an account?</router-link>
+      </div>
+      <router-link id="login" :to="{ name: 'login' }">Have an account?</router-link>
       <button class="btn btn-lg btn-primary btn-block" type="submit">
         Create Account
       </button>
@@ -95,4 +98,48 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+
+.form-register{
+  margin-top: 70px;
+}
+
+input{
+  margin-bottom: 5px;
+
+}
+
+#login{
+  text-decoration: none;
+  color: white;
+  margin: 10px;
+}
+
+#login:hover {
+  text-decoration: underline;
+}
+
+.register-role{
+  display: flex;
+  flex-wrap: wrap;
+  margin: 5px;
+}
+
+.register-role > select{
+  margin-left: 10px;
+  height: 20%;
+  background-color: white;
+}
+
+#create-account {
+  margin-bottom: 10px;
+}
+
+/* option{
+  color: white;
+} */
+
+/* option:visited{
+  color: black;
+} */
+</style>

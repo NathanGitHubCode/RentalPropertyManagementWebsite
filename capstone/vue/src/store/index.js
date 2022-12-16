@@ -73,14 +73,14 @@ export default new Vuex.Store({
     SET_USER_PROPERTIES(state, properties) {
       state.userProperties = properties;
 
-     state.userProperties.filter( userProp => {
-       let prop = state.userProperties.indexOf(userProp);
-       state.rentedProperties.filter( rentProp => {
-         if(userProp.address == rentProp.address){
-            state.userProperties.splice(prop, 1);
-         }
-       });
-     });
+    //  state.userProperties.filter( userProp => {
+    //    let prop = state.userProperties.indexOf(userProp);
+    //    state.rentedProperties.filter( rentProp => {
+    //      if(userProp.address == rentProp.address){
+    //         state.userProperties.splice(prop, 1);
+    //      }
+    //    });
+    //  });
     },
     UPDATE_USER_PROPERTIES(state, index){
       state.userProperties.splice(index, 1);

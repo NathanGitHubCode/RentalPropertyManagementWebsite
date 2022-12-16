@@ -1,5 +1,5 @@
-<template>
-  <div>
+<template id="prop-page">
+  <div class="add-prop-page">
     <form @submit.prevent="addRentalProperty">
 
       <h2 v-if="landlordMessage">Thank you for using Dreamville Properties.</h2>
@@ -80,25 +80,36 @@ export default {
 
 
 
-<style>
+<style >
+
+.add-prop-page{
+  /* background-color: #a8a8a7; */
+  margin: 20px;
+    
+}
+
 form {
   width: 500px;
-  margin: 0 auto;
-  padding: 5vh 25vw 40vh 25vw;
-
-  border-radius: 5px;
+  margin: auto;
+  padding: 10vh 15vw 40vh 15vw;
+  background-color: rgb(8, 134, 61);
+  /* width: 20%; */
+  
+  border-radius: 50px;
 }
 label {
   display: block;
   margin-bottom: 0.5em;
   font-weight: bold;
-  color: #333;
+  color:white;
+
 }
 input {
   width: 100%;
   padding: 0.5em;
   border: 1px solid #ccc;
   border-radius: 3px;
+  background-color: rgb(205, 247, 255);
 }
 button {
   background-color: #4CAF50;
@@ -110,9 +121,10 @@ button {
   transition: 0.3s;
   display: flex;
   margin: auto;
+  margin-top: 10px;
   }
 button:hover {
-  background-color: #3e8e41;
+  background-color: #ec9d36;
 }
 
 #amenities {
