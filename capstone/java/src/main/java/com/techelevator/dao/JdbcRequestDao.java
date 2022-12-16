@@ -58,7 +58,7 @@ public class JdbcRequestDao implements RequestDao {
         String sql = "INSERT INTO maintenance_requests(renter_id, property_id, address, date, description, maintenance_status_id, contact_phone) VALUES(?, ?, ?, ?, ?, ?, ?) RETURNING request_id";
         int requestId = jdbcTemplate.queryForObject(sql, Integer.class, request.getRenterId(), request.getPropertyId(), request.getAddress(), request.getDate(), request.getDescription(), 1, request.getPhoneNumber());
 
-        request.setRequestId(requestId);
+//        request.setRequestId(requestId);
         return request;
     }
 

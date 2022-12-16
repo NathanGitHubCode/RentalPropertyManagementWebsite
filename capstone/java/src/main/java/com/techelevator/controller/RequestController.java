@@ -37,10 +37,14 @@ public class RequestController {
     @RequestMapping(path = "/requestMaintenance", method = RequestMethod.POST)
     public void submitRequest(@RequestBody RequestDto requestDto, Principal principal){
         Request request = new Request();
-        String id = principal.getName();
-        request.setRenterId(userDao.findIdByUsername(principal.getName()));
-        request.setPropertyId(propertyDao.findPropertyIdByRenterId(principal));
-        request.setAddress(propertyDao.findAddressByPropertyId(propertyDao.findPropertyIdByRenterId(principal)));
+        String username = principal.getName();
+        int renterId = userDao.findIdByUsername(principal.getName());
+        int propertyId = propertyDao.findPropertyIdByRenterId(renterId);
+        String address = propertyDao.findAddressByPropertyId(propertyDao.findPropertyIdByRenterId(renterId));
+
+        request.setRenterId(renterId);
+        request.setPropertyId(propertyId);
+        request.setAddress(address);
         request.setDate(LocalDate.now());
         request.setDescription(requestDto.getDescription());
         request.setPhoneNumber(requestDto.getPhoneNumber());

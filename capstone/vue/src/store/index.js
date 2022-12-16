@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+// import { indexOf } from 'core-js/core/array'
 // import { use } from 'chai'
 
 Vue.use(Vuex)
@@ -66,23 +67,20 @@ export default new Vuex.Store({
       state.maintenanceList = maintenance;
     },
     UPDATE_LANDLORD_PROPERTIES(state, index) {
-      // const availProps = state.rentalProperties.filter( property => {
-      //  if(property.zpid == ID){
-      //   return property;
-      //  }
-       
-      // });
-
-      // const propIndex = state.rentalProperties.indexOf(availProps);
-      
-      // if(propIndex > -1) {
         state.landlordProperties.splice(index, 1);
-        // state.purchasedProperties.push(availProps);
-      // }
-
+       
     },
     SET_USER_PROPERTIES(state, properties) {
       state.userProperties = properties;
+
+     state.userProperties.filter( userProp => {
+       let prop = state.userProperties.indexOf(userProp);
+       state.rentedProperties.filter( rentProp => {
+         if(userProp.address == rentProp.address){
+            state.userProperties.splice(prop, 1);
+         }
+       });
+     });
     },
     UPDATE_USER_PROPERTIES(state, index){
       state.userProperties.splice(index, 1);
@@ -96,12 +94,35 @@ export default new Vuex.Store({
     ADD_USER_PROP(state, property){
       state.userProperties.push(property);
     },
-    SET_RENTED_PROPS(state, properties){
-      properties.filter( prop => {
-          if(prop.renterId == state.user.id){
-            state.rentedProperties.push(prop)
+    SET_RENTED_PROPS(state){
+      state.userProperties.filter( prop => {
+        const index = state.rentedProperties.indexOf(prop);
+          if(prop.renterId == state.user.id && index === -1){
+             state.rentedProperties.push(prop);
           }
       }); 
+
+      // state.rentedProperties.filter( rentedProp => {
+      //   let index = state.rentedProperties.indexOf(rentedProp);
+      //   if(index == -1){
+      //     state.rentedProperties.splice(index, 1);
+      //   }
+
+      // });
+    },
+    SET_PAID_STATUS(state, propertyId){
+      state.rentedProperties.filter( prop => {
+          if(prop.propertyId == propertyId){
+            prop.status = 2;
+          }
+      });
+    },
+    SET_OVERDUE_STATUS(state, propertyId){
+      state.rentedProperties.filter( prop => {
+        if(prop.propertyId == propertyId){
+          prop.status = 3;
+        }
+      });
     }
   }
 })

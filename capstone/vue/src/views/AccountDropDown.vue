@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <account-drop-down
-      v-bind:userName="this.$store.state.user.username.substring(0, 1)"
+      v-bind:userName="this.$store.state.user.username"
       v-bind:userType="this.$store.state.user.authorities[0].name.substring(5, this.$store.state.user.authorities[0].name.length)"
       v-bind:logout="logout"
     />

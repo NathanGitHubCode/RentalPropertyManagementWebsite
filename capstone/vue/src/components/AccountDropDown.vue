@@ -13,7 +13,7 @@
     class="dropdown"
     @click="toggleDropdown"
     >
-      {{ userName }} 
+      {{ userName.substring(0, 1) }} 
     </h1>
 
     <div 

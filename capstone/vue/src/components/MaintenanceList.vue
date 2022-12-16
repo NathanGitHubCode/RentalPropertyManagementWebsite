@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Maintenance Request List</h1>
+    <h1>Maintenance Request</h1>
      <table class="maintenance-table">
        <thead>
       <tr class="header">
@@ -88,7 +88,7 @@ export default {
 
 .maintenance-table{
   margin: 10px 10px 10px 10px;
-  width: 100%;
+  width: 99%;
   height: 100vh;
   background-color: white;
 }

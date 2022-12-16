@@ -71,17 +71,17 @@ public class JdbcRentDao implements RentDao{
         //Todo what to return if update isn't successful/conditions aren't met
     }
 
-//    @Override
-//    public void updateRentStatus(int propertyId, Principal principal) {
-//        String sql2 = "SELECT renter_id FROM available_properties WHERE property_id = ?;";
-//        int renterId = jdbcTemplate.queryForObject(sql2, Integer.class, propertyId);
-//        String sql3 = "SELECT due_date FROM available_properties WHERE property_id = ?;";
-//        LocalDate dueDate = jdbcTemplate.queryForObject(sql3, LocalDate.class, propertyId);
-//        if (renterId == userDao.findIdByUsername(principal.getName())) {
-//            String sql = "UPDATE available_properties SET status = ?, due_date = ? WHERE property_id = ?;";
-//            jdbcTemplate.update(sql, 2, dueDate.plusMonths(1), propertyId);
-//        }
-//    }
+    @Override
+    public void updateRentStatus(int propertyId, Principal principal) {
+        String sql2 = "SELECT renter_id FROM available_properties WHERE property_id = ?;";
+        int renterId = jdbcTemplate.queryForObject(sql2, Integer.class, propertyId);
+        String sql3 = "SELECT due_date FROM available_properties WHERE property_id = ?;";
+        LocalDate dueDate = jdbcTemplate.queryForObject(sql3, LocalDate.class, propertyId);
+        if (renterId == userDao.findIdByUsername(principal.getName())) {
+            String sql = "UPDATE available_properties SET status = ?, due_date = ? WHERE property_id = ?;";
+            jdbcTemplate.update(sql, 2, dueDate.plusMonths(1), propertyId);
+        }
+    }
 
 //    @Override
 //    public void updateOverdueStatus(int propertyId, Principal principal) {

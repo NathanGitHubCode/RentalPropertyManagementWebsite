@@ -1,6 +1,7 @@
 <template>
   <div class="property-page">
-    <h3 id="header">Dreamville Properties</h3>
+    <h3 id="header"
+    v-if="this.$store.state.user != null">Dreamville Properties</h3>
     <div class="landlord-view" v-if="this.$store.state.user.authorities[0].name.substring(5, this.$store.state.user.authorities[0].name.length) == 'LANDLORD'">
       <form class="filter-list" @submit.prevent="getLandlordProperties">
         <label>Zip Code:</label>
@@ -45,7 +46,10 @@
         <h1 id="bathrooms">Bathrooms: {{ property.bathrooms }}</h1>
         <h1 id="bedrooms">Bedrooms: {{ property.bedrooms }}</h1>
         <h1 id="price">Rent: ${{ property.price }}</h1>
-        <button class="purchase" @click="rentProperty(property.propertyId, index)"> Rent Property </button>
+        <button class="purchase" 
+        @click="rentProperty(property.propertyId, index)"
+        v-if="this.$store.state.user != {}"
+        > Rent Property </button>
       </div>
 
     </div>
@@ -163,6 +167,10 @@ methods: {
 
 <style scoped>
 
+.property-page{
+  width: 99%;
+}
+
 
 .property-card{
   background: white;
@@ -187,7 +195,7 @@ img {
 .filter-list {
   display: inline-flex;
   flex-wrap: nowrap;
-  background: chocolate;  
+  background: rgba(104, 0, 0) ;  
   padding: 10px;
   width: 99%;
   height: 5vh;
@@ -196,7 +204,7 @@ img {
 
 .filter-list > * {
   justify-content: flex-start;
-  width: 100vw;
+  width: 100px;
   display: flex;
   margin: 10px;
   align-items: center;

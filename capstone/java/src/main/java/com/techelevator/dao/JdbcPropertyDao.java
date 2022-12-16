@@ -75,9 +75,8 @@ public class JdbcPropertyDao implements PropertyDao {
 //    }
 
     @Override
-    public int findPropertyIdByRenterId(Principal principal){
+    public int findPropertyIdByRenterId(int renterId){
         int propertyId = 0;
-        int renterId = userDao.findIdByUsername(principal.getName());
         String sql = "SELECT property_id FROM available_properties WHERE renter_id = ?;";
         propertyId = jdbcTemplate.queryForObject(sql, Integer.class, renterId);
         return propertyId;
