@@ -44,8 +44,13 @@ public class RentController {
         rentDao.updateLandlordRentDetails(property, principal);
     }
 
-    @RequestMapping(path = "/updateRentStatusToPaid/{propertyId}", method = RequestMethod.PUT)
-    public void updateRentStatus(@PathVariable int propertyId, Principal principal){
-        rentDao.updateRentStatus(propertyId, principal);
-    }
+//    @RequestMapping(path = "/updateRentStatusToPaid/{propertyId}", method = RequestMethod.PUT)
+//    public void updateRentStatus(@PathVariable int propertyId, Principal principal){
+//        rentDao.updateRentStatus(propertyId, principal);
+//    }
+//
+//    @RequestMapping(path = "/updateOverdueRent/{propertyId}", method = RequestMethod.PUT)
+//    public void updateOverdueStatus(@PathVariable int propertyId, Principal principal){
+//        rentDao.updateOverdueStatus(propertyId, principal);
+//    }
 }
