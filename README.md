@@ -12,6 +12,6 @@ Employees, who are responsible for managing the properties, can take on maintena
 
 Overall, our rental property management website is designed to make the rental process as efficient and hassle-free as possible for everyone involved. 
 
-## Technical Skills applied throught project
+## Technical Skills applied throughout project
 
 Java, PostgreSQL, JavaScript, HTML, CSS, Vue.js, Spring Boot, JWT, and External API Integration
